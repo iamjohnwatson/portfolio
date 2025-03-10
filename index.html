@@ -9,18 +9,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="story-progress">
+        <div class="progress-bar"></div>
+    </div>
+    
     <header>
         <div class="container">
-            <h1>Akash Sriram</h1>
+            <div class="typing-container">
+                <h1 class="typing-text">Akash Sriram</h1>
+            </div>
             <p class="tagline">Financial Reporter with Data Visualization Expertise</p>
+            <div class="header-particles"></div>
         </div>
     </header>
     
     <nav>
         <div class="container">
             <ul class="tabs">
-                <li data-tab="home" class="active">Home</li>
-                <li data-tab="resume">Resume</li>
+                <li data-tab="home" class="active">My Story</li>
+                <li data-tab="resume">Experience</li>
+                <li data-tab="cover-letter">Cover Letter</li>
                 <li data-tab="portfolio">Portfolio</li>
             </ul>
         </div>
@@ -28,58 +36,103 @@
     
     <main class="container">
         <section id="home" class="tab-content active">
+            <div class="story-intro">
+                <div class="story-chapter">Chapter 1: The Introduction</div>
+            </div>
+            
             <div class="hero">
                 <div class="hero-content">
-                    <h2>Hello, I'm Akash</h2>
+                    <h2>Hello, I'm <span class="highlight-text">Akash</span></h2>
                     <h3>Technology & Finance Reporter with Data Visualization Skills</h3>
-                    <p>I combine financial reporting expertise with technical skills to create compelling visual stories.</p>
+                    <p>I combine financial reporting expertise with technical skills to create compelling visual stories. Let me take you on a journey through my professional narrative.</p>
                     <div class="cta-buttons">
-                        <button class="btn primary" onclick="switchTab('portfolio')">View My Work</button>
-                        <button class="btn secondary" onclick="switchTab('resume')">My Experience</button>
+                        <button class="btn primary" onclick="switchTab('portfolio')">Explore My Work</button>
+                        <button class="btn secondary" onclick="switchTab('resume')">Discover My Journey</button>
                     </div>
                 </div>
                 <div class="hero-image">
                     <div class="profile-placeholder">
                         <i class="fas fa-user"></i>
+                        <div class="orbit-container">
+                            <div class="orbit orbit-1">
+                                <div class="satellite"><i class="fas fa-chart-line"></i></div>
+                            </div>
+                            <div class="orbit orbit-2">
+                                <div class="satellite"><i class="fas fa-code"></i></div>
+                            </div>
+                            <div class="orbit orbit-3">
+                                <div class="satellite"><i class="fas fa-newspaper"></i></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="story-intro">
+                <div class="story-chapter">Chapter 2: Core Competencies</div>
             </div>
             
             <div class="skills-highlight">
                 <h3>Key Skills</h3>
                 <div class="skills-grid">
-                    <div class="skill-card">
-                        <i class="fas fa-chart-line"></i>
+                    <div class="skill-card" data-skill="Financial Reporting">
+                        <div class="skill-icon-container">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
                         <h4>Financial Reporting</h4>
                         <p>Extensive experience covering technology and financial markets at Reuters</p>
+                        <div class="skill-card-hover">
+                            <span>Click to read more</span>
+                        </div>
                     </div>
-                    <div class="skill-card">
-                        <i class="fas fa-code"></i>
+                    <div class="skill-card" data-skill="Data Visualization">
+                        <div class="skill-icon-container">
+                            <i class="fas fa-code"></i>
+                        </div>
                         <h4>Data Visualization</h4>
                         <p>Creating compelling visual stories with various tools and programming languages</p>
+                        <div class="skill-card-hover">
+                            <span>Click to read more</span>
+                        </div>
                     </div>
-                    <div class="skill-card">
-                        <i class="fas fa-podcast"></i>
+                    <div class="skill-card" data-skill="Multimedia Production">
+                        <div class="skill-icon-container">
+                            <i class="fas fa-podcast"></i>
+                        </div>
                         <h4>Multimedia Production</h4>
                         <p>Podcast hosting, video editing, and digital content creation</p>
+                        <div class="skill-card-hover">
+                            <span>Click to read more</span>
+                        </div>
                     </div>
-                    <div class="skill-card">
-                        <i class="fas fa-search"></i>
+                    <div class="skill-card" data-skill="Research & Analysis">
+                        <div class="skill-icon-container">
+                            <i class="fas fa-search"></i>
+                        </div>
                         <h4>Research & Analysis</h4>
                         <p>Converting complex data into clear, insightful stories</p>
+                        <div class="skill-card-hover">
+                            <span>Click to read more</span>
+                        </div>
                     </div>
+                </div>
+            </div>
+            
+            <div class="skill-story-modal">
+                <div class="skill-story-content">
+                    <span class="close-skill-story">&times;</span>
+                    <h3 class="skill-story-title"></h3>
+                    <div class="skill-story-body"></div>
                 </div>
             </div>
         </section>
         
         <section id="resume" class="tab-content">
-            <h2>Resume</h2>
-            
-            <div class="resume-header">
-                <button id="view-cover-letter" class="btn primary">
-                    <i class="fas fa-file-alt"></i> View Cover Letter
-                </button>
+            <div class="story-intro">
+                <div class="story-chapter">Chapter 3: Professional Journey</div>
             </div>
+            
+            <h2>Resume</h2>
             
             <div class="resume-overview">
                 <div class="overview-card">
@@ -116,64 +169,58 @@
             <div class="skills-section">
                 <h3><i class="fas fa-star"></i> Professional Skills</h3>
                 
-                <div class="skills-grid-visual">
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Data Visualization</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="90%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Financial Reporting</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="95%"></div>
+                <div class="skills-donut-grid">
+                    <div class="donut-chart-container">
+                        <div class="donut-chart" data-percentage="90">
+                            <div class="donut-label">
+                                <span class="donut-title">Data Viz</span>
+                                <span class="donut-percent">90%</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>HTML/CSS</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>JavaScript</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="80%"></div>
+                    <div class="donut-chart-container">
+                        <div class="donut-chart" data-percentage="95">
+                            <div class="donut-label">
+                                <span class="donut-title">Financial<br>Reporting</span>
+                                <span class="donut-percent">95%</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Adobe Illustrator</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="75%"></div>
+                    <div class="donut-chart-container">
+                        <div class="donut-chart" data-percentage="85">
+                            <div class="donut-label">
+                                <span class="donut-title">HTML/CSS</span>
+                                <span class="donut-percent">85%</span>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="skill-item">
-                        <div class="skill-info">
-                            <span>Data Analysis</span>
-                            <span>85%</span>
+                    <div class="donut-chart-container">
+                        <div class="donut-chart" data-percentage="80">
+                            <div class="donut-label">
+                                <span class="donut-title">JavaScript</span>
+                                <span class="donut-percent">80%</span>
+                            </div>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" data-width="85%"></div>
+                    </div>
+                    
+                    <div class="donut-chart-container">
+                        <div class="donut-chart" data-percentage="75">
+                            <div class="donut-label">
+                                <span class="donut-title">Adobe<br>Illustrator</span>
+                                <span class="donut-percent">75%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="donut-chart-container">
+                        <div class="donut-chart" data-percentage="85">
+                            <div class="donut-label">
+                                <span class="donut-title">Data<br>Analysis</span>
+                                <span class="donut-percent">85%</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -207,6 +254,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="story-intro">
+                <div class="story-chapter">Chapter 4: Career Milestones</div>
             </div>
             
             <div class="experience-section">
@@ -254,6 +305,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="story-intro">
+                <div class="story-chapter">Chapter 5: Educational Background</div>
             </div>
             
             <div class="education-section">
@@ -329,7 +384,55 @@
             </div>
         </section>
         
+        <section id="cover-letter" class="tab-content">
+            <div class="story-intro">
+                <div class="story-chapter">Chapter 6: My Application</div>
+            </div>
+            
+            <h2>Cover Letter</h2>
+            
+            <div class="cover-letter-content">
+                <div class="letter-header">
+                    <p>Akash Sriram</p>
+                    <p>akash.sriram@tr.com</p>
+                    <p>+91 9901777617</p>
+                </div>
+                
+                <div class="letter-date">
+                    <p id="current-date"></p>
+                </div>
+                
+                <div class="letter-recipient">
+                    <p>Reuters Graphics Team</p>
+                    <p>Reuters News</p>
+                </div>
+                
+                <div class="letter-content">
+                    <p>Dear Hiring Manager,</p>
+                    
+                    <p>I am writing to express my interest in the Financial Graphics Journalist position with Reuters Graphics. As a current Sector Specialist in Technology, Media, and Telecom at Reuters News with a passion for data visualization, I believe my unique combination of financial reporting expertise and technical skills makes me an ideal candidate for this role.</p>
+                    
+                    <p>During my tenure at Reuters, I have developed a strong foundation in financial reporting, particularly in the technology sector. I've led coverage of electric vehicle companies including Tesla, Rivian, and Lucid, consistently breaking news and developing deep industry knowledge. What sets my reporting apart is my commitment to incorporating data visualization to enhance storytelling. I have actively developed these skills and assisted colleagues in implementing graphics in their stories, making complex financial information more accessible to our audience.</p>
+                    
+                    <p>Beyond my reporting experience, I bring valuable technical skills to the table. I have completed Google's Professional Data Analytics certification, where I gained proficiency in programming languages and visualization techniques. I can work comfortably with datasets in Excel and Google Sheets, and I have experience creating custom graphics without relying on off-the-shelf tools. My background in media production, including podcast hosting and video editing, has honed my visual storytelling abilities across multiple formats.</p>
+                    
+                    <p>What excites me most about joining the Reuters Graphics team is the opportunity to fully merge my financial reporting expertise with my passion for visual communication. I am drawn to your team's reputation for innovation, creativity, and collaboration, and I share your belief that treating colleagues with flexibility and empathy leads to the best work.</p>
+                    
+                    <p>I am particularly interested in creating data-rich visual stories that illuminate the complex relationships between economics, business, and other critical areas like technology and the environment. I believe my experience covering the technology sector gives me unique insights into how these fields intersect and impact global markets.</p>
+                    
+                    <p>Thank you for considering my application. I would welcome the opportunity to discuss how my skills and experience could contribute to Reuters Graphics' continued excellence in visual financial journalism.</p>
+                    
+                    <p>Sincerely,</p>
+                    <p>Akash Sriram</p>
+                </div>
+            </div>
+        </section>
+        
         <section id="portfolio" class="tab-content">
+            <div class="story-intro">
+                <div class="story-chapter">Chapter 7: My Work</div>
+            </div>
+            
             <h2>Portfolio</h2>
             
             <div class="portfolio-filters">
@@ -460,48 +563,6 @@
             </div>
         </section>
     </main>
-    
-    <!-- Cover Letter Modal -->
-    <div class="cover-letter-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Cover Letter</h2>
-            
-            <div class="letter-header">
-                <p>Akash Sriram</p>
-                <p>akash.sriram@tr.com</p>
-                <p>+91 9901777617</p>
-            </div>
-            
-            <div class="letter-date">
-                <p id="current-date"></p>
-            </div>
-            
-            <div class="letter-recipient">
-                <p>Reuters Graphics Team</p>
-                <p>Reuters News</p>
-            </div>
-            
-            <div class="letter-content">
-                <p>Dear Hiring Manager,</p>
-                
-                <p>I am writing to express my interest in the Financial Graphics Journalist position with Reuters Graphics. As a current Sector Specialist in Technology, Media, and Telecom at Reuters News with a passion for data visualization, I believe my unique combination of financial reporting expertise and technical skills makes me an ideal candidate for this role.</p>
-                
-                <p>During my tenure at Reuters, I have developed a strong foundation in financial reporting, particularly in the technology sector. I've led coverage of electric vehicle companies including Tesla, Rivian, and Lucid, consistently breaking news and developing deep industry knowledge. What sets my reporting apart is my commitment to incorporating data visualization to enhance storytelling. I have actively developed these skills and assisted colleagues in implementing graphics in their stories, making complex financial information more accessible to our audience.</p>
-                
-                <p>Beyond my reporting experience, I bring valuable technical skills to the table. I have completed Google's Professional Data Analytics certification, where I gained proficiency in programming languages and visualization techniques. I can work comfortably with datasets in Excel and Google Sheets, and I have experience creating custom graphics without relying on off-the-shelf tools. My background in media production, including podcast hosting and video editing, has honed my visual storytelling abilities across multiple formats.</p>
-                
-                <p>What excites me most about joining the Reuters Graphics team is the opportunity to fully merge my financial reporting expertise with my passion for visual communication. I am drawn to your team's reputation for innovation, creativity, and collaboration, and I share your belief that treating colleagues with flexibility and empathy leads to the best work.</p>
-                
-                <p>I am particularly interested in creating data-rich visual stories that illuminate the complex relationships between economics, business, and other critical areas like technology and the environment. I believe my experience covering the technology sector gives me unique insights into how these fields intersect and impact global markets.</p>
-                
-                <p>Thank you for considering my application. I would welcome the opportunity to discuss how my skills and experience could contribute to Reuters Graphics' continued excellence in visual financial journalism.</p>
-                
-                <p>Sincerely,</p>
-                <p>Akash Sriram</p>
-            </div>
-        </div>
-    </div>
     
     <footer>
         <div class="container">
