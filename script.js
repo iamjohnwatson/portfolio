@@ -21,21 +21,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            
-            const filter = button.getAttribute('data-filter');
-            
-            portfolioItems.forEach(item => {
-                if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+          // Update active button
+          filterButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+      
+          const filter = button.getAttribute('data-filter');
+      
+          portfolioItems.forEach(item => {
+            if (filter === 'all' || item.getAttribute('data-category') === filter) {
+              item.classList.add('show');
+              item.classList.remove('hide');
+            } else {
+              item.classList.add('hide');
+              item.classList.remove('show');
+            }
+          });
         });
-    });
+      });
     
     // Portfolio preview functionality
     const previewButtons = document.querySelectorAll('.portfolio-preview');
@@ -82,6 +84,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+const tabsContainer = document.querySelector('.tabs');
+
+if (mobileNavToggle) {
+  mobileNavToggle.addEventListener('click', () => {
+    tabsContainer.classList.toggle('open');
+  });
+}
+
     // Mobile menu toggle (if needed for smaller screens)
     window.addEventListener('resize', adjustLayout);
     adjustLayout();
@@ -112,19 +123,30 @@ document.addEventListener('DOMContentLoaded', function() {
     updateProgressBar();
     animateOnScroll();
     
-    // Add particle animation to header
-    const headerParticles = document.querySelector('.header-particles');
-    if (headerParticles) {
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
-            particle.style.animationDelay = (Math.random() * 5) + 's';
-            headerParticles.appendChild(particle);
-        }
-    }
+// Add particle animation to header
+const headerParticles = document.querySelector('.header-particles');
+if (headerParticles) {
+  // Existing particle creation loop
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+    particle.style.animationDelay = (Math.random() * 5) + 's';
+    headerParticles.appendChild(particle);
+  }
+  // Add mousemove interactivity for a parallax effect
+  headerParticles.addEventListener('mousemove', function(e) {
+    const offsetX = (e.clientX / window.innerWidth - 0.5) * 20; // Adjust multiplier as needed
+    const offsetY = (e.clientY / window.innerHeight - 0.5) * 20;
+    headerParticles.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+  });
+  headerParticles.addEventListener('mouseleave', function() {
+    headerParticles.style.transform = 'translate(0, 0)';
+  });
+}
+
 });
 
 // Global function to switch tabs (used by buttons)
@@ -210,8 +232,8 @@ function initSkillCards() {
     const skillStories = {
         'Financial Reporting': {
             title: 'Financial Reporting Expertise',
-            body: `<p>With over 4 years of experience in financial journalism, I've developed a deep understanding of financial markets, corporate reporting, and economic trends. At Reuters, I've specialized in covering technology companies, particularly in the electric vehicle and space sectors.</p>
-                  <p>My approach combines rigorous fact-checking with clear, accessible explanations of complex financial concepts. I pride myself on breaking news that moves markets and providing insightful analysis that helps readers understand the bigger picture.</p>
+            body: `<p>With over 5 years of experience in journalism, I've developed a deep understanding of financial markets, corporate reporting, economic trends and general news. At Reuters, I've specialized in covering U.S. technology companies, particularly in the electric vehicle and space sectors.</p>
+                  <p>My current role requires me to combine quick breaking news reporting with clear, accessible explanations of complex financial concepts. I pride myself on breaking news that moves markets and providing insightful analysis that helps readers understand the bigger picture.</p>
                   <p>Key strengths:</p>
                   <ul>
                     <li>Breaking news coverage of quarterly earnings and major corporate announcements</li>
@@ -222,24 +244,24 @@ function initSkillCards() {
         },
         'Data Visualization': {
             title: 'Data Visualization Skills',
-            body: `<p>I believe that effective data visualization is essential for modern financial journalism. I've developed expertise in creating charts, graphs, and interactive visualizations that make complex financial information accessible and engaging.</p>
+            body: `<p>I believe that effective data visualization is essential for modern financial journalism. I've developed expertise in creating charts, maps and interactive visualizations that make complex financial information accessible and engaging.</p>
                   <p>My technical skills include:</p>
                   <ul>
                     <li>Creating custom visualizations using D3.js and other JavaScript libraries</li>
                     <li>Building interactive dashboards that allow readers to explore data</li>
                     <li>Designing clear, informative charts that highlight key trends and patterns</li>
-                    <li>Combining visual elements with narrative to tell compelling data stories</li>
+                    <li>Using Datawrapper on a daily basis and training reporters on using the tool</li>
                   </ul>
-                  <p>I regularly collaborate with designers and developers to create visualizations that enhance my reporting and provide readers with deeper insights.</p>`
+                  <p>I regularly collaborate with reporters across the world to create visualizations that enhance my reporting and provide readers with deeper insights.</p>`
         },
         'Multimedia Production': {
             title: 'Multimedia Production Experience',
             body: `<p>Beyond traditional reporting, I've embraced multimedia storytelling to reach audiences across different platforms. My experience includes:</p>
                   <ul>
-                    <li>Hosting and producing podcast episodes on financial and technology topics</li>
-                    <li>Creating video explainers that break down complex financial concepts</li>
+                    <li>Hosting and producing podcast episodes on general news, international relations</li>
+                    <li>Developing proficiency in using the Adobe suite of software</li>
                     <li>Developing social media content strategies to extend the reach of my reporting</li>
-                    <li>Collaborating with video teams to produce visual stories</li>
+                    <li>Collaborating with video teams to produce visual stories with previous employer</li>
                   </ul>
                   <p>I believe in meeting audiences where they are and adapting content to suit different platforms while maintaining journalistic integrity and clarity.</p>`
         },
