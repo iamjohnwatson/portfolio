@@ -352,18 +352,25 @@ main {
 
 .profile-placeholder i {
     font-size: 80px;
-    color: white;
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* For non-webkit browsers, you may need additional properties if supported */
 }
 
-/* Orbit Animation */
+
+/* Orbit Container */
 .orbit-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    pointer-events: none; /* Prevents interaction interfering with underlying elements */
 }
 
+/* Common Orbit Styles */
 .orbit {
     position: absolute;
     top: 50%;
@@ -371,24 +378,29 @@ main {
     border: 1px dashed rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     transform: translate(-50%, -50%);
+    pointer-events: none;
 }
 
-.orbit-1 {
-    width: 250px;
-    height: 250px;
-    animation: rotate 15s linear infinite;
-}
-
-.orbit-2 {
-    width: 350px;
-    height: 350px;
-    animation: rotate 20s linear infinite reverse;
-}
-
-.orbit-3 {
+/* Layering orbits using z-index so that the inner orbit appears above the others */
+.orbit-3 { 
     width: 450px;
     height: 450px;
     animation: rotate 25s linear infinite;
+    z-index: 1;
+}
+
+.orbit-2 { 
+    width: 350px;
+    height: 350px;
+    animation: rotate 20s linear infinite reverse;
+    z-index: 2;
+}
+
+.orbit-1 { 
+    width: 250px;
+    height: 250px;
+    animation: rotate 15s linear infinite;
+    z-index: 3;
 }
 
 @keyframes rotate {
@@ -396,6 +408,7 @@ main {
     to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
+/* Satellite Styles */
 .satellite {
     position: absolute;
     width: 40px;
@@ -407,8 +420,10 @@ main {
     align-items: center;
     color: white;
     box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+    z-index: 4; /* Ensure satellites sit on top of the orbit circles */
 }
 
+/* Position satellites at different points on their respective orbits */
 .orbit-1 .satellite {
     top: 0;
     left: 50%;
@@ -426,6 +441,7 @@ main {
     left: 50%;
     transform: translateX(-50%);
 }
+
 
 /* Skills Section */
 .skills-highlight {
@@ -1321,16 +1337,6 @@ footer {
     opacity: 1;
     transform: translateX(0);
 }
-
-/* Scroll Progress Indicator */
-window.addEventListener('scroll', function() {
-    let scrollTop = window.scrollY;
-    let docHeight = document.body.offsetHeight;
-    let winHeight = window.innerHeight;
-    let scrollPercent = scrollTop / (docHeight - winHeight);
-    let scrollPercentRounded = Math.round(scrollPercent * 100);
-    document.querySelector('.progress-bar').style.width = scrollPercentRounded + '%';
-});
 
 /* Animated Portfolio Items */
 .portfolio-item {
