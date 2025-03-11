@@ -6,48 +6,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Main initialization function
 function initializeApp() {
-    // Set current date in the cover letter
-    setCurrentDate();
-    
-    // Initialize tab navigation
-    initTabs();
-    
-    // Initialize mobile navigation
-    initMobileNav();
-    
-    // Initialize dark mode toggle
-    initDarkMode();
-    
-    // Initialize header particles
-    createHeaderParticles();
-    
-    // Initialize orbit simulator
-    initOrbitSimulator();
-    
-    // Initialize skill stories
-    initSkillStories();
-    
-    // Initialize portfolio filters
-    initPortfolioFilters();
-    
-    // Initialize portfolio previews
-    initPortfolioPreviews();
-    
-    // Initialize scroll-based animations
-    initScrollAnimations();
-    
-    // Initialize story progress bar
-    initStoryProgress();
-    
-    // Initialize data visualizations
-    initDataVisualizations();
-    
-    // Initialize typing animation
-    initTypingAnimation();
-    
-    // Initialize donut charts
-    initDonutCharts();
+        // Set current date in the cover letter
+        setCurrentDate();
+        
+        // Initialize tab navigation
+        initTabs();
+        
+        // Initialize mobile navigation
+        initMobileNav();
+        
+        // Set dark mode as default
+        setDarkModeAsDefault();
+        
+        // Initialize header particles
+        createHeaderParticles();
+        
+        // Initialize orbit simulator
+        initOrbitSimulator();
+        
+        // Initialize skill stories
+        initSkillStories();
+        
+        // Initialize portfolio filters
+        initPortfolioFilters();
+        
+        // Initialize portfolio previews
+        initPortfolioPreviews();
+        
+        // Initialize scroll-based animations
+        initScrollAnimations();
+        
+        // Initialize story progress bar
+        initStoryProgress();
+        
+        // Initialize typing animation for both name and subtitle
+        initTypingAnimation();
+        
+        // Initialize donut charts
+        initDonutCharts();
+
+        // Set dark mode as default
+function setDarkModeAsDefault() {
+    document.body.classList.add('dark-mode');
+    localStorage.setItem('theme', 'dark');
 }
+
+    }
 
 // Set current date in the cover letter
 function setCurrentDate() {
@@ -390,18 +394,6 @@ function initStoryProgress() {
     });
 }
 
-// Initialize data visualizations
-function initDataVisualizations() {
-    // Initialize portfolio visualization when the portfolio tab is active
-    if (document.getElementById('portfolio').classList.contains('active')) {
-        initPortfolioVisualization();
-    }
-}
-
-// Initialize portfolio visualization
-function initPortfolioVisualization() {
-    const container = document.getElementById('portfolio-visualization');
-    
     // Clear any existing content
     container.innerHTML = '';
     
@@ -504,25 +496,37 @@ function initPortfolioVisualization() {
 // Initialize typing animation
 function initTypingAnimation() {
     // Use Anime.js for text animation
-    const typingText = document.querySelector('.typing-text');
-    const text = typingText.textContent;
-    typingText.innerHTML = '';
+    const typingElements = document.querySelectorAll('.typing-text, .subtitle');
     
-    // Create spans for each character
-    for (let i = 0; i < text.length; i++) {
-        const span = document.createElement('span');
-        span.textContent = text[i];
-        span.style.opacity = '0';
-        typingText.appendChild(span);
-    }
+    typingElements.forEach(element => {
+        const text = element.textContent;
+        element.innerHTML = '';
+        
+        // Create spans for each character
+        for (let i = 0; i < text.length; i++) {
+            const span = document.createElement('span');
+            span.textContent = text[i];
+            span.style.opacity = '0';
+            element.appendChild(span);
+        }
+    });
     
-    // Animate each character
+    // Animate each character in the name first
     anime({
         targets: '.typing-text span',
         opacity: 1,
         duration: 50,
         easing: 'linear',
         delay: anime.stagger(100)
+    }).finished.then(() => {
+        // Then animate the subtitle
+        anime({
+            targets: '.subtitle span',
+            opacity: 1,
+            duration: 50,
+            easing: 'linear',
+            delay: anime.stagger(50)
+        });
     });
 }
 
@@ -534,7 +538,12 @@ function initDonutCharts() {
         
         // Clear any existing content
         chart.innerHTML = '';
-        chart.appendChild(chart.querySelector('.donut-label'));
+        
+        // Re-add the label
+        const label = document.createElement('div');
+        label.className = 'donut-label';
+        label.textContent = percentage + '%';
+        chart.appendChild(label);
         
         // Create SVG
         const svg = d3.select(chart)
@@ -555,7 +564,7 @@ function initDonutCharts() {
         // Background arc
         svg.append('path')
             .attr('d', arc.endAngle(2 * Math.PI))
-            .attr('fill', '#f0f0f0');
+            .attr('fill', '#444'); // Darker background for dark mode
         
         // Foreground arc with animation
         const foreground = svg.append('path')

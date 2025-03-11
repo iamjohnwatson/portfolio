@@ -498,52 +498,92 @@ main {
     -webkit-text-fill-color: transparent;
 }
 
-/* Orbit Container */
+/* Orbit Simulator */
 .orbit-container {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100%;
-    pointer-events: none;
+    height: 400px; /* Increase height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible; /* Allow orbits to be visible outside container */
 }
 
-/* Common Orbit Styles */
-.orbit {
+.orbit-center {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(145deg, #3498db, #2980b9);
+    border-radius: 50%;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+}
+
+.orbit-1, .orbit-2, .orbit-3 {
     position: absolute;
-    top: 50%;
-    left: 50%;
     border: 1px dashed rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+    animation: rotate 20s linear infinite;
 }
 
-/* Layering orbits using z-index so that the inner orbit appears above the others */
-.orbit-3 { 
-    width: 450px;
-    height: 450px;
-    animation: rotate 25s linear infinite;
-    z-index: 1;
+.orbit-1 {
+    width: 200px;
+    height: 200px;
 }
 
-.orbit-2 { 
-    width: 350px;
-    height: 350px;
-    animation: rotate 20s linear infinite reverse;
-    z-index: 2;
+.orbit-2 {
+    width: 300px;
+    height: 300px;
+    animation-duration: 30s;
 }
 
-.orbit-1 { 
-    width: 250px;
-    height: 250px;
-    animation: rotate 15s linear infinite;
-    z-index: 3;
+.orbit-3 {
+    width: 400px;
+    height: 400px;
+    animation-duration: 40s;
 }
 
-@keyframes rotate {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
+.orbit-object {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+.orbit-1 .orbit-object {
+    left: 0;
+    animation: orbitRotate1 10s linear infinite;
+}
+
+.orbit-2 .orbit-object {
+    left: 0;
+    animation: orbitRotate2 15s linear infinite;
+    background-color: #e74c3c;
+}
+
+.orbit-3 .orbit-object {
+    left: 0;
+    animation: orbitRotate3 20s linear infinite;
+    background-color: #2ecc71;
+}
+
+@keyframes orbitRotate1 {
+    from { transform: translateY(-50%) rotate(0deg) translateX(100px) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg) translateX(100px) rotate(-360deg); }
+}
+
+@keyframes orbitRotate2 {
+    from { transform: translateY(-50%) rotate(0deg) translateX(150px) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg) translateX(150px) rotate(-360deg); }
+}
+
+@keyframes orbitRotate3 {
+    from { transform: translateY(-50%) rotate(0deg) translateX(200px) rotate(0deg); }
+    to { transform: translateY(-50%) rotate(360deg) translateX(200px) rotate(-360deg); }
 }
 
 /* Satellite Styles */
