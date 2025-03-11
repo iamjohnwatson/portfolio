@@ -36,6 +36,16 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    window.addEventListener('scroll', function() {
+        const scrollY = window.scrollY;
+        document.querySelectorAll('.parallax-layer').forEach((layer, index) => {
+          // Adjust the multiplier (speed) for each layer differently.
+          const speed = (index + 1) * 0.2; 
+          layer.style.transform = `translateY(${scrollY * speed}px)`;
+        });
+      });
+      
     
     // Initialize intersection observers for scroll animations
     initScrollObservers();
@@ -159,18 +169,27 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add particle animation to header
     const headerParticles = document.querySelector('.header-particles');
-    if (headerParticles) {
-        for (let i = 0; i < 50; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
-            particle.style.animationDelay = (Math.random() * 5) + 's';
-            headerParticles.appendChild(particle);
-        }
-    }
-});
+if (headerParticles) {
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+    particle.style.animationDelay = (Math.random() * 5) + 's';
+    headerParticles.appendChild(particle);
+  }
+  // Parallax effect for particles on mousemove
+  headerParticles.addEventListener('mousemove', function(e) {
+    const offsetX = (e.clientX / window.innerWidth - 0.5) * 20;
+    const offsetY = (e.clientY / window.innerHeight - 0.5) * 20;
+    headerParticles.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+  });
+  headerParticles.addEventListener('mouseleave', function() {
+    headerParticles.style.transform = 'translate(0, 0)';
+  });
+}
+
 
 // Initialize intersection observers for scroll animations
 function initScrollObservers() {
