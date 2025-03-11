@@ -1,8 +1,44 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize page transition
+    const pageTransition = document.createElement('div');
+    pageTransition.className = 'page-transition';
+    pageTransition.innerHTML = '<div class="loader"></div>';
+    document.body.appendChild(pageTransition);
+    
+    // Fade out page transition after content loads
+    setTimeout(() => {
+        pageTransition.classList.add('fade-out');
+        setTimeout(() => {
+            pageTransition.remove();
+        }, 500);
+    }, 800);
+    
     // Set current date for cover letter
     const currentDate = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('current-date').textContent = currentDate.toLocaleDateString('en-US', options);
+    const dateElement = document.getElementById('current-date');
+    if (dateElement) {
+        dateElement.textContent = currentDate.toLocaleDateString('en-US', options);
+    }
+    
+    // Add scroll indicator to header
+    const header = document.querySelector('header');
+    if (header) {
+        const scrollIndicator = document.createElement('div');
+        scrollIndicator.className = 'scroll-indicator';
+        scrollIndicator.innerHTML = '<i class="fas fa-chevron-down"></i><span>Scroll Down</span>';
+        header.appendChild(scrollIndicator);
+        
+        scrollIndicator.addEventListener('click', () => {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    // Initialize intersection observers for scroll animations
+    initScrollObservers();
     
     // Tab switching functionality
     const tabs = document.querySelectorAll('.tabs li');
@@ -21,23 +57,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-          // Update active button
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-      
-          const filter = button.getAttribute('data-filter');
-      
-          portfolioItems.forEach(item => {
-            if (filter === 'all' || item.getAttribute('data-category') === filter) {
-              item.classList.add('show');
-              item.classList.remove('hide');
-            } else {
-              item.classList.add('hide');
-              item.classList.remove('show');
-            }
-          });
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            const filter = button.getAttribute('data-filter');
+            
+            portfolioItems.forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.classList.add('show');
+                    item.classList.remove('hide');
+                } else {
+                    item.classList.add('hide');
+                    item.classList.remove('show');
+                }
+            });
         });
-      });
+    });
     
     // Portfolio preview functionality
     const previewButtons = document.querySelectorAll('.portfolio-preview');
@@ -50,6 +86,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const previewId = button.getAttribute('data-id');
             const modal = document.getElementById(`${previewId}-preview`);
             modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
             document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
         });
     });
@@ -57,7 +96,10 @@ document.addEventListener('DOMContentLoaded', function() {
     closeButtons.forEach(button => {
         button.addEventListener('click', () => {
             const modal = button.closest('.portfolio-preview-modal');
-            modal.style.display = 'none';
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 500);
             document.body.style.overflow = 'auto'; // Re-enable scrolling
         });
     });
@@ -66,7 +108,10 @@ document.addEventListener('DOMContentLoaded', function() {
     previewModals.forEach(modal => {
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
-                modal.style.display = 'none';
+                modal.classList.remove('active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 500);
                 document.body.style.overflow = 'auto';
             }
         });
@@ -77,77 +122,129 @@ document.addEventListener('DOMContentLoaded', function() {
         if (e.key === 'Escape') {
             previewModals.forEach(modal => {
                 if (modal.style.display === 'flex') {
-                    modal.style.display = 'none';
+                    modal.classList.remove('active');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                    }, 500);
                     document.body.style.overflow = 'auto';
                 }
             });
         }
     });
     
+    // Mobile nav toggle
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-const tabsContainer = document.querySelector('.tabs');
-
-if (mobileNavToggle) {
-  mobileNavToggle.addEventListener('click', () => {
-    tabsContainer.classList.toggle('open');
-  });
-}
-
-    // Mobile menu toggle (if needed for smaller screens)
-    window.addEventListener('resize', adjustLayout);
-    adjustLayout();
+    const tabsContainer = document.querySelector('.tabs');
     
-    // Initialize animation styles for scroll animations
-    const elements = document.querySelectorAll('.skill-card, .job, .education, .portfolio-item');
-    
-    elements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    });
-    
-    // Initialize donut charts
-    initDonutCharts();
-    
-    // Animate timeline items
-    animateTimelineItems();
+    if (mobileNavToggle) {
+        mobileNavToggle.addEventListener('click', () => {
+            tabsContainer.classList.toggle('open');
+        });
+    }
     
     // Initialize skill cards
     initSkillCards();
     
+    // Initialize parallax effect for header
+    initParallax();
+    
+    // Initialize cursor trail effect
+    initCursorTrail();
+    
     // Set up scroll event listeners
-    window.addEventListener('scroll', updateProgressBar);
-    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('scroll', handleScroll);
     
     // Initial calls
-    updateProgressBar();
-    animateOnScroll();
+    handleScroll();
     
-// Add particle animation to header
-const headerParticles = document.querySelector('.header-particles');
-if (headerParticles) {
-  // Existing particle creation loop
-  for (let i = 0; i < 50; i++) {
-    const particle = document.createElement('div');
-    particle.classList.add('particle');
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.top = Math.random() * 100 + '%';
-    particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
-    particle.style.animationDelay = (Math.random() * 5) + 's';
-    headerParticles.appendChild(particle);
-  }
-  // Add mousemove interactivity for a parallax effect
-  headerParticles.addEventListener('mousemove', function(e) {
-    const offsetX = (e.clientX / window.innerWidth - 0.5) * 20; // Adjust multiplier as needed
-    const offsetY = (e.clientY / window.innerHeight - 0.5) * 20;
-    headerParticles.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-  });
-  headerParticles.addEventListener('mouseleave', function() {
-    headerParticles.style.transform = 'translate(0, 0)';
-  });
+    // Add particle animation to header
+    const headerParticles = document.querySelector('.header-particles');
+    if (headerParticles) {
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+            particle.style.animationDelay = (Math.random() * 5) + 's';
+            headerParticles.appendChild(particle);
+        }
+    }
+});
+
+// Initialize intersection observers for scroll animations
+function initScrollObservers() {
+    // Create observer for general sections
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    // Observe all sections that should animate on scroll
+    const sections = document.querySelectorAll('.hero, .skills-highlight, .resume-overview, .skills-section, .experience-section, .education-section, .contact-section, .cover-letter-content, .portfolio-filters, .portfolio-grid');
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+    
+    // Observe story intro sections
+    const storyIntros = document.querySelectorAll('.story-intro');
+    storyIntros.forEach(intro => {
+        sectionObserver.observe(intro);
+    });
+    
+    // Observe footer
+    const footer = document.querySelector('footer');
+    if (footer) {
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    footer.classList.add('footer-in-view');
+                }
+            });
+        }, { threshold: 0.1 });
+        footerObserver.observe(footer);
+    }
 }
 
-});
+// Handle scroll events
+function handleScroll() {
+    // Update progress bar
+    updateProgressBar();
+    
+    // Add shadow to nav when scrolled
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 10) {
+        nav.classList.add('nav-scrolled');
+    } else {
+        nav.classList.remove('nav-scrolled');
+    }
+    
+    // Hide/show scroll indicator
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (scrollIndicator) {
+        if (window.scrollY > 100) {
+            scrollIndicator.style.opacity = '0';
+        } else {
+            scrollIndicator.style.opacity = '0.7';
+        }
+    }
+}
+
+// Update scroll progress bar
+function updateProgressBar() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.offsetHeight;
+    const winHeight = window.innerHeight;
+    const scrollPercent = scrollTop / (docHeight - winHeight);
+    const scrollPercentRounded = Math.round(scrollPercent * 100);
+    const progressBar = document.querySelector('.progress-bar');
+    if (progressBar) {
+        progressBar.style.width = scrollPercentRounded + '%';
+    }
+}
 
 // Global function to switch tabs (used by buttons)
 function switchTab(tabId) {
@@ -165,59 +262,18 @@ function switchTab(tabId) {
     tabContents.forEach(content => {
         if (content.id === tabId) {
             content.classList.add('active');
+            // Trigger scroll observers to detect newly visible content
+            setTimeout(() => {
+                window.dispatchEvent(new Event('scroll'));
+            }, 100);
         } else {
             content.classList.remove('active');
         }
     });
     
     // Scroll to top of the content
-    window.scrollTo({ top: document.querySelector('nav').offsetTop, behavior: 'smooth' });
-}
-
-// Responsive layout adjustments
-function adjustLayout() {
-    // Any responsive adjustments can go here
-}
-
-// Animate elements when they come into view
-function animateOnScroll() {
-    const elements = document.querySelectorAll('.skill-card, .job, .education, .portfolio-item');
-    
-    elements.forEach(element => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight;
-        
-        if (elementPosition < screenPosition - 100) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-        }
-    });
-}
-
-// Initialize donut charts
-function initDonutCharts() {
-    const donutCharts = document.querySelectorAll('.donut-chart');
-    donutCharts.forEach(chart => {
-        const percentage = chart.getAttribute('data-percentage');
-        chart.style.setProperty('--percentage', percentage + '%');
-    });
-}
-
-// Animate timeline items when they come into view
-function animateTimelineItems() {
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.2 });
-    
-    timelineItems.forEach(item => {
-        observer.observe(item);
-    });
+    const navHeight = document.querySelector('nav').offsetHeight;
+    window.scrollTo({ top: navHeight, behavior: 'smooth' });
 }
 
 // Skill card modal functionality
@@ -287,30 +343,86 @@ function initSkillCards() {
                 skillStoryTitle.textContent = skillStory.title;
                 skillStoryBody.innerHTML = skillStory.body;
                 skillStoryModal.style.display = 'flex';
+                setTimeout(() => {
+                    skillStoryModal.classList.add('active');
+                }, 10);
                 document.body.style.overflow = 'hidden';
             }
         });
     });
     
     closeSkillStory.addEventListener('click', () => {
-        skillStoryModal.style.display = 'none';
+        skillStoryModal.classList.remove('active');
+        setTimeout(() => {
+            skillStoryModal.style.display = 'none';
+        }, 500);
         document.body.style.overflow = 'auto';
     });
     
     window.addEventListener('click', (e) => {
         if (e.target === skillStoryModal) {
-            skillStoryModal.style.display = 'none';
+            skillStoryModal.classList.remove('active');
+            setTimeout(() => {
+                skillStoryModal.style.display = 'none';
+            }, 500);
             document.body.style.overflow = 'auto';
         }
     });
 }
 
-// Update scroll progress bar
-function updateProgressBar() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.body.offsetHeight;
-    const winHeight = window.innerHeight;
-    const scrollPercent = scrollTop / (docHeight - winHeight);
-    const scrollPercentRounded = Math.round(scrollPercent * 100);
-    document.querySelector('.progress-bar').style.width = scrollPercentRounded + '%';
+// Initialize parallax effect for header
+function initParallax() {
+    const header = document.querySelector('header');
+    
+    if (header) {
+        window.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            const moveX = mouseX * 20;
+            const moveY = mouseY * 20;
+            
+            const headerParticles = document.querySelector('.header-particles');
+            if (headerParticles) {
+                headerParticles.style.transform = `translate(${moveX - 10}px, ${moveY - 10}px)`;
+            }
+        });
+    }
+}
+
+// Initialize cursor trail effect
+function initCursorTrail() {
+    const maxTrails = 5;
+    const trails = [];
+    
+    for (let i = 0; i < maxTrails; i++) {
+        const trail = document.createElement('div');
+        trail.className = 'cursor-trail';
+        document.body.appendChild(trail);
+        trails.push({
+            element: trail,
+            x: 0,
+            y: 0,
+            size: 8 - (i * 1.5),
+            active: false
+        });
+    }
+    
+    document.addEventListener('mousemove', (e) => {
+        trails.forEach((trail, index) => {
+            setTimeout(() => {
+                trail.x = e.clientX;
+                trail.y = e.clientY;
+                trail.element.style.left = trail.x + 'px';
+                trail.element.style.top = trail.y + 'px';
+                trail.element.style.width = trail.size + 'px';
+                trail.element.style.height = trail.size + 'px';
+                trail.element.style.opacity = '1';
+                
+                setTimeout(() => {
+                    trail.element.style.opacity = '0';
+                }, 200);
+            }, index * 50);
+        });
+    });
 }
