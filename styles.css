@@ -26,8 +26,45 @@ body {
     line-height: 1.6;
     background-color: var(--bg-color);
     overflow-x: hidden;
+    position: relative;
 }
 
+/* Particle Container */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(135deg, #1a1a1a, #2c3e50);
+}
+
+/* Mouse Trace Effect */
+.mouse-trace {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle, rgba(52, 152, 219, 0.8), transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 1000;
+}
+
+/* Scroll Animation Classes */
+.fade-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+header, nav, section, footer {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+/* Existing Styles with Enhancements */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
@@ -126,7 +163,7 @@ img {
     color: white;
 }
 
-/* ===== STORY PROGRESS BAR ===== */
+/* Story Progress Bar */
 .story-progress {
     position: fixed;
     top: 0;
@@ -144,7 +181,7 @@ img {
     transition: width 0.3s ease;
 }
 
-/* ===== HEADER STYLES ===== */
+/* Header Styles */
 header {
     background: var(--dark-bg);
     color: var(--light-text);
@@ -152,6 +189,9 @@ header {
     text-align: center;
     position: relative;
     overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 .header-particles {
@@ -201,7 +241,7 @@ header .container {
     to { opacity: 1; }
 }
 
-/* ===== NAVIGATION STYLES ===== */
+/* Navigation Styles */
 nav {
     background-color: var(--primary-color);
     position: sticky;
@@ -243,7 +283,7 @@ nav {
     background-color: var(--secondary-color);
 }
 
-/* ===== MAIN CONTENT STYLES ===== */
+/* Main Content Styles */
 main {
     padding: 60px 0;
 }
@@ -352,13 +392,11 @@ main {
 
 .profile-placeholder i {
     font-size: 80px;
-    background: linear-gradient(135deg, #3498db, #2ecc71);
+    background: var(--highlight-gradient);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* For non-webkit browsers, you may need additional properties if supported */
 }
-
 
 /* Orbit Container */
 .orbit-container {
@@ -367,7 +405,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Prevents interaction interfering with underlying elements */
+    pointer-events: none;
 }
 
 /* Common Orbit Styles */
@@ -381,7 +419,6 @@ main {
     pointer-events: none;
 }
 
-/* Layering orbits using z-index so that the inner orbit appears above the others */
 .orbit-3 { 
     width: 450px;
     height: 450px;
@@ -420,10 +457,9 @@ main {
     align-items: center;
     color: white;
     box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
-    z-index: 4; /* Ensure satellites sit on top of the orbit circles */
+    z-index: 4;
 }
 
-/* Position satellites at different points on their respective orbits */
 .orbit-1 .satellite {
     top: 0;
     left: 50%;
@@ -441,7 +477,6 @@ main {
     left: 50%;
     transform: translateX(-50%);
 }
-
 
 /* Skills Section */
 .skills-highlight {
@@ -1149,304 +1184,36 @@ footer {
     font-size: 0.9rem;
 }
 
-/* ===== ANIMATIONS AND EFFECTS ===== */
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
-
-/* ===== RESPONSIVE STYLES ===== */
+/* Responsive Styles */
 @media (max-width: 992px) {
-    h1 {
-        font-size: 2.8rem;
-    }
-    
-    .hero {
-        grid-template-columns: 1fr;
-    }
-    
-    .hero-content {
-        padding-right: 0;
-        text-align: center;
-    }
-    
-    .cta-buttons {
-        justify-content: center;
-    }
-    
-    .skills-donut-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+    h1 { font-size: 2.8rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-content { padding-right: 0; text-align: center; }
+    .cta-buttons { justify-content: center; }
+    .skills-donut-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-    
-    h2 {
-        font-size: 2rem;
-    }
-    
-    .tabs {
-        flex-wrap: wrap;
-    }
-    
-    .tabs li {
-        padding: 15px 20px;
-    }
-    
-    .skills-donut-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .resume-overview {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .overview-card {
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    .education-card {
-        flex-direction: column;
-    }
-    
-    .education-logo {
-        margin-bottom: 20px;
-        margin-right: 0;
-    }
-    
-    .contact-cards {
-        flex-direction: column;
-    }
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    .tabs { flex-wrap: wrap; }
+    .tabs li { padding: 15px 20px; }
+    .skills-donut-grid { grid-template-columns: repeat(2, 1fr); }
+    .resume-overview { flex-direction: column; align-items: center; }
+    .overview-card { width: 100%; max-width: 300px; }
+    .education-card { flex-direction: column; }
+    .education-logo { margin-bottom: 20px; margin-right: 0; }
+    .contact-cards { flex-direction: column; }
 }
 
 @media (max-width: 576px) {
-    h1 {
-        font-size: 2rem;
-    }
-    
-    header {
-        padding: 60px 0;
-    }
-    
-    .tabs li {
-        padding: 12px 15px;
-        font-size: 0.9rem;
-    }
-    
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .skills-donut-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .tools-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .portfolio-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .timeline-item {
-        padding-left: 40px;
-    }
-    
-    .preview-content {
-        padding: 20px;
-    }
-}
-
-/* ===== ADDITIONAL INTERACTIVE ELEMENTS ===== */
-
-/* Animated Background Particles */
-.header-particles::before,
-.header-particles::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-image: 
-        radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px),
-        radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
-    background-position: 0 0, 10px 10px;
-    animation: particleMove 20s linear infinite;
-}
-
-.header-particles::after {
-    background-size: 30px 30px;
-    animation-duration: 30s;
-    opacity: 0.5;
-}
-
-@keyframes particleMove {
-    0% { background-position: 0 0, 10px 10px; }
-    100% { background-position: 500px 500px, 510px 510px; }
-}
-
-/* Animated Skill Cards */
-.skill-card:nth-child(1) {
-    animation: float 6s ease-in-out infinite;
-}
-
-.skill-card:nth-child(2) {
-    animation: float 7s ease-in-out infinite 1s;
-}
-
-.skill-card:nth-child(3) {
-    animation: float 8s ease-in-out infinite 0.5s;
-}
-
-.skill-card:nth-child(4) {
-    animation: float 7.5s ease-in-out infinite 1.5s;
-}
-
-/* Donut Chart Animation */
-.donut-chart {
-    background: conic-gradient(var(--secondary-color) 0%, var(--secondary-color) 0%, #f0f0f0 0%);
-    animation: fillDonut 2s ease-in-out forwards;
-}
-
-@keyframes fillDonut {
-    to {
-        background: conic-gradient(
-            var(--secondary-color) var(--percentage), 
-            #f0f0f0 var(--percentage)
-        );
-    }
-}
-
-/* Interactive Timeline */
-.timeline-item {
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.6s ease;
-}
-
-.timeline-item.visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Animated Portfolio Items */
-.portfolio-item {
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.portfolio-item:hover {
-    transform: scale(1.03);
-    z-index: 2;
-}
-
-/* Glowing Effect for CTA Buttons */
-.btn.primary {
-    position: relative;
-    overflow: hidden;
-}
-
-.btn.primary::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(30deg);
-    transition: all 0.6s ease;
-    opacity: 0;
-}
-
-.btn.primary:hover::after {
-    opacity: 1;
-    transform: rotate(30deg) translate(-30%, -30%);
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--secondary-color);
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #2980b9;
-}
-
-/* Tooltip Animation */
-[data-tooltip] {
-    position: relative;
-}
-
-[data-tooltip]::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background-color: var(--primary-color);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    pointer-events: none;
-    z-index: 100;
-}
-
-[data-tooltip]:hover::before {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
-
-/* Focus Styles for Accessibility */
-a:focus, button:focus, input:focus, textarea:focus {
-    outline: 2px solid var(--secondary-color);
-    outline-offset: 2px;
-}
-
-/* Print Styles */
-@media print {
-    header, nav, footer, .portfolio-filters, .cta-buttons {
-        display: none;
-    }
-    
-    body, .container {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    
-    main {
-        padding: 0;
-    }
-    
-    .tab-content {
-        display: block !important;
-    }
-    
-    h2::after {
-        display: none;
-    }
+    h1 { font-size: 2rem; }
+    header { padding: 60px 0; }
+    .tabs li { padding: 12px 15px; font-size: 0.9rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .skills-donut-grid { grid-template-columns: 1fr; }
+    .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .timeline-item { padding-left: 40px; }
+    .preview-content { padding: 20px; }
 }

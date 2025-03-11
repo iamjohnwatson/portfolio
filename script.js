@@ -1,10 +1,74 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Set current date for cover letter
+    // Initialize Particles.js
+    particlesJS('particles-js', {
+        particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: '#3498db' },
+            shape: { type: 'circle' },
+            opacity: { value: 0.5, random: true },
+            size: { value: 3, random: true },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: '#3498db',
+                opacity: 0.4,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 3,
+                direction: 'none',
+                random: true,
+                straight: false,
+                out_mode: 'out'
+            }
+        },
+        interactivity: {
+            detect_on: 'canvas',
+            events: {
+                onhover: { enable: true, mode: 'grab' },
+                onclick: { enable: true, mode: 'push' },
+                resize: true
+            },
+            modes: {
+                grab: { distance: 200, line_linked: { opacity: 0.5 } },
+                push: { particles_nb: 4 }
+            }
+        },
+        retina_detect: true
+    });
+
+    // Mouse Trace Effect
+    document.addEventListener('mousemove', (e) => {
+        const trace = document.createElement('div');
+        trace.className = 'mouse-trace';
+        trace.style.left = `${e.pageX - 7.5}px`;
+        trace.style.top = `${e.pageY - 7.5}px`;
+        document.body.appendChild(trace);
+        setTimeout(() => {
+            trace.style.opacity = '0';
+            setTimeout(() => trace.remove(), 500);
+        }, 100);
+    });
+
+    // ScrollMagic Setup
+    const controller = new ScrollMagic.Controller();
+    const sections = ['#hero', '#navigation', '#home', '#resume', '#cover-letter', '#portfolio', '#footer'];
+    sections.forEach((section) => {
+        new ScrollMagic.Scene({
+            triggerElement: section,
+            triggerHook: 0.8,
+            reverse: false
+        })
+            .setClassToggle(section, 'fade-in')
+            .addTo(controller);
+    });
+
+    // Existing Functionality
     const currentDate = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     document.getElementById('current-date').textContent = currentDate.toLocaleDateString('en-US', options);
     
-    // Tab switching functionality
     const tabs = document.querySelectorAll('.tabs li');
     const tabContents = document.querySelectorAll('.tab-content');
     
@@ -15,31 +79,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Portfolio filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
     
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-          // Update active button
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-      
-          const filter = button.getAttribute('data-filter');
-      
-          portfolioItems.forEach(item => {
-            if (filter === 'all' || item.getAttribute('data-category') === filter) {
-              item.classList.add('show');
-              item.classList.remove('hide');
-            } else {
-              item.classList.add('hide');
-              item.classList.remove('show');
-            }
-          });
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            const filter = button.getAttribute('data-filter');
+            portfolioItems.forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.classList.add('show');
+                    item.classList.remove('hide');
+                } else {
+                    item.classList.add('hide');
+                    item.classList.remove('show');
+                }
+            });
         });
-      });
+    });
     
-    // Portfolio preview functionality
     const previewButtons = document.querySelectorAll('.portfolio-preview');
     const previewModals = document.querySelectorAll('.portfolio-preview-modal');
     const closeButtons = document.querySelectorAll('.close-preview');
@@ -50,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const previewId = button.getAttribute('data-id');
             const modal = document.getElementById(`${previewId}-preview`);
             modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            document.body.style.overflow = 'hidden';
         });
     });
     
@@ -58,11 +117,10 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', () => {
             const modal = button.closest('.portfolio-preview-modal');
             modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
+            document.body.style.overflow = 'auto';
         });
     });
     
-    // Close modal when clicking outside the content
     previewModals.forEach(modal => {
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
@@ -72,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Close modal with Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             previewModals.forEach(modal => {
@@ -85,71 +142,34 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-const tabsContainer = document.querySelector('.tabs');
+    const tabsContainer = document.querySelector('.tabs');
+    if (mobileNavToggle) {
+        mobileNavToggle.addEventListener('click', () => {
+            tabsContainer.classList.toggle('open');
+        });
+    }
 
-if (mobileNavToggle) {
-  mobileNavToggle.addEventListener('click', () => {
-    tabsContainer.classList.toggle('open');
-  });
-}
-
-    // Mobile menu toggle (if needed for smaller screens)
     window.addEventListener('resize', adjustLayout);
     adjustLayout();
     
-    // Initialize animation styles for scroll animations
     const elements = document.querySelectorAll('.skill-card, .job, .education, .portfolio-item');
-    
     elements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
         element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     });
     
-    // Initialize donut charts
     initDonutCharts();
-    
-    // Animate timeline items
     animateTimelineItems();
-    
-    // Initialize skill cards
     initSkillCards();
     
-    // Set up scroll event listeners
     window.addEventListener('scroll', updateProgressBar);
     window.addEventListener('scroll', animateOnScroll);
     
-    // Initial calls
     updateProgressBar();
     animateOnScroll();
-    
-// Add particle animation to header
-const headerParticles = document.querySelector('.header-particles');
-if (headerParticles) {
-  // Existing particle creation loop
-  for (let i = 0; i < 50; i++) {
-    const particle = document.createElement('div');
-    particle.classList.add('particle');
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.top = Math.random() * 100 + '%';
-    particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
-    particle.style.animationDelay = (Math.random() * 5) + 's';
-    headerParticles.appendChild(particle);
-  }
-  // Add mousemove interactivity for a parallax effect
-  headerParticles.addEventListener('mousemove', function(e) {
-    const offsetX = (e.clientX / window.innerWidth - 0.5) * 20; // Adjust multiplier as needed
-    const offsetY = (e.clientY / window.innerHeight - 0.5) * 20;
-    headerParticles.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-  });
-  headerParticles.addEventListener('mouseleave', function() {
-    headerParticles.style.transform = 'translate(0, 0)';
-  });
-}
-
 });
 
-// Global function to switch tabs (used by buttons)
 function switchTab(tabId) {
     const tabs = document.querySelectorAll('.tabs li');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -170,23 +190,16 @@ function switchTab(tabId) {
         }
     });
     
-    // Scroll to top of the content
     window.scrollTo({ top: document.querySelector('nav').offsetTop, behavior: 'smooth' });
 }
 
-// Responsive layout adjustments
-function adjustLayout() {
-    // Any responsive adjustments can go here
-}
+function adjustLayout() {}
 
-// Animate elements when they come into view
 function animateOnScroll() {
     const elements = document.querySelectorAll('.skill-card, .job, .education, .portfolio-item');
-    
     elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
         const screenPosition = window.innerHeight;
-        
         if (elementPosition < screenPosition - 100) {
             element.style.opacity = '1';
             element.style.transform = 'translateY(0)';
@@ -194,7 +207,6 @@ function animateOnScroll() {
     });
 }
 
-// Initialize donut charts
 function initDonutCharts() {
     const donutCharts = document.querySelectorAll('.donut-chart');
     donutCharts.forEach(chart => {
@@ -203,7 +215,6 @@ function initDonutCharts() {
     });
 }
 
-// Animate timeline items when they come into view
 function animateTimelineItems() {
     const timelineItems = document.querySelectorAll('.timeline-item');
     const observer = new IntersectionObserver((entries) => {
@@ -220,7 +231,6 @@ function animateTimelineItems() {
     });
 }
 
-// Skill card modal functionality
 function initSkillCards() {
     const skillCards = document.querySelectorAll('.skill-card');
     const skillStoryModal = document.querySelector('.skill-story-modal');
@@ -228,7 +238,6 @@ function initSkillCards() {
     const skillStoryBody = document.querySelector('.skill-story-body');
     const closeSkillStory = document.querySelector('.close-skill-story');
     
-    // Skill stories content
     const skillStories = {
         'Financial Reporting': {
             title: 'Financial Reporting Expertise',
@@ -282,7 +291,6 @@ function initSkillCards() {
         card.addEventListener('click', () => {
             const skillType = card.getAttribute('data-skill');
             const skillStory = skillStories[skillType];
-            
             if (skillStory) {
                 skillStoryTitle.textContent = skillStory.title;
                 skillStoryBody.innerHTML = skillStory.body;
@@ -305,7 +313,6 @@ function initSkillCards() {
     });
 }
 
-// Update scroll progress bar
 function updateProgressBar() {
     const scrollTop = window.scrollY;
     const docHeight = document.body.offsetHeight;

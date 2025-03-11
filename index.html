@@ -9,11 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
     <div class="story-progress">
         <div class="progress-bar"></div>
     </div>
     
-    <header>
+    <header id="hero">
         <div class="container">
             <div class="typing-container">
                 <h1 class="typing-text">Akash Sriram</h1>
@@ -23,7 +26,7 @@
         </div>
     </header>
     
-    <nav>
+    <nav id="navigation">
         <div class="container">
             <div class="mobile-nav-toggle"><i class="fas fa-bars"></i></div>
             <ul class="tabs">
@@ -121,7 +124,7 @@
             
             <div class="skill-story-modal">
                 <div class="skill-story-content">
-                    <span class="close-skill-story">&times;</span>
+                    <span class="close-skill-story">×</span>
                     <h3 class="skill-story-title"></h3>
                     <div class="skill-story-body"></div>
                 </div>
@@ -444,7 +447,6 @@
             </div>
             
             <div class="portfolio-grid">
-                <!-- Reuters Stories -->
                 <div class="portfolio-item" data-category="articles">
                     <div class="portfolio-item-inner">
                         <img src="https://www.reuters.com/resizer/v2/3RS3SCKNRRNXLL6EA4UCYW73UU.jpg?auth=583b1e23282a2f35799785932f544ee69b4a40629dbae24c029b65bb29d0bfee&width=1080&quality=80" alt="Tesla article">
@@ -465,7 +467,6 @@
                     </div>
                 </div>
                 
-                <!-- Data Visualization Projects -->
                 <div class="portfolio-item" data-category="data-viz">
                     <div class="portfolio-item-inner">
                         <img src="https://graphics.reuters.com/TESLA-MUSK/klvygkgdovg/chart.png" alt="Elon Musk's tweets">
@@ -481,12 +482,11 @@
                         <img src="https://graphics.reuters.com/TESLA-ELECTRIC/STARTUPS/zdpxdrqonpx/chart.png" alt="Financial data visualization">
                         <div class="portfolio-overlay">
                             <h3>Tesla's price cuts, pain for EV startups</h3>
-                            <a href="https://www.reuters.com/business/autos-transportation/teslas-price-cuts-promise-more-pain-money-losing-us-ev-startups-2023-01-20/" class="btn portfolio-preview" data-id="sp500">Preview</a>
+                            <a href="https://www.reuters.com/business/autos-transportation/teslas-price-cutspromise-more-pain-money-losing-us-ev-startups-2023-01-20/" class="btn portfolio-preview" data-id="sp500">Preview</a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Coding Projects -->
                 <div class="portfolio-item" data-category="projects">
                     <div class="portfolio-item-inner">
                         <img src="https://media.licdn.com/dms/image/v2/D5622AQGsqGnopruhDA/feedshare-shrink_800/B56ZTIe.aGHQAg-/0/1738530351271?e=1744243200&v=beta&t=j1ocSTlLgmXtqnbX_qHL5Q4aZ5BEbTZb46-BD_2W6Vw" alt="Coding project">
@@ -508,10 +508,9 @@
                 </div>
             </div>
             
-            <!-- Portfolio Previews -->
             <div class="portfolio-preview-modal" id="ev-market-preview">
                 <div class="preview-content">
-                    <span class="close-preview">&times;</span>
+                    <span class="close-preview">×</span>
                     <h3>EV Market Trends Visualization</h3>
                     <div class="preview-image">
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="EV Market Trends">
@@ -535,7 +534,7 @@
             
             <div class="portfolio-preview-modal" id="sp500-preview">
                 <div class="preview-content">
-                    <span class="close-preview">&times;</span>
+                    <span class="close-preview">×</span>
                     <h3>S&P 500 Sector Performance</h3>
                     <div class="preview-image">
                         <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="S&P 500 Sector Performance">
@@ -559,7 +558,7 @@
         </section>
     </main>
     
-    <footer>
+    <footer id="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
@@ -574,11 +573,14 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Akash Sriram. All rights reserved.</p>
+                <p>© 2025 Akash Sriram. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
