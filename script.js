@@ -25,8 +25,21 @@ window.addEventListener('scroll', () => {
     document.querySelector('.progress-bar').style.width = `${scrollPercent}%`;
 });
 
+// Scroll-Triggered Reveals
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.2 });
+
+reveals.forEach(reveal => revealObserver.observe(reveal));
+
 // Skill Charts
-const observer = new IntersectionObserver(entries => {
+const chartObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const canvas = entry.target;
@@ -50,13 +63,13 @@ const observer = new IntersectionObserver(entries => {
                     hover: { mode: null }
                 }
             });
-            observer.unobserve(canvas);
+            chartObserver.unobserve(canvas);
         }
     });
 }, { threshold: 0.5 });
 
 document.querySelectorAll('.chart-container canvas').forEach(chart => {
-    observer.observe(chart);
+    chartObserver.observe(chart);
 });
 
 // Parallax Effect
@@ -66,5 +79,41 @@ window.addEventListener('scroll', () => {
         const sectionTop = section.getBoundingClientRect().top;
         const speed = 0.3;
         bg.style.transform = `translateY(${sectionTop * speed}px)`;
+    });
+});
+
+// Modal Windows
+const modalBtns = document.querySelectorAll('.modal-btn');
+const modals = document.querySelectorAll('.modal');
+const closes = document.querySelectorAll('.close');
+
+modalBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const modalId = btn.getAttribute('data-modal');
+        document.getElementById(modalId).style.display = 'block';
+    });
+});
+
+closes.forEach(close => {
+    close.addEventListener('click', () => {
+        modals.forEach(modal => modal.style.display = 'none');
+    });
+});
+
+window.addEventListener('click', (e) => {
+    modals.forEach(modal => {
+        if (e.target === modal) modal.style.display = 'none';
+    });
+});
+
+// Section Transitions
+const sections = document.querySelectorAll('section');
+const colors = ['#1a2a3a', '#2a3a4a', '#3a4a5a', '#4a5a6a', '#5a6a7a', '#6a7a8a'];
+window.addEventListener('scroll', () => {
+    sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+            section.style.backgroundColor = colors[index % colors.length];
+        }
     });
 });

@@ -1,8 +1,8 @@
 :root {
-    --primary-color: #1a2a3a; /* Deep blue */
-    --secondary-color: #00a896; /* Vibrant teal */
-    --accent-color: #f0f3bd; /* Soft cream */
-    --text-color: #f0f3bd; /* Light text for contrast */
+    --primary-color: #1a2a3a;
+    --secondary-color: #ttc107;
+    --accent-color: #f0f3bd;
+    --text-color: #f0f3bd;
     --light-text: #fff;
     --bg-color: #1a2a3a;
     --border-radius: 8px;
@@ -21,7 +21,21 @@ body {
     color: var(--text-color);
     background-color: var(--bg-color);
     overflow-x: hidden;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Added for better readability */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 5px;
 }
 
 #particles-js {
@@ -79,6 +93,8 @@ header {
     display: flex;
     align-items: center;
     color: var(--light-text);
+    background-image: url('header-bg.png'); /* Add your generated image */
+    background-size: cover;
 }
 
 .background {
@@ -113,19 +129,24 @@ header {
     font-size: 1.5rem;
     overflow: hidden;
     white-space: nowrap;
-    border-right: 2px solid var(--secondary-color);
-    animation: typewriter 4s steps(40) 4s 1 normal both,
-               blinkTextCursor 500ms steps(40) infinite normal;
+    animation: typewriter 4s steps(40) 4s 1 normal both;
 }
 
 @keyframes typewriter {
-    from { width: 0; }
-    to { width: 100%; }
+    from { width: 0 }
+    to { width: 100% }
 }
 
-@keyframes blinkTextCursor {
-    from { border-right-color: var(--secondary-color); }
-    to { border-right-color: transparent; }
+/* Scroll-Triggered Reveals */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Main */
@@ -175,6 +196,8 @@ main {
 /* Skills */
 .skills-highlight {
     margin-bottom: 60px;
+    background-image: url('skills-bg.png'); /* Add your generated image */
+    background-size: cover;
 }
 
 .skills-grid {
@@ -243,7 +266,7 @@ main {
     color: var(--secondary-color);
 }
 
-/* Experience */
+/* Experience (Interactive Timeline) */
 .experience-section {
     position: relative;
     margin-bottom: 60px;
@@ -254,6 +277,7 @@ main {
     overflow-x: auto;
     gap: 20px;
     padding-bottom: 20px;
+    scroll-behavior: smooth;
 }
 
 .timeline-item {
@@ -263,6 +287,7 @@ main {
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     transition: var(--transition);
+    cursor: pointer;
 }
 
 .timeline-item:hover {
@@ -282,7 +307,7 @@ main {
 
 ul.job-highlights {
     list-style-type: disc;
-    padding-left: 20px; /* Improved padding for better readability */
+    padding-left: 20px;
 }
 
 /* Education */
@@ -320,6 +345,8 @@ ul.job-highlights {
 /* Portfolio */
 .portfolio-section {
     position: relative;
+    background-image: url('portfolio-bg.png'); /* Add your generated image */
+    background-size: cover;
 }
 
 .portfolio-grid {
@@ -364,10 +391,42 @@ ul.job-highlights {
     border-radius: var(--border-radius);
     transition: var(--transition);
     text-decoration: none;
+    margin: 5px;
+    cursor: pointer;
 }
 
 .btn:hover {
     background: #00c9a7;
+}
+
+/* Modal Windows */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.modal-content {
+    background: var(--bg-color);
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: var(--border-radius);
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
 }
 
 /* Footer */
@@ -377,4 +436,11 @@ footer {
     text-align: center;
     color: var(--light-text);
     background: var(--primary-color);
+    background-image: url('footer-bg.png'); /* Add your generated image */
+    background-size: cover;
+}
+
+/* Section Transitions */
+section {
+    transition: background-color 0.5s ease;
 }
