@@ -3,359 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akash Sriram's Resume and Portfolio</title>
+    <title>Akash Sriram's Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Enhanced Typography: Additional Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
-    <!-- Scroll-Based Animations: ScrollMagic and GSAP -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js" defer></script>
-    <!-- Text Animations: Anime.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
-    <!-- Data Visualizations: D3.js -->
-    <script src="https://d3js.org/d3.v7.min.js" defer></script>
-    <!-- Interactive Simulator: Matter.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js" defer></script>
-    <!-- Performance: Lazysizes for lazy loading -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" defer></script>
-    <!-- Utilities: Lodash -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <div class="story-progress">
-        <div class="progress-bar"></div>
-    </div>
-    
-    <!-- Theme toggle for dark mode -->
-    <div class="theme-toggle">
-        <button id="theme-switch" aria-label="Toggle dark mode">
-            <i class="fas fa-moon"></i>
-            <i class="fas fa-sun"></i>
-        </button>
-    </div>
-    
+    <!-- Header with Logo -->
     <header>
-        <div class="container">
-            <div class="typing-container">
-                <h1 class="typing-text">Akash Sriram</h1>
-            </div>
-            <p class="tagline">Technology reporter with a penchant for data visualization</p>
-            <div class="header-particles" id="header-particles"></div>
+        <div class="logo">AS</div>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </header>
-    
+
+    <!-- Navigation -->
     <nav>
-        <div class="container">
-            <div class="mobile-nav-toggle"><i class="fas fa-bars"></i></div>
-            <ul class="tabs">
-                <li data-tab="home" class="active">My Story</li>
-                <li data-tab="resume">Experience</li>
-                <li data-tab="cover-letter">Cover Letter</li>
-                <li data-tab="portfolio">Portfolio</li>
-            </ul>
-        </div>
+        <ul>
+            <li><a href="#introduction" aria-label="Go to Introduction">Introduction</a></li>
+            <li><a href="#skills" aria-label="Go to Skills">Skills</a></li>
+            <li><a href="#experience" aria-label="Go to Experience">Experience</a></li>
+            <li><a href="#education" aria-label="Go to Education">Education</a></li>
+            <li><a href="#portfolio" aria-label="Go to Portfolio">Portfolio</a></li>
+            <li><a href="#cover-letter" aria-label="Go to Cover Letter">Cover Letter</a></li>
+        </ul>
     </nav>
-    
-    <main class="container">
-        <section id="home" class="tab-content active">
-            <div class="story-intro reveal-element">
-                <div class="story-chapter">Chapter 1: The Introduction</div>
-            </div>
-            
-            <div class="hero reveal-element">
-                <div class="hero-content">
-                    <h2>Hello, I'm <span class="highlight-text">Akash</span></h2>
-                    <h3>Technology Companies Reporter with Data Visualization Skills</h3>
-                    <p>I would love to combine financial reporting expertise with technical skills to create compelling visual stories. Let me take you on a journey through my professional narrative.</p>
-                    <div class="cta-buttons">
-                        <button class="btn primary" onclick="switchTab('portfolio')">Explore My Work</button>
-                        <button class="btn secondary" onclick="switchTab('resume')">Discover My Journey</button>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Introduction Section -->
+        <section id="introduction" class="story-section" data-debug="intro">
+            <div class="container">
+                <div class="story-chapter" data-animate="fade-in" data-no-animate>CHAPTER 1: THE BEGINNING</div>
+                <div class="intro-content">
+                    <div class="intro-text" data-animate="slide-right" data-no-animate>
+                        <h2>Hello, I'm Akash</h2>
+                        <h3>Technology Companies Reporter & Data Visualization Enthusiast</h3>
+                        <p>I blend financial reporting expertise with technical skills to craft compelling visual narratives. Scroll down to explore my journey.</p>
+                        <div class="cta-buttons">
+                            <a href="#portfolio" class="btn primary">See My Work</a>
+                            <a href="#experience" class="btn secondary">Explore My Story</a>
+                        </div>
                     </div>
-                </div>
-                <div class="hero-image">
-                    <div class="profile-placeholder">
-                        <i class="fas fa-user"></i>
-                        <div class="orbit-container" id="orbit-simulator">
-                            <div class="orbit orbit-1">
-                                <div class="satellite"><i class="fas fa-chart-line"></i></div>
-                            </div>
-                            <div class="orbit orbit-2">
-                                <div class="satellite"><i class="fas fa-code"></i></div>
-                            </div>
-                            <div class="orbit orbit-3">
-                                <div class="satellite"><i class="fas fa-newspaper"></i></div>
-                            </div>
+                    <div class="intro-visual" data-animate="slide-left" data-no-animate>
+                        <div class="profile-shape">
+                            <img src="images/profile.jpg" alt="Profile picture of Akash Sriram" class="profile-image">
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="story-intro reveal-element">
-                <div class="story-chapter">Chapter 2: Core Competencies</div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <p>Scroll to continue</p>
             </div>
-            
-            <div class="skills-highlight">
-                <h3 class="animated-heading">Key Skills</h3>
-                <div class="skills-grid">
-                    <div class="skill-card reveal-element" data-skill="Financial Reporting">
-                        <div class="skill-icon-container">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
+        </section>
+
+        <!-- Core Skills Section -->
+        <section id="skills" class="story-section" data-debug="skills">
+            <div class="container">
+                <div class="story-chapter" data-animate="fade-in" data-no-animate>CHAPTER 2: WHAT I BRING</div>
+                <h3 data-animate="slide-up" data-no-animate>Core Skills</h3>
+                <div class="skills-frame" data-animate="fade-in" data-no-animate>
+                    <div class="skill-item" data-skill="Financial Reporting" data-percent="90">
+                        <canvas class="skill-chart"></canvas>
+                        <p>Financial Reporting</p>
+                    </div>
+                    <div class="skill-item" data-skill="Data Visualization" data-percent="85">
+                        <canvas class="skill-chart"></canvas>
+                        <p>Data Visualization</p>
+                    </div>
+                    <div class="skill-item" data-skill="Web Development" data-percent="80">
+                        <canvas class="skill-chart"></canvas>
+                        <p>Web Development</p>
+                    </div>
+                    <div class="skill-item" data-skill="Research & Analysis" data-percent="90">
+                        <canvas class="skill-chart"></canvas>
+                        <p>Research & Analysis</p>
+                    </div>
+                </div>
+                <div class="skills-details">
+                    <div class="skill-detail-item active" data-skill="Financial Reporting">
                         <h4>Financial Reporting</h4>
-                        <p>Extensive experience covering technology companies and financial markets at Reuters</p>
-                        <div class="skill-card-hover">
-                            <span>Click to read more</span>
-                        </div>
+                        <p> Experienced in analyzing financial data, earnings reports, and market trends to deliver insightful financial news coverage.</p>
                     </div>
-                    <div class="skill-card reveal-element" data-skill="Data Visualization">
-                        <div class="skill-icon-container">
-                            <i class="fas fa-code"></i>
-                        </div>
+                    <div class="skill-detail-item" data-skill="Data Visualization">
                         <h4>Data Visualization</h4>
-                        <p>Creating compelling visual stories with various tools and programming languages</p>
-                        <div class="skill-card-hover">
-                            <span>Click to read more</span>
-                        </div>
+                        <p>Proficient in transforming complex data into compelling visual stories using tools like Flourish, R, and interactive dashboards.</p>
                     </div>
-                    <div class="skill-card reveal-element" data-skill="Multimedia Production">
-                        <div class="skill-icon-container">
-                            <i class="fas fa-podcast"></i>
-                        </div>
-                        <h4>Multimedia Production</h4>
-                        <p>Podcast hosting, video editing, and digital content creation</p>
-                        <div class="skill-card-hover">
-                            <span>Click to read more</span>
-                        </div>
+                    <div class="skill-detail-item" data-skill="Web Development">
+                        <h4>Web Development</h4>
+                        <p>Taught myself JS, CSS and HTML. In fact, even made a web-based arcade game inspired by a Reuters Graphics story.</p>
                     </div>
-                    <div class="skill-card reveal-element" data-skill="Research & Analysis">
-                        <div class="skill-icon-container">
-                            <i class="fas fa-search"></i>
-                        </div>
+                    <div class="skill-detail-item" data-skill="Research & Analysis">
                         <h4>Research & Analysis</h4>
-                        <p>Converting complex data into clear, insightful stories</p>
-                        <div class="skill-card-hover">
-                            <span>Click to read more</span>
-                        </div>
+                        <p>Skilled at conducting thorough research and analysis to uncover financial trends and insights across sectors and pitch meaningful stories.</p>
                     </div>
-                </div>
-            </div>
-            
-            <div class="skill-story-modal">
-                <div class="skill-story-content">
-                    <span class="close-skill-story">&times;</span>
-                    <h3 class="skill-story-title"></h3>
-                    <div class="skill-story-body"></div>
                 </div>
             </div>
         </section>
-        
-        <section id="resume" class="tab-content">
-            <div class="story-intro reveal-element">
-                <div class="story-chapter">Chapter 3: Professional Journey</div>
-            </div>
-            
-            <h2 class="animated-heading">Resume</h2>
-            
-            <div class="resume-overview">
-                <div class="overview-card reveal-element">
-                    <div class="overview-icon">
-                        <i class="fas fa-briefcase"></i>
+
+        <!-- Experience Section -->
+        <section id="experience" class="story-section" data-debug="experience">
+            <div class="container">
+                <div class="story-chapter" data-animate="fade-in" data-no-animate>CHAPTER 3: MY JOURNEY</div>
+                <h3 data-animate="slide-up" data-no-animate>Professional Experience</h3>
+                <div class="timeline" data-animate="fade-in" data-no-animate>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <span class="date">May 2023 – Present</span>
+                        <h4>Sector Specialist – Technology, Media and Telecom</h4>
+                        <p class="company">Reuters News</p>
+                        <ul>
+                            <li>Led breaking news coverage in the technology sector</li>
+                            <li>Wrote in-depth stories on electric vehicle companies</li>
+                            <li>Built expertise in U.S. automotive, EV, and space industries</li>
+                            <li>Used data trends to drive impactful reporting</li>
+                        </ul>
                     </div>
-                    <div class="overview-details">
-                        <h3>5+ Years</h3>
-                        <p>Work Experience</p>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <span class="date">Sep 2021 – Apr 2023</span>
+                        <h4>Correspondent – Technology, Media and Telecom</h4>
+                        <p class="company">Reuters News</p>
+                        <ul>
+                            <li>Reported on U.S. technology companies, specializing in electric vehicle and space firms</li>
+                            <li>Developed data visualization skills and trained colleagues on incorporating graphics</li>
+                        </ul>
                     </div>
-                </div>
-                
-                <div class="overview-card reveal-element">
-                    <div class="overview-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="overview-details">
-                        <h3>2 Degrees</h3>
-                        <p>Education</p>
-                    </div>
-                </div>
-                
-                <div class="overview-card reveal-element">
-                    <div class="overview-icon">
-                        <i class="fas fa-newspaper"></i>
-                    </div>
-                    <div class="overview-details">
-                        <h3>500+</h3>
-                        <p>Published Articles</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Skills Section -->
-<div class="skills-section">
-    <div class="skills-donut-grid">
-        <div class="skill-donut">
-            <div id="dataviz-chart" class="donut-chart" data-percentage="95">
-                <div class="donut-label">95%</div>
-            </div>
-            <h4>Data Visualization</h4>
-        </div>
-        
-        <div class="skill-donut">
-            <div id="financial-chart" class="donut-chart" data-percentage="90">
-                <div class="donut-label">90%</div>
-            </div>
-            <h4>Financial Reporting</h4>
-        </div>
-        
-        <div class="skill-donut">
-            <div id="html-chart" class="donut-chart" data-percentage="85">
-                <div class="donut-label">85%</div>
-            </div>
-            <h4>HTML/CSS</h4>
-        </div>
-        
-        <div class="skill-donut">
-            <div id="js-chart" class="donut-chart" data-percentage="80">
-                <div class="donut-label">80%</div>
-            </div>
-            <h4>JavaScript</h4>
-        </div>
-        
-        <div class="skill-donut">
-            <div id="illustrator-chart" class="donut-chart" data-percentage="85">
-                <div class="donut-label">85%</div>
-            </div>
-            <h4>Adobe Illustrator</h4>
-        </div>
-        
-        <div class="skill-donut">
-            <div id="analysis-chart" class="donut-chart" data-percentage="95">
-                <div class="donut-label">95%</div>
-            </div>
-            <h4>Data Analysis</h4>
-        </div>
-    </div>
-</div>
-                
-                <div class="tools-section">
-                    <h4 class="animated-heading">Tools & Technologies</h4>
-                    <div class="tools-grid">
-                        <div class="tool-item reveal-element" data-tooltip="Advanced">
-                            <i class="fas fa-table"></i>
-                            <span>Excel</span>
-                        </div>
-                        <div class="tool-item reveal-element" data-tooltip="Beginner">
-                            <i class="fab fa-python"></i>
-                            <span>Python</span>
-                        </div>
-                        <div class="tool-item reveal-element" data-tooltip="Intermediate">
-                            <i class="fas fa-chart-bar"></i>
-                            <span>D3.js</span>
-                        </div>
-                        <div class="tool-item reveal-element" data-tooltip="Intermediate">
-                            <i class="fas fa-pen-nib"></i>
-                            <span>Illustrator</span>
-                        </div>
-                        <div class="tool-item reveal-element" data-tooltip="Beginner">
-                            <i class="fas fa-map-marked-alt"></i>
-                            <span>QGIS</span>
-                        </div>
-                        <div class="tool-item reveal-element" data-tooltip="Intermediate">
-                            <i class="fab fa-js"></i>
-                            <span>JavaScript</span>
-                        </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <span class="date">Nov 2019 – Aug 2021</span>
+                        <h4>Sub Editor</h4>
+                        <p class="company">Deccan Herald</p>
+                        <ul>
+                            <li>Led digital team's 2020 U.S. election coverage strategy</li>
+                            <li>Edited stories and managed a team of sub-editors</li>
+                            <li>Used Flourish and spreadsheets to create election-related dashboards</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            
-            <div class="story-intro reveal-element">
-                <div class="story-chapter">Chapter 4: Career Milestones</div>
-            </div>
-            
-            <div class="experience-section">
-                <h3 class="animated-heading"><i class="fas fa-briefcase"></i> Work Experience</h3>
-                
-                <!-- Experience Timeline -->
-<div class="timeline">
-    <div class="timeline-item reveal-element">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2019 - Present</div>
-        <div class="timeline-content reveal-element">
-            <h4>Senior Technology Reporter</h4>
-            <div class="company">Reuters</div>
-            <ul class="job-highlights">
-                <li>Lead coverage of major technology companies and industry trends</li>
-                <li>Create data-driven stories using advanced visualization techniques</li>
-                <li>Develop and maintain a network of high-level industry sources</li>
-                <li>Collaborate with global team on breaking news and feature stories</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="timeline-item reveal-element">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2016 - 2019</div>
-        <div class="timeline-content reveal-element">
-            <h4>Technology Correspondent</h4>
-            <div class="company">The Wall Street Journal</div>
-            <ul class="job-highlights">
-                <li>Covered emerging technology trends and startup ecosystem</li>
-                <li>Produced multimedia content including podcasts and video interviews</li>
-                <li>Developed interactive data visualizations for complex stories</li>
-                <li>Contributed to award-winning series on privacy and data security</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="timeline-item reveal-element">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2014 - 2016</div>
-        <div class="timeline-content reveal-element">
-            <h4>Staff Writer</h4>
-            <div class="company">TechCrunch</div>
-            <ul class="job-highlights">
-                <li>Wrote daily news articles and feature stories on technology industry</li>
-                <li>Covered major tech events and conferences worldwide</li>
-                <li>Developed and maintained the publication's data visualization style guide</li>
-                <li>Grew audience engagement through innovative storytelling approaches</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="timeline-item reveal-element">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2012 - 2014</div>
-        <div class="timeline-content reveal-element">
-            <h4>Editorial Assistant</h4>
-            <div class="company">WIRED Magazine</div>
-            <ul class="job-highlights">
-                <li>Assisted senior editors with research and fact-checking</li>
-                <li>Contributed articles to print and online editions</li>
-                <li>Created supporting graphics and visualizations for feature stories</li>
-                <li>Managed social media presence and audience engagement</li>
-            </ul>
-        </div>
-    </div>
-</div>
-            
-            <div class="story-intro reveal-element">
-                <div class="story-chapter">Chapter 5: Educational Background</div>
-            </div>
-            
-            <div class="education-section">
-                <h3 class="animated-heading"><i class="fas fa-graduation-cap"></i> Education</h3>
-                
-                <div class="education-grid">
-                    <div class="education-card reveal-element">
-                        <div class="education-logo">
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="story-section" data-debug="education">
+            <div class="container">
+                <div class="story-chapter" data-animate="fade-in" data-no-animate>CHAPTER 4: FOUNDATIONS</div>
+                <h3 data-animate="slide-up" data-no-animate>Education</h3>
+                <div class="education-grid" data-animate="fade-in" data-no-animate>
+                    <div class="education-item">
+                        <div class="education-icon">
                             <i class="fas fa-university"></i>
                         </div>
-                        <div class="education-details">
+                        <div class="education-content">
                             <h4>MA in Conflict, Development and Security</h4>
                             <p class="institution">University of Leeds, UK</p>
-                            <p class="duration">September 2018 - September 2019</p>
-                            <div class="education-subjects">
+                            <p class="duration">September 2018 – September 2019</p>
+                            <div class="subjects">
                                 <span>Conflict</span>
                                 <span>Global Governance</span>
                                 <span>International Political Economy</span>
@@ -363,34 +179,32 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="education-card reveal-element">
-                        <div class="education-logo">
+                    <div class="education-item">
+                        <div class="education-icon">
                             <i class="fas fa-university"></i>
                         </div>
-                        <div class="education-details">
+                        <div class="education-content">
                             <h4>BA in Media Studies, Economics and Political Science</h4>
                             <p class="institution">Christ University, India</p>
-                            <p class="duration">June 2015 - March 2018</p>
-                            <div class="education-subjects">
+                            <p class="duration">June 2015 – March 2018</p>
+                            <div class="subjects">
                                 <span>Reporting</span>
                                 <span>Media Production</span>
-                                <span>Financial economics</span>
+                                <span>Financial Economics</span>
                                 <span>Macroeconomics</span>
                                 <span>International Relations</span>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="education-card reveal-element">
-                        <div class="education-logo">
+                    <div class="education-item">
+                        <div class="education-icon">
                             <i class="fab fa-google"></i>
                         </div>
-                        <div class="education-details">
-                            <h4>Professional certification in Data Analytics</h4>
+                        <div class="education-content">
+                            <h4>Professional Certificate in Data Analytics</h4>
                             <p class="institution">Google</p>
                             <p class="duration">December 2023</p>
-                            <div class="education-subjects">
+                            <div class="subjects">
                                 <span>Data Analytics</span>
                                 <span>Programming using R</span>
                                 <span>Visualization</span>
@@ -399,206 +213,95 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="contact-section">
-                <h3 class="animated-heading"><i class="fas fa-envelope"></i> Contact Information</h3>
-                <div class="contact-cards">
-                    <div class="contact-card reveal-element">
-                        <i class="fas fa-envelope"></i>
-                        <p>akash.sriram@thomsonreuters.com</p>
-                    </div>
-                    <div class="contact-card reveal-element">
-                        <i class="fas fa-phone"></i>
-                        <p>+91 9901777617</p>
-                    </div>
-                    <div class="contact-card reveal-element">
-                        <i class="fab fa-twitter"></i>
-                        <p>@hoodieonveshti</p>
-                    </div>
-                </div>
-            </div>
         </section>
-        
-        <section id="cover-letter" class="tab-content">
-            <div class="story-intro reveal-element">
-                <div class="story-chapter">Chapter 6: My Application</div>
+
+        <!-- Portfolio section -->
+<section id="portfolio" class="story-section" data-debug="portfolio">
+    <div class="container">
+        <div class="story-chapter" data-animate="fade-in" data-no-animate>CHAPTER 5: MY WORK</div>
+        <h3 data-animate="slide-up" data-no-animate>Portfolio</h3>
+        <div class="portfolio-grid" data-animate="fade-in" data-no-animate>
+            <!-- Item 1: Uber, Lyft drivers using Tesla's FSD -->
+            <div class="portfolio-item">
+                <img src="https://www.reuters.com/resizer/v2/3RS3SCKNRRNXLL6EA4UCYW73UU.jpg?auth=583b1e23282a2f35799785932f544ee69b4a40629dbae24c029b65bb29d0bfee&width=1080&quality=80" alt="Tesla article" class="portfolio-image">
+                <div class="portfolio-overlay">
+                    <h4>Story on Uber, Lyft drivers using Tesla's FSD</h4>
+                    <p>Investigative report on safety concerns with Tesla's FSD in ride-hailing</p>
+                    <a href="https://www.reuters.com/business/autos-transportation/uber-lyft-drivers-use-teslas-makeshift-robotaxis-raising-safety-concerns-2024-10-03/" target="_blank" class="btn">Read Article</a>
+                </div>
             </div>
-            
-            <h2 class="animated-heading">Cover Letter</h2>
-            
-            <div class="cover-letter-content reveal-element">
-                <div class="letter-header">
-                    <p>Akash Sriram</p>
-                    <p>akash.sriram@thomsonreuters.com</p>
-                    <p>+91 9901777617</p>
+            <!-- Item 2: Curious travelers flock to the eclipse's path -->
+            <div class="portfolio-item">
+                <img src="https://www.reuters.com/graphics/AIRBNB-OCCUPANCY/zgvokeodzvd/chart.png" alt="Lunar eclipse and rental market article" class="portfolio-image">
+                <div class="portfolio-overlay">
+                    <h4>Curious travelers flock to the eclipse's path</h4>
+                    <p>Analysis of travel trends during the 2024 solar eclipse</p>
+                    <a href="https://www.reuters.com/business/retail-consumer/eclipse-boosts-travel-americans-chase-rare-celestial-event-2024-04-05/" target="_blank" class="btn">Read Article</a>
                 </div>
-                
-                <div class="letter-date">
-                    <p id="current-date"></p>
+            </div>
+            <!-- Item 3: Elon Musk's tweeting patterns before buying Twitter -->
+            <div class="portfolio-item">
+                <img src="https://graphics.reuters.com/TESLA-MUSK/klvygkgdovg/chart.png" alt="Elon Musk's tweets" class="portfolio-image">
+                <div class="portfolio-overlay">
+                    <h4>Elon Musk's tweeting patterns before buying Twitter</h4>
+                    <p>Data visualization of Musk's focus on Twitter vs. Tesla</p>
+                    <a href="https://www.reuters.com/business/autos-transportation/musks-all-nighters-twitter-raise-concern-tesla-investors-2022-11-15/" class="btn portfolio-preview" data-id="ev-market">Preview</a>
                 </div>
-            
-                
-                <div class="letter-content">
-                    <p>Dear Ella Koeze,</p>
-                    
-                    <p>I am writing to apply for the Financial Graphics Journalist position with Reuters Graphics. My expertise in the Technology, Media, and Telecom sectors and my passion for data visualization, I believe are a unique combination of financial reporting expertise and technical skills that makes me an ideal candidate for this role.</p>
-                    
-                    <p>During my 3.5-year tenure at Reuters, I have developed a strong foundation in financial reporting, particularly in the technology sector. I've led coverage of electric vehicle companies including Tesla, Rivian, and Lucid, consistently breaking news and developing deep industry knowledge. What has helped me set my reporting apart is my commitment to incorporate graphics in my stories. I have actively developed data visualization skills and taught colleagues how to incorporate graphics in their stories and make complex financial information more accessible to our audience.</p>
-                    
-                    <p>Beyond my reporting experience, I bring valuable technical skills to the table. I have completed Google's Professional Data Analytics certification, where I gained proficiency in programming languages and visualization techniques. I can work comfortably with complex datasets, and I have experience creating custom graphics without relying on off-the-shelf tools. My background in media production, including podcast hosting and video editing, has honed my visual storytelling abilities across multiple formats.</p>
-                    
-                    <p>What excites me most about joining the Reuters Graphics team is the opportunity to fully merge my financial reporting expertise with my passion for visual communication. I am drawn to your team's reputation for creativity, collaboration, and innovative story-telling.</p>
-                    
-                    <p>I am particularly interested in creating data-rich visual stories that illuminate the complex relationships between economics, business, politics and other critical areas. I believe my experience covering the technology sector gives me unique insights into how these fields intersect and impact global markets.</p>
-                    
-                    <p>Thank you for considering my application. I would love to discuss how my skills and experience could contribute to the Reuters financial graphics team.</p>
-                    
+            </div>
+            <!-- Item 4: Tesla's price cuts, pain for EV startups -->
+            <div class="portfolio-item">
+                <img src="https://graphics.reuters.com/TESLA-ELECTRIC/STARTUPS/zdpxdrqonpx/chart.png" alt="Financial data visualization" class="portfolio-image">
+                <div class="portfolio-overlay">
+                    <h4>Tesla's price cuts, pain for EV startups</h4>
+                    <p>Financial analysis of EV market dynamics</p>
+                    <a href="https://www.reuters.com/business/autos-transportation/teslas-price-cuts-promise-more-pain-money-losing-us-ev-startups-2023-01-20/" class="btn portfolio-preview" data-id="sp500">Preview</a>
+                </div>
+            </div>
+            <!-- Item 5: Javascript-based retro arcade game -->
+            <div class="portfolio-item">
+                <img src="https://media.licdn.com/dms/image/v2/D5622AQGsqGnopruhDA/feedshare-shrink_800/B56ZTIe.aGHQAg-/0/1738530351271?e=1744243200&v=beta&t=j1ocSTlLgmXtqnbX_qHL5Q4aZ5BEbTZb46-BD_2W6Vw" alt="Coding project" class="portfolio-image">
+                <div class="portfolio-overlay">
+                    <h4>Javascript-based retro arcade game</h4>
+                    <p>Interactive game project: Treasure Collector</p>
+                    <a href="https://iamjohnwatson.github.io/web-game/" target="_blank" class="btn">View on GitHub</a>
+                </div>
+            </div>
+            <!-- Item 6: Human Adventures in Space -->
+            <div class="portfolio-item">
+                <img src="https://cdn.pixabay.com/photo/2011/12/14/12/11/astronaut-11080_1280.jpg" alt="Coding project" class="portfolio-image">
+                <div class="portfolio-overlay">
+                    <h4>Human Adventures in Space</h4>
+                    <p>Creative coding project exploring space themes</p>
+                    <a href="https://iamjohnwatson.github.io/Human-Adventures-In-Space/" target="_blank" class="btn">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Cover Letter Section -->
+        <section id="cover-letter" class="story-section">
+            <div class="container">
+                <div class="story-chapter" data-animate="fade-in" data-no-animate>CHAPTER 6: MY APPLICATION</div>
+                <h3 data-animate="slide-up" data-no-animate>Cover Letter</h3>
+                <div class="cover-letter-content" data-animate="fade-in" data-no-animate>
+                    <p><strong>Dear Ella,</strong></p>
+                    <p>I am writing to apply for the Financial Graphics Journalist position with Reuters Graphics. My expertise in the Technology, Media, and Telecom sectors at Reuters News, combined with my passion for data visualization, makes me an ideal candidate for this role.</p>
+                    <p>During my 3.5-year tenure at Reuters, I have developed a strong foundation in financial reporting, particularly in the technology sector. I've led coverage of electric vehicle companies, including Tesla, Rivian, and Lucid, consistently breaking news and developing deep industry knowledge. What has set my reporting apart is my commitment to incorporating graphics into my stories. I have actively developed data visualization skills and mentored colleagues on how to integrate graphics into their reporting to make complex financial information more accessible to our audience.</p>
+                    <p>Beyond my reporting experience, I bring valuable technical skills to the table. I have completed Google's Professional Data Analytics certification, where I gained proficiency in programming languages and visualization techniques. I am comfortable working with complex datasets and have experience creating custom graphics without relying on off-the-shelf tools. Additionally, my background in media production, including podcast hosting and video editing, has honed my visual storytelling abilities across multiple formats.</p>
+                    <p>What excites me most about joining the Reuters Graphics team is the opportunity to fully merge my financial reporting expertise with my passion for visual communication. I am drawn to your team's reputation for creativity, collaboration, and innovative storytelling. I am particularly interested in creating data-rich visual stories that illuminate the complex relationships between economics, business, politics, and other critical areas. My experience covering the technology sector gives me unique insights into how these fields intersect and impact global markets.</p>
+                    <p>Thank you for considering my application. I would love the opportunity to discuss how my skills and experience could contribute to the Reuters financial graphics team.</p>
                     <p>Sincerely,</p>
                     <p>Akash Sriram</p>
                 </div>
             </div>
         </section>
-        
-        <section id="portfolio" class="tab-content">
-            <div class="story-intro reveal-element">
-                <div class="story-chapter">Chapter 7: My Work</div>
-            </div>
-            
-            <h2 class="animated-heading">Portfolio</h2>
-            
-            <div class="portfolio-grid">
-                <!-- Reuters Stories -->
-                <div class="portfolio-item reveal-element" data-category="articles">
-                    <div class="portfolio-item-inner">
-                        <img class="lazyload" data-src="https://www.reuters.com/resizer/v2/3RS3SCKNRRNXLL6EA4UCYW73UU.jpg?auth=583b1e23282a2f35799785932f544ee69b4a40629dbae24c029b65bb29d0bfee&width=1080&quality=80" alt="Tesla article">
-                        <div class="portfolio-overlay">
-                            <h3>Story on Uber, Lyft drivers using Tesla's FSD</h3>
-                            <a href="https://www.reuters.com/business/autos-transportation/uber-lyft-drivers-use-teslas-makeshift-robotaxis-raising-safety-concerns-2024-10-03/" target="_blank" class="btn">Read Article</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item reveal-element" data-category="articles">
-                    <div class="portfolio-item-inner">
-                        <img class="lazyload" data-src="https://www.reuters.com/graphics/AIRBNB-OCCUPANCY/zgvokeodzvd/chart.png" alt="Lunar eclips and rental market article">
-                        <div class="portfolio-overlay">
-                            <h3>Curious travelers flock to the eclipse's path</h3>
-                            <a href="https://www.reuters.com/business/retail-consumer/eclipse-boosts-travel-americans-chase-rare-celestial-event-2024-04-05/" target="_blank" class="btn">Read Article</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Data Visualization Projects -->
-                <div class="portfolio-item reveal-element" data-category="data-viz">
-                    <div class="portfolio-item-inner">
-                        <img class="lazyload" data-src="https://graphics.reuters.com/TESLA-MUSK/klvygkgdovg/chart.png" alt="Elon Musk's tweets">
-                        <div class="portfolio-overlay">
-                            <h3>Elon Musk's tweeting patterns before buying Twitter</h3>
-                            <a href="https://www.reuters.com/business/autos-transportation/musks-all-nighters-twitter-raise-concern-tesla-investors-2022-11-15/" class="btn portfolio-preview" data-id="ev-market">Preview</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item reveal-element" data-category="data-viz">
-                    <div class="portfolio-item-inner">
-                        <img class="lazyload" data-src="https://graphics.reuters.com/TESLA-ELECTRIC/STARTUPS/zdpxdrqonpx/chart.png" alt="Financial data visualization">
-                        <div class="portfolio-overlay">
-                            <h3>Tesla's price cuts, pain for EV startups</h3>
-                            <a href="https://www.reuters.com/business/autos-transportation/teslas-price-cuts-promise-more-pain-money-losing-us-ev-startups-2023-01-20/" class="btn portfolio-preview" data-id="sp500">Preview</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Coding Projects -->
-                <div class="portfolio-item reveal-element" data-category="projects">
-                    <div class="portfolio-item-inner">
-                        <img class="lazyload" data-src="https://media.licdn.com/dms/image/v2/D5622AQGsqGnopruhDA/feedshare-shrink_800/B56ZTIe.aGHQAg-/0/1738530351271?e=1744243200&v=beta&t=j1ocSTlLgmXtqnbX_qHL5Q4aZ5BEbTZb46-BD_2W6Vw" alt="Coding project">
-                        <div class="portfolio-overlay">
-                            <h3>Javascript-based retro arcade game</h3>
-                            <a href="https://iamjohnwatson.github.io/web-game/" target="_blank" class="btn">View on GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item reveal-element" data-category="projects">
-                    <div class="portfolio-item-inner">
-                        <img class="lazyload" data-src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Web development project">
-                        <div class="portfolio-overlay">
-                            <h3>Human Adventures in Space</h3>
-                            <a href="https://iamjohnwatson.github.io/Human-Adventures-In-Space/" target="_blank" class="btn">View on GitHub</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Portfolio Previews -->
-            <div class="portfolio-preview-modal" id="ev-market-preview">
-                <div class="preview-content">
-                    <span class="close-preview">&times;</span>
-                    <h3>EV Market Trends Visualization</h3>
-                    <div class="preview-image">
-                        <img class="lazyload" data-src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="EV Market Trends">
-                    </div>
-                    <div class="preview-description">
-                        <p>This interactive visualization tracks the growth of electric vehicle adoption across major markets, highlighting key trends in consumer preferences, infrastructure development, and market share by manufacturer.</p>
-                        <p>Built using D3.js and SVG, this project demonstrates my ability to transform complex datasets into clear, insightful visualizations that reveal patterns and trends not immediately apparent in the raw data.</p>
-                    </div>
-                    <div class="preview-tools">
-                        <h4>Tools & Technologies</h4>
-                        <div class="tools-list">
-                            <span>D3.js</span>
-                            <span>JavaScript</span>
-                            <span>SVG</span>
-                            <span>HTML/CSS</span>
-                            <span>Data Analysis</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="portfolio-preview-modal" id="sp500-preview">
-                <div class="preview-content">
-                    <span class="close-preview">&times;</span>
-                    <h3>S&P 500 Sector Performance</h3>
-                    <div class="preview-image">
-                        <img class="lazyload" data-src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="S&P 500 Sector Performance">
-                    </div>
-                    <div class="preview-description">
-                        <p>This visualization provides a comprehensive analysis of S&P 500 sector performance over time, allowing users to compare sectors, track historical trends, and identify correlations with major economic events.</p>
-                        <p>The project features interactive elements that allow users to customize date ranges, highlight specific sectors, and drill down into individual company performance within each sector.</p>
-                    </div>
-                    <div class="preview-tools">
-                        <h4>Tools & Technologies</h4>
-                        <div class="tools-list">
-                            <span>JavaScript</span>
-                            <span>Chart.js</span>
-                            <span>API Integration</span>
-                            <span>Responsive Design</span>
-                            <span>Financial Data Analysis</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
-    
+
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>Akash Sriram</h3>
-                    <p>Technology companies reporter with a penchant for data visualization</p>
-                    <p>akash.sriram@tr.com | +91 9901777617</p>
-                </div>
-                <div class="footer-social">
-                    <a href="https://www.linkedin.com/in/akashsriram/" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/HoodieOnVeshti" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="https://github.com/iamjohnwatson" class="social-icon"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Akash Sriram. All rights reserved.</p>
-            </div>
+            <p>© 2025 Akash Sriram. All rights reserved.</p>
         </div>
     </footer>
 
