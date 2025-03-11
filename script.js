@@ -14,6 +14,16 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.classList.toggle('open');
       });
     }
+
+    // Add this to the JavaScript file
+// Close mobile navigation when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        document.querySelector('.nav-links').classList.remove('open');
+      }
+    });
+  });
     
     // Intersection Observer for scroll-triggered animations
     function initScrollObservers() {
@@ -41,17 +51,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Particle effects in header
-    const headerParticles = document.querySelector('.header-particles');
-    if (headerParticles) {
-      for (let i = 0; i < 50; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
-        particle.style.animationDelay = (Math.random() * 5) + 's';
-        headerParticles.appendChild(particle);
-      }
+    // Particle effects in header
+const headerParticles = document.querySelector('.header-particles');
+if (headerParticles) {
+  for (let i = 0; i < 50; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    
+    // Set random position
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    
+    // Set random size (2-6px)
+    const size = Math.random() * 4 + 2;
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    
+    // Set random animation properties
+    particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+    particle.style.animationDelay = (Math.random() * 5) + 's';
+    
+    // Set random opacity
+    particle.style.opacity = Math.random() * 0.5 + 0.3;
+    
+    headerParticles.appendChild(particle);
+  }
+  
       headerParticles.addEventListener('mousemove', function(e) {
         const offsetX = (e.clientX / window.innerWidth - 0.5) * 20;
         const offsetY = (e.clientY / window.innerHeight - 0.5) * 20;
