@@ -1,131 +1,139 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Tab Switching
-    const tabs = document.querySelectorAll('.tabs li');
-    const contents = document.querySelectorAll('.tab-content');
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            contents.forEach(c => c.classList.remove('active'));
-            tab.classList.add('active');
-            document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
-        });
+document.addEventListener('DOMContentLoaded', () => {
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    darkModeToggle.addEventListener('click', () => {
+        document.body.dataset.theme = document.body.dataset.theme === 'dark' ? '' : 'dark';
     });
 
-    // Scroll Animations with GSAP and ScrollTrigger
-    gsap.registerPlugin(ScrollTrigger);
-    document.querySelectorAll('.animate-on-scroll').forEach(element => {
-        gsap.from(element, {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            scrollTrigger: {
-                trigger: element,
-                start: 'top 80%',
-                toggleActions: 'play none none reverse'
-            }
-        });
+    // GSAP Zoom Animations
+    gsap.utils.toArray('[data-gsap="zoom"]').forEach(el => {
+        el.addEventListener('mouseenter', () => gsap.to(el, { scale: 1.05, duration: 0.3 }));
+        el.addEventListener('mouseleave', () => gsap.to(el, { scale: 1, duration: 0.3 }));
     });
 
-    // Typography Animation with Anime.js
+    // ScrollMagic Controller
+    const controller = new ScrollMagic.Controller();
+    document.querySelectorAll('[data-scroll]').forEach(el => {
+        const type = el.dataset.scroll;
+        new ScrollMagic.Scene({
+            triggerElement: el,
+            triggerHook: 0.8,
+            duration: '50%'
+        })
+        .setClassToggle(el, 'scroll-active')
+        .addTo(controller);
+    });
+
+    // Anime.js Typography
     anime({
-        targets: '.typing-text',
+        targets: '.anime-text',
         opacity: [0, 1],
-        translateY: [-20, 0],
-        duration: 1500,
-        easing: 'easeOutExpo'
+        translateY: [20, 0],
+        delay: anime.stagger(100),
+        duration: 1000,
+        easing: 'easeOutQuad'
     });
 
-    // Skills Donut Chart with D3.js
-    const skillsData = [
-        { title: 'Data Viz', percentage: 85 },
-        { title: 'Financial Reporting', percentage: 90 },
-        { title: 'HTML/CSS', percentage: 80 },
-        { title: 'JavaScript', percentage: 75 },
-        { title: 'Adobe Illustrator', percentage: 70 },
-        { title: 'Data Analysis', percentage: 85 }
-    ];
-    const donutSvg = d3.select('#skills-donut')
-        .selectAll('.donut-chart')
-        .data(skillsData)
-        .enter()
-        .append('div')
-        .attr('class', 'donut-chart-container')
-        .append('svg')
-        .attr('width', 120)
-        .attr('height', 120)
-        .append('g')
-        .attr('transform', 'translate(60, 60)');
-
-    donutSvg.each(function(d) {
-        const arc = d3.arc().innerRadius(40).outerRadius(60);
-        const pie = d3.pie()([d.percentage, 100 - d.percentage]);
-        d3.select(this)
-            .selectAll('path')
-            .data(pie)
+    // D3.js Donut Charts
+    document.querySelectorAll('.d3-chart').forEach(svg => {
+        const percentage = svg.dataset.values;
+        const width = 150, height = 150, radius = 75;
+        const data = [percentage, 100 - percentage];
+        const color = d3.scaleOrdinal(['#3498db', '#f0f0f0']);
+        const arc = d3.arc().innerRadius(55).outerRadius(radius);
+        const pie = d3.pie();
+        const g = d3.select(svg).attr('width', width).attr('height', height)
+            .append('g').attr('transform', `translate(${width / 2}, ${height / 2})`);
+        g.selectAll('path')
+            .data(pie(data))
             .enter()
             .append('path')
             .attr('d', arc)
-            .attr('fill', (d, i) => i === 0 ? '#ff6b6b' : '#ddd')
-            .attr('aria-label', `${d.data.title}: ${d.data.percentage}%`);
-        d3.select(this)
-            .append('text')
+            .attr('fill', (d, i) => color(i))
+            .transition()
+            .duration(1000)
+            .attrTween('d', d => {
+                const i = d3.interpolate({ startAngle: 0, endAngle: 0 }, d);
+                return t => arc(i(t));
+            });
+        g.append('text')
             .attr('text-anchor', 'middle')
             .attr('dy', '.35em')
-            .text(`${d.percentage}%`)
-            .attr('aria-hidden', 'true');
-        d3.select(this)
-            .append('text')
-            .attr('text-anchor', 'middle')
-            .attr('dy', '-1em')
-            .text(d.title)
-            .attr('aria-hidden', 'true');
+            .text(`${percentage}%`);
     });
 
-    // Crokinole Open 20 Chart
-    const open20Data = [
-        { player: 'Justin Slater', attempts: 594, percent: 75.6 },
-        { player: 'Josh Carrafiello', attempts: 334, percent: 68.0 },
-        { player: 'Connor Reinman', attempts: 703, percent: 66.0 },
-        // Add remaining data...
+    // Matter.js Simulator
+    const simulatorCanvas = document.querySelector('.simulator-canvas');
+    const engine = Matter.Engine.create();
+    const world = engine.world;
+    const render = Matter.Render.create({
+        element: simulatorCanvas,
+        engine: engine,
+        options: { width: 600, height: 300, wireframes: false }
+    });
+    const balls = [
+        Matter.Bodies.circle(100, 100, 20, { restitution: 0.8, render: { fillStyle: '#3498db' } }),
+        Matter.Bodies.circle(200, 150, 20, { restitution: 0.8, render: { fillStyle: '#e74c3c' } })
     ];
-    const open20Svg = d3.select('#open-20-chart')
-        .append('svg')
-        .attr('width', 600)
-        .attr('height', 400);
-    const xScale = d3.scaleBand().domain(open20Data.map(d => d.player)).range([50, 550]).padding(0.1);
-    const yScale = d3.scaleLinear().domain([0, 100]).range([350, 50]);
-    open20Svg.selectAll('.bar')
-        .data(open20Data)
-        .enter()
-        .append('rect')
-        .attr('class', 'bar')
-        .attr('x', d => xScale(d.player))
-        .attr('y', 350)
-        .attr('width', xScale.bandwidth())
-        .attr('height', 0)
-        .attr('fill', '#ff6b6b')
-        .attr('aria-label', d => `${d.player}: ${d.percent}%`)
-        .transition()
-        .duration(1000)
-        .attr('y', d => yScale(d.percent))
-        .attr('height', d => 350 - yScale(d.percent));
-
-    // Invisible Epidemic Charts (Example for Family Time)
-    const familyTimeSvg = d3.select('#family-time-chart')
-        .append('svg')
-        .attr('width', 600)
-        .attr('height', 400);
-    // Add similar D3 code for other charts...
-
-    // Debounce Scroll for Performance
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                ScrollTrigger.refresh();
-                ticking = false;
-            });
-            ticking = true;
-        }
+    Matter.World.add(world, balls);
+    Matter.World.add(world, [
+        Matter.Bodies.rectangle(300, 300, 600, 20, { isStatic: true }),
+        Matter.Bodies.rectangle(300, 0, 600, 20, { isStatic: true }),
+        Matter.Bodies.rectangle(0, 150, 20, 300, { isStatic: true }),
+        Matter.Bodies.rectangle(600, 150, 20, 300, { isStatic: true })
+    ]);
+    Matter.Engine.run(engine);
+    Matter.Render.run(render);
+    document.querySelectorAll('.sim-control').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (btn.dataset.action === 'reset') Matter.Body.setPosition(balls[0], { x: 100, y: 100 });
+            if (btn.dataset.action === 'speed') Matter.Body.setVelocity(balls[0], { x: 5, y: -5 });
+        });
     });
+
+    // D3.js Interactive Map (Simplified)
+    const mapSvg = d3.select('#map-vis');
+    mapSvg.append('rect')
+        .attr('width', '100%')
+        .attr('height', '100%')
+        .attr('fill', '#f0f0f0');
+    mapSvg.selectAll('circle')
+        .data([{ x: 100, y: 100, r: 20 }, { x: 200, y: 150, r: 15 }])
+        .enter()
+        .append('circle')
+        .attr('cx', d => d.x)
+        .attr('cy', d => d.y)
+        .attr('r', d => d.r)
+        .attr('fill', '#3498db')
+        .on('mouseover', function() { d3.select(this).attr('fill', '#e74c3c'); })
+        .on('mouseout', function() { d3.select(this).attr('fill', '#3498db'); });
+
+    // Tab Switching
+    document.querySelectorAll('.tabs li').forEach(tab => {
+        tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+    });
+
+    // Progress Bar (Debounced with Lodash)
+    const updateProgressBar = _.debounce(() => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.offsetHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        document.querySelector('.progress-bar').style.width = `${scrollPercent}%`;
+    }, 10);
+    window.addEventListener('scroll', updateProgressBar);
+
+    // Mobile Nav Toggle
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const tabsContainer = document.querySelector('.tabs');
+    mobileNavToggle.addEventListener('click', () => tabsContainer.classList.toggle('open'));
 });
+
+function switchTab(tabId) {
+    document.querySelectorAll('.tabs li').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.tab === tabId);
+    });
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.toggle('active', content.id === tabId);
+    });
+    window.scrollTo({ top: document.querySelector('nav').offsetTop, behavior: 'smooth' });
+}
