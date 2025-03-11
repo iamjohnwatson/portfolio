@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Particles.js
+    // Particles.js
     particlesJS('particles-js', {
         particles: {
             number: { value: 80, density: { enable: true, value_area: 800 } },
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         retina_detect: true
     });
 
-    // Mouse Trace Effect
+    // Mouse Trace
     document.addEventListener('mousemove', (e) => {
         const trace = document.createElement('div');
         trace.className = 'mouse-trace';
@@ -51,9 +51,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     });
 
-    // ScrollMagic Setup
+    // ScrollMagic
     const controller = new ScrollMagic.Controller();
-    const sections = ['#hero', '#navigation', '#home', '#resume', '#cover-letter', '#portfolio', '#footer'];
+    const sections = ['#hero', '#home', '#footer'];
     sections.forEach((section) => {
         new ScrollMagic.Scene({
             triggerElement: section,
@@ -64,21 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
             .addTo(controller);
     });
 
-    // Existing Functionality
+    // Date
     const currentDate = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     document.getElementById('current-date').textContent = currentDate.toLocaleDateString('en-US', options);
     
-    const tabs = document.querySelectorAll('.tabs li');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const tabId = tab.getAttribute('data-tab');
-            switchTab(tabId);
-        });
-    });
-    
+    // Portfolio Filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
     
@@ -99,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Portfolio Modals
     const previewButtons = document.querySelectorAll('.portfolio-preview');
     const previewModals = document.querySelectorAll('.portfolio-preview-modal');
     const closeButtons = document.querySelectorAll('.close-preview');
@@ -140,18 +132,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
-    
-    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-    const tabsContainer = document.querySelector('.tabs');
-    if (mobileNavToggle) {
-        mobileNavToggle.addEventListener('click', () => {
-            tabsContainer.classList.toggle('open');
-        });
-    }
 
-    window.addEventListener('resize', adjustLayout);
-    adjustLayout();
-    
+    // Animations
     const elements = document.querySelectorAll('.skill-card, .job, .education, .portfolio-item');
     elements.forEach(element => {
         element.style.opacity = '0';
@@ -170,31 +152,6 @@ document.addEventListener('DOMContentLoaded', function() {
     animateOnScroll();
 });
 
-function switchTab(tabId) {
-    const tabs = document.querySelectorAll('.tabs li');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabs.forEach(tab => {
-        if (tab.getAttribute('data-tab') === tabId) {
-            tab.classList.add('active');
-        } else {
-            tab.classList.remove('active');
-        }
-    });
-    
-    tabContents.forEach(content => {
-        if (content.id === tabId) {
-            content.classList.add('active');
-        } else {
-            content.classList.remove('active');
-        }
-    });
-    
-    window.scrollTo({ top: document.querySelector('nav').offsetTop, behavior: 'smooth' });
-}
-
-function adjustLayout() {}
-
 function animateOnScroll() {
     const elements = document.querySelectorAll('.skill-card, .job, .education, .portfolio-item');
     elements.forEach(element => {
@@ -211,7 +168,7 @@ function initDonutCharts() {
     const donutCharts = document.querySelectorAll('.donut-chart');
     donutCharts.forEach(chart => {
         const percentage = chart.getAttribute('data-percentage');
-        chart.style.setProperty('--percentage', percentage + '%');
+        chart.style.setProperty('--percentage', percentage);
     });
 }
 
@@ -226,9 +183,7 @@ function animateTimelineItems() {
         });
     }, { threshold: 0.2 });
     
-    timelineItems.forEach(item => {
-        observer.observe(item);
-    });
+    timelineItems.forEach(item => observer.observe(item));
 }
 
 function initSkillCards() {
