@@ -1,215 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta tags for character encoding and responsive viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akash Sriram's Story</title>
-
-    <!-- External CSS Libraries -->
-    <!-- AOS for fade-in animations on scroll -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Font Awesome for icons (e.g., social links in footer if needed) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Google Fonts for typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Custom CSS file -->
+    <title>Akash Sriram's Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Progress Bar: Shows scroll progress across the narrative -->
-    <div class="story-progress">
-        <div class="progress-bar"></div>
-    </div>
-
-    <!-- Sticky Navigation: Stays at the top and highlights current section -->
-    <nav class="sticky-nav">
-        <div class="container">
-            <ul>
-                <!-- Navigation links with ARIA labels for accessibility -->
-                <li><a href="#hero" aria-label="Go to Home section">Home</a></li>
-                <li><a href="#introduction" aria-label="Go to My Story section">My Story</a></li>
-                <li><a href="#resume" aria-label="Go to Experience section">Experience</a></li>
-                <li><a href="#cover-letter" aria-label="Go to Cover Letter section">Cover Letter</a></li>
-                <li><a href="#portfolio" aria-label="Go to Portfolio section">Portfolio</a></li>
-                <li><a href="#contact" aria-label="Go to Contact section">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section: Full-screen intro with typing effect -->
-    <header id="hero">
-        <div class="hero-content">
-            <!-- Placeholder for Typed.js animation -->
-            <h1 id="typed-name"></h1>
-            <p class="tagline">Technology reporter with a penchant for data visualization</p>
-        </div>
+    <header>
+        <div class="typing-text">Akash Sriram</div>
+        <div class="tagline">Journalist | Data Storyteller | Visual Communicator</div>
     </header>
 
-    <!-- Main Content: Contains all narrative sections -->
+    <nav>
+        <ul class="tabs">
+            <li class="active" data-tab="resume">Resume</li>
+            <li data-tab="cover-letter">Cover Letter</li>
+            <li data-tab="portfolio">Portfolio</li>
+        </ul>
+    </nav>
+
     <main>
-        <!-- Introduction Section: Brief narrative intro with fade-in -->
-        <section id="introduction">
-            <div class="container">
-                <h2>My Story</h2>
-                <!-- Data attribute triggers AOS animation -->
-                <p data-aos="fade-up">Hello, I'm Akash Sriram, a technology reporter with a passion for data visualization. My journey has taken me from covering breaking news to creating interactive stories that make complex information accessible. Let's explore my professional narrative together.</p>
+        <!-- Resume Section -->
+        <section id="resume" class="tab-content active">
+            <div class="story-intro">
+                <div class="story-chapter animate-on-scroll">Chapter 3: Professional Journey</div>
             </div>
-        </section>
+            <h2>Resume</h2>
+            <div class="resume-overview animate-on-scroll">
+                <div class="overview-card"><div class="overview-icon"><i class="fas fa-briefcase"></i></div><div class="overview-details"><h3>5+ Years</h3><p>Work Experience</p></div></div>
+                <div class="overview-card"><div class="overview-icon"><i class="fas fa-graduation-cap"></i></div><div class="overview-details"><h3>2 Degrees</h3><p>Education</p></div></div>
+                <div class="overview-card"><div class="overview-icon"><i class="fas fa-newspaper"></i></div><div class="overview-details"><h3>500+</h3><p>Published Articles</p></div></div>
+            </div>
 
-        <!-- Resume Section: Interactive timeline and skills display -->
-        <section id="resume">
-            <div class="container">
-                <h2>Professional Journey</h2>
+            <div class="skills-section animate-on-scroll">
+                <h3><i class="fas fa-star"></i> Professional Skills</h3>
+                <div class="skills-donut-grid" id="skills-donut"></div>
+                <div class="tools-section">
+                    <h4>Tools & Technologies</h4>
+                    <div class="tools-grid">
+                        <div class="tool-item" data-tooltip="Advanced"><i class="fas fa-table"></i><span>Excel</span></div>
+                        <div class="tool-item" data-tooltip="Beginner"><i class="fab fa-python"></i><span>Python</span></div>
+                        <div class="tool-item" data-tooltip="Intermediate"><i class="fas fa-chart-bar"></i><span>D3.js</span></div>
+                        <div class="tool-item" data-tooltip="Intermediate"><i class="fas fa-pen-nib"></i><span>Illustrator</span></div>
+                        <div class="tool-item" data-tooltip="Beginner"><i class="fas fa-map-marked-alt"></i><span>QGIS</span></div>
+                        <div class="tool-item" data-tooltip="Intermediate"><i class="fab fa-js"></i><span>JavaScript</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="experience-section animate-on-scroll">
+                <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
                 <div class="timeline">
-                    <!-- Timeline Item: Each job entry animates on scroll -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">May 2023 - Present</div>
-                        <div class="timeline-content">
-                            <h4>Sector Specialist - Technology, Media and Telecom</h4>
-                            <p class="company">Reuters News</p>
-                            <ul class="job-highlights">
-                                <li>Led coverage of news in the technology sector</li>
-                                <li>Wrote initiative stories and broke news on electric vehicle companies</li>
-                                <li>Developed deep knowledge of U.S. automotive, EV and space companies</li>
-                                <li>Gained valuable experience in reporting stories using trends and data</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Add additional timeline items here with your resume content -->
-                    <!-- Example placeholder for another job -->
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">[Your Dates]</div>
-                        <div class="timeline-content">
-                            <h4>[Your Job Title]</h4>
-                            <p class="company">[Your Company]</p>
-                            <ul class="job-highlights">
-                                <li>[Highlight 1]</li>
-                                <li>[Highlight 2]</li>
-                                <li>[Highlight 3]</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">May 2023 - Present</div><div class="timeline-content"><h4>Sector Specialist - Technology, Media and Telecom</h4><p class="company">Reuters News</p><ul class="job-highlights"><li>Led coverage of news in the technology sector</li><li>Wrote initiative stories and broke news on electric vehicle companies</li><li>Developed deep knowledge of U.S. automotive, EV and space companies</li><li>Gained valuable experience in reporting stories using trends and data</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Sep 2021 - Apr 2023</div><div class="timeline-content"><h4>Correspondent - Technology, Media and Telecom</h4><p class="company">Reuters News</p><ul class="job-highlights"><li>Reported U.S. technology companies news specializing in electric vehicle and space firms</li><li>Developed data visualization skills and helped other reporters use graphics</li></ul></div></div>
+                    <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-date">Nov 2019 - Aug 2021</div><div class="timeline-content"><h4>Sub Editor</h4><p class="company">Deccan Herald</p><ul class="job-highlights"><li>Conceived and led digital team's 2020 US election news coverage strategy</li><li>Edited stories and managed a team of sub editors</li><li>Widely used Flourish, spreadsheet tools to tell stories, develop election-related dashboards</li></ul></div></div>
                 </div>
+            </div>
 
-                <!-- Skills Subsection: Radial progress bars -->
-                <div class="skills">
-                    <h3>Skills</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <canvas class="skill-chart" data-percentage="85" aria-label="Data Visualization: 85% proficiency"></canvas>
-                            <span>Data Visualization</span>
-                        </div>
-                        <!-- Add additional skills here with your data -->
-                        <div class="skill-item">
-                            <canvas class="skill-chart" data-percentage="90" aria-label="Technology Reporting: 90% proficiency"></canvas>
-                            <span>Technology Reporting</span>
-                        </div>
-                        <!-- Example placeholder -->
-                        <div class="skill-item">
-                            <canvas class="skill-chart" data-percentage="[Your %]" aria-label="[Your Skill]: [Your %] proficiency"></canvas>
-                            <span>[Your Skill]</span>
-                        </div>
-                    </div>
+            <div class="education-section animate-on-scroll">
+                <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                <div class="education-grid">
+                    <div class="education-card"><div class="education-logo"><i class="fas fa-university"></i></div><div class="education-details"><h4>MA in Conflict, Development and Security</h4><p class="institution">University of Leeds, UK</p><p class="duration">September 2018 - September 2019</p><div class="education-subjects"><span>Conflict</span><span>Global Governance</span><span>International Political Economy</span><span>Terrorism and Counter Terrorism</span></div></div></div>
+                    <div class="education-card"><div class="education-logo"><i class="fas fa-university"></i></div><div class="education-details"><h4>BA in Media Studies, Economics and Political Science</h4><p class="institution">Christ University, India</p><p class="duration">June 2015 - March 2018</p><div class="education-subjects"><span>Reporting</span><span>Media Production</span><span>Financial economics</span><span>Macroeconomics</span><span>International Relations</span></div></div></div>
+                    <div class="education-card"><div class="education-logo"><i class="fab fa-google"></i></div><div class="education-details"><h4>Professional certification in Data Analytics</h4><p class="institution">Google</p><p class="duration">December 2023</p><div class="education-subjects"><span>Data Analytics</span><span>Programming using R</span><span>Visualization</span></div></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- Cover Letter Section: Scrollable with highlighted segments -->
-        <section id="cover-letter">
-            <div class="container">
-                <h2>Cover Letter</h2>
-                <div class="cover-letter-content">
-                    <!-- Each paragraph fades in and highlights key points -->
-                    <p data-aos="fade-up">Dear Ella Koeze,</p>
-                    <p data-aos="fade-up">I am writing to apply for the Financial Graphics Journalist position with Reuters Graphics. My expertise in the Technology, Media, and Telecom sectors and my passion for data visualization, I believe are a unique combination of financial reporting expertise and technical skills that makes me an ideal candidate for this role.</p>
-                    <!-- Insert your full cover letter paragraphs here -->
-                    <!-- Example placeholder -->
-                    <p data-aos="fade-up">[Your next paragraph from the cover letter goes here.]</p>
+        <!-- Cover Letter Section -->
+        <section id="cover-letter" class="tab-content">
+            <div class="story-intro">
+                <div class="story-chapter animate-on-scroll">Chapter 6: My Application</div>
+            </div>
+            <h2>Cover Letter</h2>
+            <div class="cover-letter-content animate-on-scroll">
+                <div class="letter-header">
+                    <p>Akash Sriram</p>
+                    <p><a href="mailto:akashsriram97@gmail.com">akashsriram97@gmail.com</a></p>
+                    <p>+91 9901777617</p>
+                </div>
+                <div class="letter-date">
+                    <p id="current-date">March 11, 2025</p>
+                </div>
+                <div class="letter-content">
+                    <p>Dear Ella Koeze,</p>
+                    <p>I am writing to apply for the Financial Graphics Journalist position with Reuters Graphics. My expertise in the Technology, Media, and Telecom sectors and my passion for data visualization, I believe are a unique combination of financial reporting expertise and technical skills that makes me an ideal candidate for this role.</p>
+                    <p>During my 3.5-year tenure at Reuters, I have developed a strong foundation in financial reporting, particularly in the technology sector. I've led coverage of electric vehicle companies including Tesla, Rivian, and Lucid, consistently breaking news and developing deep industry knowledge. What has helped me set my reporting apart is my commitment to incorporate graphics in my stories. I have actively developed data visualization skills and taught colleagues how to incorporate graphics in their stories and make complex financial information more accessible to our audience.</p>
+                    <p>Beyond my reporting experience, I bring valuable technical skills to the table. I have completed Google's Professional Data Analytics certification, where I gained proficiency in programming languages and visualization techniques. I can work comfortably with complex datasets, and I have experience creating custom graphics without relying on off-the-shelf tools. My background in media production, including podcast hosting and video editing, has honed my visual storytelling abilities across multiple formats.</p>
+                    <p>What excites me most about joining the Reuters Graphics team is the opportunity to fully merge my financial reporting expertise with my passion for visual communication. I am drawn to your team's reputation for creativity, collaboration, and innovative story-telling.</p>
+                    <p>I am particularly interested in creating data-rich visual stories that illuminate the complex relationships between economics, business, politics and other critical areas. I believe my experience covering the technology sector gives me unique insights into how these fields intersect and impact global markets.</p>
+                    <p>Thank you for considering my application. I would love to discuss how my skills and experience could contribute to the Reuters financial graphics team.</p>
+                    <p>Sincerely,</p>
+                    <p>Akash Sriram</p>
                 </div>
             </div>
         </section>
 
-        <!-- Portfolio Section: Filterable grid with interactive previews -->
-        <section id="portfolio">
-            <div class="container">
-                <h2>Portfolio</h2>
-                <!-- Filter buttons for portfolio categories -->
-                <div class="portfolio-filters">
-                    <button class="filter-btn active" data-filter="*" aria-label="Show all portfolio items">All Work</button>
-                    <button class="filter-btn" data-filter=".data-viz" aria-label="Show Data Visualization items">Data Visualization</button>
-                    <button class="filter-btn" data-filter=".articles" aria-label="Show Articles">Articles</button>
-                    <button class="filter-btn" data-filter=".projects" aria-label="Show Projects">Projects</button>
-                </div>
-                <div class="portfolio-grid">
-                    <!-- Portfolio Item: Categorize with class (e.g., data-viz, articles) -->
-                    <div class="portfolio-item data-viz">
-                        <img src="path/to/your-image.jpg" alt="Project Image" loading="lazy">
-                        <div class="portfolio-overlay">
-                            <h3>[Your Project Title]</h3>
-                            <p>[Short description]</p>
-                            <button class="btn portfolio-preview" data-id="project1" aria-label="View preview of [Your Project Title]">Preview</button>
-                        </div>
-                    </div>
-                    <!-- Add additional portfolio items here with your content -->
-                    <!-- Example placeholder -->
-                    <div class="portfolio-item articles">
-                        <img src="path/to/another-image.jpg" alt="Article Image" loading="lazy">
-                        <div class="portfolio-overlay">
-                            <h3>[Another Title]</h3>
-                            <p>[Another description]</p>
-                            <button class="btn portfolio-preview" data-id="project2" aria-label="View preview of [Another Title]">Preview</button>
-                        </div>
-                    </div>
-                </div>
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="tab-content">
+            <div class="story-intro">
+                <div class="story-chapter animate-on-scroll">Chapter 7: My Work</div>
             </div>
-        </section>
+            <h2>Portfolio</h2>
+            <div class="portfolio-items">
+                <!-- Crokinole Project -->
+                <div class="portfolio-item animate-on-scroll">
+                    <div class="portfolio-item-inner">
+                        <h3>Welcome to Crokinole</h3>
+                        <p class="portfolio-meta">By Akash Sriram | October 2024</p>
+                        <div class="portfolio-content">
+                            <p>What you’re seeing below is two of Crokinole’s greats simultaneously securing perfect rounds.</p>
+                            <p><em>Double perfect round. <a href="#">Watch on YouTube.</a></em></p>
+                            <p>Technically speaking, they each flicked a 3.2cm disc 30cm across a board into a 3.5cm hole (just 9% wider than the disc itself) eight times in a row. In game terms, they made eight open 20s each.</p>
+                            <p>But it’s just flicking a little disc across a small board. How hard can it be, really?</p>
+                            <p>The mesmerizing 56 seconds above were captured at the semifinals of the 2024 World Crokinole Championship, where Connor Reinman defeated Justin Slater. A matchup not unlike Magic vs. Bird, or Swift vs. Eilish.</p>
+                            <p>How rare was this feat of perfection? Was this one of those obscure new Olympic events? You may even be wondering, wtf is Crokinole?</p>
+                            <p>We’ll get to all these questions. But first, you must understand Crokinole.</p>
+                            <p><strong>The game’s origin: the southern region of Ontario.</strong></p>
+                            <p>If you are from the southern region of the Canadian province of Ontario, you may already be well-versed in Crokinole due to its Canadian origin. For the uninitiated, Crokinole is like a mashup of shuffleboard and curling, played on a tabletop board. It’s been around since the 19th century but has seen a steady rise in global popularity in recent years.</p>
+                            <p>To know the game, one must play the game.</p>
+                            <p>Let your training begin.</p>
+                            <p>The main objective is to flick your discs into higher-scoring regions. The center hole is worth 20 points. Be careful, though—eight pegs surround the fifteen-point region.</p>
+                            <p>Here, your opponent shoots on an empty board. To be a valid shot (and stay on the board) the disc must land within the 15-point region.</p>
+                            <p>If any opponent discs are on the board, your disc must hit one to be valid and stay on the board.</p>
+                            <p><em>Give it a try: Hit your opponent’s disc. Use the slider and button below the board to position your disc. Then aim, hold the shoot button to find the perfect power, and release.</em></p>
+                            <p>If you shoot and it is an invalid shot, your disc is removed from the board and is not scored.</p>
+                            <p>It’s your turn, and there are no opponent discs. You just need to land in the fifteen-point region, but scoring a 20 is ideal. A made 20 is set aside and counted.</p>
+                            <p><em>Give it a try: Shoot your disc into the center hole to secure the 20 points.</em></p>
+                            <p>After all sixteen discs are played, points are tallied based on the regions and any 20s. The round winner is the player with the most points, and a game consists of multiple rounds.</p>
+                            <p>Easy Keanu, that was just the basics. We didn’t even get to the one-cheek rule (yes, that cheek). For more details you can <a href="#">watch this video</a> or <a href="#">read the rules</a>.</p>
+                            <p>Oh, and feel free to go play—we made a <a href="#">simulator</a> for you to hone your skills against a bot.</p>
+                            <p>You are ready for the next part of the journey. What does the data tell us about Connor Reinman and Justin Slater?</p>
+                            <p>Reinman, the back-to-back world champion, and Slater, the perennial powerhouse, are arguably the greatest players right now on the world stage.</p>
+                            <p><em>Bump chart of player rankings over the past 10 years</em></p>
+                            <p>Player rankings according to Crokinole Reference. No matches from 2021-2022.</p>
+                            <p>But how good are they? Let’s start by looking at their ability to make open 20s, an indispensable skill for success. Here’s how competitive players compare in open 20 success rates.</p>
+                            <div id="open-20-chart"></div>
+                            <p>Note: Minimum 50 attempts from the 2023-2024 season.</p>
+                            <p>Reinman and Slater are top competitors in open 20s, with success rates of 66% and 75%, compared to the average competitive player’s 55%.</p>
+                            <p>For basketball fans: a Crokinole player making eight consecutive 20s in live play is like an NBA player sinking 20 straight free throws during a game—not impossible, but far from common.</p>
+                            <p>How do they compare to casual players? Observing players with varying experience, success rates for in-game open 20s ranged from 20% to 50%.</p>
+                            <p>The odds of two opponents making eight consecutive shots can vary greatly depending on their skill level. Here are the odds of a double perfect round.</p>
+                            <table>
+                                <tr><th>Type of Players</th><th>Open 20 Pct.</th><th>Odds</th></tr>
+                                <tr><td>Slater vs Reinman *</td><td>~70%</td><td>1 in 277 rounds</td></tr>
+                                <tr><td>Top Competitive</td><td>65%</td><td>1 in 985</td></tr>
+                                <tr><td>Average Competitive</td><td>55%</td><td>1 in 14,263</td></tr>
+                                <tr><td>Great Recreational</td><td>50%</td><td>1 in 65,536</td></tr>
+                                <tr><td>Good Recreational</td><td>45%</td><td>1 in 353,671</td></tr>
+                                <tr><td>Novice Recreational</td><td>35%</td><td>1 in 19,720,199</td></tr>
+                            </table>
+                            <p>Note: Slater makes 75% and Reinman makes 66% on open 20s.</p>
+                            <p>Our theoretical scenarios show how even a slight drop in skill greatly impacts the odds. To witness this rare event, both top players must hit a hot streak at the same time.</p>
+                            <p>These percentages reflect in-game attempts, where a player’s rhythm is disrupted by various shots. In non-competitive, less plamigerent settings, their skills really shine—like Shawn Hagarty, who set an unofficial record with 64 consecutive open 20s.</p>
+                            <p><em>64 straight open 20s by Shaw Hagarty. <a href="#">Watch on YouTube.</a></em></p>
+                            <p>However, real games are far more nuanced and complex. Players — or their opponents — often miss early on. Here’s what the data reveals after analyzing 300 rounds from various matchups in last season’s tournaments.</p>
+                            <div id="miss-chart"></div>
+                            <p>Note: Based on 300 rounds from final to quarterfinal matches in the past year.</p>
+                            <p>More often than not, the elusive double perfect round is lost right at the start. But I’ve been discussing this in the context of the most elegant form — a “pure” double perfect round, where all 16 shots are made as open 20s.</p>
+                            <p>Technically, though, a miss doesn’t completely rule out a perfect round. A perfect round can (and often does) include a combination of open 20s and ricochet 20s, where a disc bounces in off the opponent’s.</p>
+                            <p><em>Ricochet 20s by Justin Slater and Andrew Hutchinson. <a href="#">Watch on YouTube.</a></em></p>
+                            <p>The perfect blend of aim and power is required to perfect shots like those. Try it yourself: can you achieve the feel-good ricochet 20?</p>
+                            <p>Going for a 20 isn’t always the best or even a viable option. Discs on the board introduce more exciting scenarios that add layers of strategy.</p>
+                            <p>Having all your discs on your side is usually a strong defensive position, but watching your opponent dismantle it can be demoralizing. That’s exactly what happened in this round between Andrew Hutchinson and Nolan Tracey.</p>
+                            <p><em>Triple takeout by Nolan Tracey. <a href="#">Watch on YouTube.</a></em></p>
+                            <p>The Slater-Reinman round was the only double perfect in a review of 445 highly competitive rounds in the past year. One thing is certain: more skilled players tend to keep the board clear and make open 20s at a higher rate, increasing the chance of glimpsing a pure double perfect round.</p>
+                            <p>If there’s one takeaway, it’s that Crokinole is fun and the community is awesome. Whether you’re playing to win or just flicking a few rounds with Grandma during the holidays, it’s a great time.</p>
+                            <p>So, maybe you’re into Crokinole now? Here are some <a href="#">resources</a> to help you get started, or go get some practice in with the <a href="#">simulator</a>.</p>
+                            <p>P.S. Crokinole isn’t an Olympic sport — yet.</p>
+                            <p><strong>Data and Methods</strong></p>
+                            <p>Player types are estimations based on all open 20 success rates from 2023-2024 NCA tournament data. Competitive 20 success rates are from Shawn Hagarty’s impressive data. Recreational open 20 success rates are based on observations of 600 open 20 attempts from 10 individuals with at least 50 attempts each. First missed shot data is from watching playoff-rounds from all 2023-2024 tournaments on Tracey Boards coverage of events. Yearly NCA tour rankings data is based on the rank in July (at the end of the season). Data from Crokinole Reference.</p>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- Contact Section: Form with EmailJS integration -->
-        <section id="contact">
-            <div class="container">
-                <h2>Contact Me</h2>
-                <form id="contact-form" aria-label="Contact form">
-                    <input type="text" name="name" placeholder="Name" required aria-label="Your name">
-                    <input type="email" name="email" placeholder="Email" required aria-label="Your email">
-                    <textarea name="message" placeholder="Message" required aria-label="Your message"></textarea>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
+                <!-- Invisible Epidemic Project -->
+                <div class="portfolio-item animate-on-scroll">
+                    <div class="portfolio-item-inner">
+                        <h3>24 Hours in an Invisible Epidemic</h3>
+                        <p class="portfolio-meta">By Akash Sriram</p>
+                        <div class="portfolio-content">
+                            <p><strong>4:00 am - 5:20 am</strong></p>
+                            <p>This is a 62-year-old Hispanic male – let's call him Martin.</p>
+                            <p>Martin is trying to sleep. But he's rolling around in bed, sleepless.</p>
+                            <p>Keep scrolling.</p>
+                            <p><strong>5:20 am</strong></p>
+                            <p>He couldn't sleep. So he got out of bed and watched TV.</p>
+                            <p>Martin's a regular guy in his 60s, but he's pretty isolated. He doesn't have a job. He doesn't have a wife or partner, nor does he have children in his home. He just doesn't interact with many people.</p>
+                            <p><strong>6:00 am</strong></p>
+                            <p>In this story, we'll go through 24 hours of a typical weekend day in 2021. We know what people did – and who they did it with – because, since 2003, the American Time Use Survey has asked people to track how they use their time.</p>
+                            <p>By the end of the day, we'll learn that Martin's isolation isn't unique. In fact, loneliness has become a far more common experience in the last few decades – and it was supercharged by the pandemic.</p>
+                            <p>We'll follow a handful of people, including Martin. Let's meet everyone else!</p>
+                            <p><strong>6:40 am</strong></p>
+                            <p><em>Click a person for details.</em></p>
+                            <p><strong>7:00 am</strong></p>
+                            <p>The average human can name about 1,500 people, and we personally know about 500.¹</p>
+                            <p>But most of those people won't help us in times of need.</p>
+                            <p>The people who will help are our friends – and psychologist Robin Dunbar argues that we have an average of 150 people who we try to stay in touch with.² Within that group, we have about 15 friends and family we contact each month and one to two people with whom we share an intimate relationship – often a partner, and sometimes a "best friend forever."</p>
+                            <p>¹ According to facial recognition research by Rob Jenkins at the University of York</p>
+                            <p>² Dunbar argues that an animal's brain size limits the number of stable relationships we can maintain, and for humans it is 150. Recent studies argue that there is no empirical evidence for this limit. We won't solve this argument in a footnote, so just imagine this group as people you'd want to invite to your wedding.</p>
+                            <p><strong>7:10 am</strong></p>
+                            <p>I've highlighted our friends and family with this bright purple. We'll keep everyone else the same color.</p>
+                            <p><strong>9:00 am</strong></p>
+                            <p>Everyone needs a different amount of social interaction. But according to the American Time Use Survey, the average American spends about 6 hours with friends or family each day.</p>
+                            <p>So let's track how many of these people interact with their friends or family for at least 6 hours a day. Time with acquaintances and coworkers will also count, but to a lesser degree.¹</p>
+                            <p><strong>Cumulative hours of social interaction</strong></p>
+                            <p>¹ A 2022 study of people's behavior during the Covid-19 pandemic found that people feel about 40% as psychologically close to acquaintances as they to friends. So every minute spent with an acquaintance or coworker will only count as 0.4 minutes of social time.</p>
+                            <p><strong>11:40 am</strong></p>
+                            <p>Martin came home from the grocery store and he's preparing lunch.</p>
+                            <p><strong>12:40 pm</strong></p>
+                            <p>After lunch, he decided to watch TV again. He's been around other people today, like at the grocery store. But he hasn't done anything with other people.</p>
+                            <p><strong>1:00 pm</strong></p>
+                            <p>All of us are susceptible to the negative effects of loneliness.</p>
+                            <p>In a 2006 study, neuroscientist John Cacioppo and his colleagues hypnotized college students to re-experience a moment in their life when they were lonely. “Think of a time in which you felt isolated," they told the subjects. "You felt lonely. Perhaps you felt like you just didn’t belong – that you had no friends.” After confirming the hypnotism worked, they asked the students how they felt.</p>
+                            <p>It turns out the hypnotized lonely students reported the same negative effects as people who were actually lonely. This included feeling more angry, more anxious, and having lower self-esteem.</p>
+                            <p>"We had demonstrated yet again that lonely individuals are not a breed apart," Cacioppo wrote in his book, Loneliness. "Any of us can succumb to loneliness, and along with it, all the other characteristics that travel as its entourage."</p>
+                            <p><strong>3:00 pm</strong></p>
+                            <p>When I analyzed how much time Americans spend with other people, I found some alarming trends.</p>
+                            <p>The amount of time we spend with family has drastically decreased across every age group – especially younger people:</p>
+                            <div id="family-time-chart"></div>
+                            <p>The amount of time we spend with friends has plummeted – and again it hit younger people especially hard. (It's partially because we have fewer close friends than before.)</p>
+                            <div id="friends-time-chart"></div>
+                            <p>Meanwhile, the amount of time we spend alone has gone up across every age group. Elderly people were always more isolated, but that's gotten worse:</p>
+                            <div id="alone-time-chart"></div>
+                            <p>The pandemic exacerbated social isolation, and we're still not back to pre-pandemic levels.</p>
+                            <p>Being alone isn't necessarily the same as being lonely. But according to a meta-analysis of studies, more people have reported feeling lonely every year since 1976.</p>
+                            <p>In short, there really is a loneliness epidemic.</p>
+                            <p><strong>3:20 pm</strong></p>
+                            <p>As you can see, a lot of the boxes are still dark, which means they've yet to have any social interaction with friends and family today.</p>
+                            <p><strong>4:20 pm</strong></p>
+                            <p>Every so often, the American Time Use Survey asks people a question that gets at how well someone is doing. The last time it was asked was 2021, which is the year we're looking at. The question goes something like this:</p>
+                            <p>Imagine a ladder.</p>
+                            <p>The top of the ladder is your best possible life. The bottom is your worst possible life.</p>
+                            <p>Which step of the ladder do you feel you personally stand at the present time?</p>
+                            <p>This is called the Cantril ladder, and in the US most people answer fairly positively – on average, people say they are a 7 out of 10.</p>
+                            <p>Where are you on this ladder?</p>
+                            <p><strong>4:50 pm</strong></p>
+                            <p>Martin will keep watching TV until around 8:30pm. He'll go to sleep without having interacted with anyone today.</p>
+                            <p>When asked where he was on the Cantril ladder, he said he was a zero – living his worst possible life.</p>
+                            <p><strong>5:30 pm</strong></p>
+                            <p>Let's look at where everyone else is on the Cantril ladder.</p>
+                            <p>Each person's number will be on the bottom-left, and I'll sort them so we can see it better.</p>
+                            <p><strong>6:50 pm</strong></p>
+                            <p>The day is almost over, and we can clearly see a trend: People higher on the ladder are less likely to be isolated.</p>
+                            <p>When we look at all 6,900 people who told us where they are on the ladder in 2021, we can see people higher on the ladder spent more time with friends and family, and far less time alone.</p>
+                            <div id="ladder-chart"></div>
+                            <p>On weekends, this is especially apparent. During the day, people higher on the ladder are much less likely to be alone:</p>
+                            <div id="weekend-chart"></div>
+                            <p><strong>9:00 pm</strong></p>
+                            <p>Humans evolved to survive in groups, whether that's gathering food or fighting off predators. So when we're isolated, we're convinced that we're in danger. We become more anxious, fearful, stressed, and angry.</p>
+                            <p>And, in a cruel twist, loneliness makes us feel more threatened by social interactions – the very thing we need. So we crawl deeper into isolation, creating a cycle of loneliness. Former US surgeon general Vivek Murthy writes: "Over time, this vicious cycle may convince us we don’t matter to anyone and that we’re unworthy of love."</p>
+                            <p>Ultimately, socially isolated people are 50% more likely to die prematurely – the equivalent of having six alcoholic drinks a day or smoking 15 cigarettes a day.</p>
+                            <p><strong>12:00 am</strong></p>
+                            <p>Talking about loneliness feels so deeply personal. It makes us so vulnerable because it means telling someone that you're hurting on a primal level. So we don't talk about it. The epidemic becomes invisible.</p>
+                            <p>I see myself in so many people in this story. I see college students who spend all day around other people, only to feel completely alone. I see 20-somethings spend all day at work in hopes of filling a social void. I see middle-aged people desperately trying to be wealthy and successful, because they think it will make them worthy of love. I see elderly people who trigger my deep fear of isolation in old age, even though that's become the norm.</p>
+                            <p>If they are anything like me, they're not telling anyone they're lonely – or even admitting it to themselves.</p>
+                            <p>So here's my first attempt: I want to be around people who care about me – and I want to be able to take care of them. I want my world to be filled with the warmth of loved ones, from now until death.</p>
+                            <p>But, really, I just don't want to go to sleep feeling like I'm all alone.</p>
+                            <p><strong>4:00 am</strong></p>
+                            <p>Thank you for reading to the end! Consider directly supporting the author.</p>
+                            <p><a href="#">Send a tip to Akash Sriram</a></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer: Basic copyright notice -->
     <footer>
-        <div class="container">
-            <p>&copy; 2025 Akash Sriram. All rights reserved.</p>
+        <p>&copy; 2025 Akash Sriram. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
         </div>
     </footer>
 
-    <!-- JavaScript Libraries -->
-    <!-- Typed.js for hero typing effect -->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <!-- GSAP for advanced animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- ScrollMagic for scroll-based triggers -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Chart.js for skill progress bars -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Isotope for portfolio filtering -->
-    <script src="https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
-    <!-- Tippy.js and Popper.js for tooltips (if needed later) -->
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
-    <!-- EmailJS for contact form -->
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <!-- AOS for lightweight animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Custom JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,178 +1,131 @@
-// ==========================================================================
-// Initialization Functions
-// ==========================================================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab Switching
+    const tabs = document.querySelectorAll('.tabs li');
+    const contents = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
+        });
+    });
 
-// Initialize Typed.js for the hero section typing effect
-// Displays your name dynamically
-var typed = new Typed('#typed-name', {
-    strings: ["Akash Sriram"], // Add more strings if desired (e.g., titles)
-    typeSpeed: 50,            // Speed of typing in milliseconds
-    startDelay: 500,          // Delay before starting
-    showCursor: false         // Hide the blinking cursor
-});
+    // Scroll Animations with GSAP and ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('.animate-on-scroll').forEach(element => {
+        gsap.from(element, {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            scrollTrigger: {
+                trigger: element,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    });
 
-// Initialize AOS (Animate On Scroll) for fade-in effects
-AOS.init({
-    duration: 1000,    // Animation duration in milliseconds
-    once: true,        // Animate only once per scroll
-    offset: 100        // Trigger animations 100px before element is in view
-});
+    // Typography Animation with Anime.js
+    anime({
+        targets: '.typing-text',
+        opacity: [0, 1],
+        translateY: [-20, 0],
+        duration: 1500,
+        easing: 'easeOutExpo'
+    });
 
-// Initialize ScrollMagic controller for scroll-based animations
-var controller = new ScrollMagic.Controller();
+    // Skills Donut Chart with D3.js
+    const skillsData = [
+        { title: 'Data Viz', percentage: 85 },
+        { title: 'Financial Reporting', percentage: 90 },
+        { title: 'HTML/CSS', percentage: 80 },
+        { title: 'JavaScript', percentage: 75 },
+        { title: 'Adobe Illustrator', percentage: 70 },
+        { title: 'Data Analysis', percentage: 85 }
+    ];
+    const donutSvg = d3.select('#skills-donut')
+        .selectAll('.donut-chart')
+        .data(skillsData)
+        .enter()
+        .append('div')
+        .attr('class', 'donut-chart-container')
+        .append('svg')
+        .attr('width', 120)
+        .attr('height', 120)
+        .append('g')
+        .attr('transform', 'translate(60, 60)');
 
-// ==========================================================================
-// Timeline Animations
-// ==========================================================================
+    donutSvg.each(function(d) {
+        const arc = d3.arc().innerRadius(40).outerRadius(60);
+        const pie = d3.pie()([d.percentage, 100 - d.percentage]);
+        d3.select(this)
+            .selectAll('path')
+            .data(pie)
+            .enter()
+            .append('path')
+            .attr('d', arc)
+            .attr('fill', (d, i) => i === 0 ? '#ff6b6b' : '#ddd')
+            .attr('aria-label', `${d.data.title}: ${d.data.percentage}%`);
+        d3.select(this)
+            .append('text')
+            .attr('text-anchor', 'middle')
+            .attr('dy', '.35em')
+            .text(`${d.percentage}%`)
+            .attr('aria-hidden', 'true');
+        d3.select(this)
+            .append('text')
+            .attr('text-anchor', 'middle')
+            .attr('dy', '-1em')
+            .text(d.title)
+            .attr('aria-hidden', 'true');
+    });
 
-// Animate each timeline item when it enters the viewport
-document.querySelectorAll('.timeline-item').forEach(function(item) {
-    // Create a new ScrollMagic scene for each item
-    new ScrollMagic.Scene({
-        triggerElement: item,     // Element to watch
-        triggerHook: 0.8,        // Trigger when 80% of item is in view
-        reverse: false           // Only animate once
-    })
-    .setClassToggle(item, 'visible') // Add 'visible' class to trigger CSS animation
-    .addTo(controller);              // Register with controller
-});
+    // Crokinole Open 20 Chart
+    const open20Data = [
+        { player: 'Justin Slater', attempts: 594, percent: 75.6 },
+        { player: 'Josh Carrafiello', attempts: 334, percent: 68.0 },
+        { player: 'Connor Reinman', attempts: 703, percent: 66.0 },
+        // Add remaining data...
+    ];
+    const open20Svg = d3.select('#open-20-chart')
+        .append('svg')
+        .attr('width', 600)
+        .attr('height', 400);
+    const xScale = d3.scaleBand().domain(open20Data.map(d => d.player)).range([50, 550]).padding(0.1);
+    const yScale = d3.scaleLinear().domain([0, 100]).range([350, 50]);
+    open20Svg.selectAll('.bar')
+        .data(open20Data)
+        .enter()
+        .append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => xScale(d.player))
+        .attr('y', 350)
+        .attr('width', xScale.bandwidth())
+        .attr('height', 0)
+        .attr('fill', '#ff6b6b')
+        .attr('aria-label', d => `${d.player}: ${d.percent}%`)
+        .transition()
+        .duration(1000)
+        .attr('y', d => yScale(d.percent))
+        .attr('height', d => 350 - yScale(d.percent));
 
-// ==========================================================================
-// Skill Charts
-// ==========================================================================
+    // Invisible Epidemic Charts (Example for Family Time)
+    const familyTimeSvg = d3.select('#family-time-chart')
+        .append('svg')
+        .attr('width', 600)
+        .attr('height', 400);
+    // Add similar D3 code for other charts...
 
-// Create radial progress bars for skills using Chart.js
-document.querySelectorAll('.skill-chart').forEach(function(canvas) {
-    var ctx = canvas.getContext('2d');
-    var percentage = parseInt(canvas.getAttribute('data-percentage')); // Get percentage from HTML
-
-    // Configure Chart.js to mimic a radial progress bar
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                data: [percentage, 100 - percentage], // Progress vs remaining
-                backgroundColor: ['#2ecc71', '#eee'], // Accent color and gray
-                borderWidth: 0                        // No borders for cleaner look
-            }]
-        },
-        options: {
-            cutout: '70%',          // Hollow center for radial effect
-            rotation: -90,          // Start at top
-            circumference: 180,     // Half circle for progress bar
-            tooltips: { enabled: false }, // Disable tooltips
-            hover: { mode: null },        // Disable hover effects
-            animation: {
-                animateRotate: true,      // Animate rotation
-                animateScale: true        // Animate scale on load
-            },
-            maintainAspectRatio: true     // Ensure chart stays circular
+    // Debounce Scroll for Performance
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                ScrollTrigger.refresh();
+                ticking = false;
+            });
+            ticking = true;
         }
     });
-});
-
-// ==========================================================================
-// Cover Letter Animations
-// ==========================================================================
-
-// Highlight cover letter paragraphs as they scroll into view
-document.querySelectorAll('.cover-letter-content p').forEach(function(p) {
-    new ScrollMagic.Scene({
-        triggerElement: p,
-        triggerHook: 0.7,    // Trigger at 70% of viewport
-        reverse: false       // Animate only once
-    })
-    .setClassToggle(p, 'highlight') // Add 'highlight' class for styling
-    .addTo(controller);
-});
-
-// ==========================================================================
-// Portfolio Filtering
-// ==========================================================================
-
-// Initialize Isotope for portfolio grid filtering
-var grid = document.querySelector('.portfolio-grid');
-var iso = new Isotope(grid, {
-    itemSelector: '.portfolio-item', // Target portfolio items
-    layoutMode: 'fitRows'            // Arrange in rows
-});
-
-// Handle filter button clicks
-var filtersElem = document.querySelector('.portfolio-filters');
-filtersElem.addEventListener('click', function(event) {
-    // Check if clicked element is a filter button
-    if (!event.target.matches('.filter-btn')) {
-        return;
-    }
-
-    // Get filter value from data-filter attribute
-    var filterValue = event.target.getAttribute('data-filter');
-
-    // Apply filter to Isotope grid
-    iso.arrange({ filter: filterValue });
-
-    // Update active button styling
-    filtersElem.querySelectorAll('.filter-btn').forEach(function(btn) {
-        btn.classList.remove('active');
-    });
-    event.target.classList.add('active');
-});
-
-// ==========================================================================
-// Sticky Navigation
-// ==========================================================================
-
-// Make navigation sticky after scrolling past hero
-window.addEventListener('scroll', function() {
-    var nav = document.querySelector('.sticky-nav');
-    var heroHeight = document.querySelector('#hero').offsetHeight;
-
-    // Add 'fixed' class when scrolled past hero
-    if (window.scrollY > heroHeight) {
-        nav.classList.add('fixed');
-    } else {
-        nav.classList.remove('fixed');
-    }
-});
-
-// ==========================================================================
-// Progress Bar
-// ==========================================================================
-
-// Update progress bar width based on scroll position
-window.addEventListener('scroll', function() {
-    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var scrolled = (winScroll / height) * 100; // Calculate percentage
-    document.querySelector('.progress-bar').style.width = scrolled + '%';
-});
-
-// ==========================================================================
-// Contact Form Submission
-// ==========================================================================
-
-// Initialize EmailJS with your user ID (replace with your actual ID)
-// Note: Sign up at emailjs.com to get your credentials
-emailjs.init('YOUR_USER_ID');
-
-// Handle form submission
-document.getElementById('contact-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-
-    // Validate form fields
-    if (!this.checkValidity()) {
-        this.reportValidity(); // Show browser validation messages
-        return;
-    }
-
-    // Send form data via EmailJS
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
-        .then(function() {
-            // Success feedback
-            alert('Message sent successfully!');
-            this.reset(); // Clear form
-        }, function(error) {
-            // Error feedback
-            alert('Failed to send message: ' + JSON.stringify(error));
-        });
 });
