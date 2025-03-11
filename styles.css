@@ -21,7 +21,7 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     line-height: 1.6;
     background-color: var(--bg-color);
@@ -37,6 +37,16 @@ body {
     height: 100%;
     z-index: -1;
     background: linear-gradient(135deg, #1a1a1a, #2c3e50);
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    cursor: pointer;
+    color: var(--light-text);
+    font-size: 24px;
 }
 
 .mouse-trace {
@@ -66,6 +76,7 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     margin-bottom: 1rem;
     line-height: 1.2;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -127,7 +138,7 @@ img {
 .btn {
     display: inline-block;
     padding: 12px 24px;
-    background-color: var(--secondary-color);
+    background: var(--highlight-gradient);
     color: var(--light-text);
     border: none;
     border-radius: var(--border-radius);
@@ -136,6 +147,23 @@ img {
     transition: var(--transition);
     text-align: center;
     font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
 }
 
 /* Story Progress Bar */
@@ -400,7 +428,7 @@ main {
 }
 
 .skill-card:hover {
-    transform: translateY(-10px);
+    transform: scale(1.05);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -422,6 +450,11 @@ main {
 .skill-icon-container i {
     font-size: 30px;
     color: var(--secondary-color);
+    transition: var(--transition);
+}
+
+.skill-card:hover .skill-icon-container i {
+    transform: rotate(360deg);
 }
 
 .skill-card-hover {
@@ -538,58 +571,14 @@ main {
 
 .donut-chart-container {
     text-align: center;
-}
-
-.donut-chart {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
     position: relative;
-    margin: 0 auto 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: conic-gradient(
-        var(--secondary-color) 0deg,
-        var(--secondary-color) calc(var(--percentage) * 3.6deg),
-        #f0f0f0 calc(var(--percentage) * 3.6deg),
-        #f0f0f0 360deg
-    );
-    animation: fillDonut 2s ease-in-out forwards;
-}
-
-@keyframes fillDonut {
-    from {
-        background: conic-gradient(
-            var(--secondary-color) 0deg,
-            var(--secondary-color) 0deg,
-            #f0f0f0 0deg,
-            #f0f0f0 360deg
-        );
-    }
-    to {
-        background: conic-gradient(
-            var(--secondary-color) 0deg,
-            var(--secondary-color) calc(var(--percentage) * 3.6deg),
-            #f0f0f0 calc(var(--percentage) * 3.6deg),
-            #f0f0f0 360deg
-        );
-    }
-}
-
-.donut-chart::before {
-    content: '';
-    position: absolute;
-    width: 110px;
-    height: 110px;
-    background-color: var(--bg-color);
-    border-radius: 50%;
-    z-index: 1;
 }
 
 .donut-label {
-    position: relative;
-    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
 }
 
@@ -919,6 +908,11 @@ main {
     position: relative;
     height: 250px;
     box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: scale(1.05);
 }
 
 .portfolio-item-inner {
@@ -1039,12 +1033,51 @@ footer {
     transform: translateY(-5px);
 }
 
+/* Dark Mode */
+body.dark-mode {
+    --primary-color: #ffffff;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --text-color: #ffffff;
+    --light-text: #ffffff;
+    --bg-color: #1a1a1a;
+    --light-bg: #2c2c2c;
+    --dark-bg: #000000;
+}
+
+body.dark-mode .header-box {
+    background: #ffffff;
+    color: #000000;
+}
+
+body.dark-mode .skill-card, body.dark-mode .overview-card, body.dark-mode .education-card, body.dark-mode .contact-card, body.dark-mode .timeline-content, body.dark-mode .cover-letter-content, body.dark-mode .preview-content {
+    background-color: var(--light-bg);
+    color: var(--text-color);
+}
+
+body.dark-mode .skill-card-hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .portfolio-item-inner img {
+    filter: brightness(0.8);
+}
+
+body.dark-mode .portfolio-overlay {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+body.dark-mode .footer-info p, body.dark-mode .footer-bottom p {
+    color: var(--light-text);
+}
+
 /* Responsive Styles */
 @media (max-width: 992px) {
     h1 { font-size: 2.8rem; }
     .hero { grid-template-columns: 1fr; }
     .hero-content { padding-right: 0; text-align: center; }
     .skills-donut-grid { grid-template-columns: repeat(3, 1fr); }
+    .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -1054,6 +1087,7 @@ footer {
     .overview-card { width: 100%; max-width: 300px; }
     .education-card { flex-direction: column; }
     .education-logo { margin-bottom: 20px; margin-right: 0; }
+    .portfolio-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 576px) {

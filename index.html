@@ -6,11 +6,13 @@
     <title>Akash Sriram's Resume and Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="particles-js"></div>
-
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
     <div class="story-progress">
         <div class="progress-bar"></div>
     </div>
@@ -156,56 +158,50 @@
                 
                 <div class="skills-donut-grid">
                     <div class="donut-chart-container">
-                        <div class="donut-chart" data-percentage="85">
-                            <div class="donut-label">
-                                <span class="donut-title">Data Viz</span>
-                                <span class="donut-percent">85%</span>
-                            </div>
+                        <canvas id="donut-chart-1" width="150" height="150"></canvas>
+                        <div class="donut-label">
+                            <span class="donut-title">Data Viz</span>
+                            <span class="donut-percent">85%</span>
                         </div>
                     </div>
                     
                     <div class="donut-chart-container">
-                        <div class="donut-chart" data-percentage="90">
-                            <div class="donut-label">
-                                <span class="donut-title">Financial<br>Reporting</span>
-                                <span class="donut-percent">90%</span>
-                            </div>
+                        <canvas id="donut-chart-2" width="150" height="150"></canvas>
+                        <div class="donut-label">
+                            <span class="donut-title">Financial<br>Reporting</span>
+                            <span class="donut-percent">90%</span>
                         </div>
                     </div>
                     
                     <div class="donut-chart-container">
-                        <div class="donut-chart" data-percentage="80">
-                            <div class="donut-label">
-                                <span class="donut-title">HTML/CSS</span>
-                                <span class="donut-percent">80%</span>
-                            </div>
+                        <canvas id="donut-chart-3" width="150" height="150"></canvas>
+                        <div class="donut-label">
+                            <span class="donut-title">HTML/CSS</span>
+                            <span class="donut-percent">80%</span>
                         </div>
                     </div>
                     
                     <div class="donut-chart-container">
-                        <div class="donut-chart" data-percentage="75">
-                            <div class="donut-label">
-                                <span class="donut-title">JavaScript</span>
-                                <span class="donut-percent">75%</span>
-                            </div>
+                        <canvas id="donut-chart-4" width="150" height="150"></canvas>
+                        <div class="donut-label">
+                            <span class="donut-title">JavaScript</span>
+                            <span class="donut-percent">75%</span>
                         </div>
                     </div>
                     
                     <div class="donut-chart-container">
-                        <div class="donut-chart" data-percentage="70">
-                            <div class="donut-label">
-                                <span class="donut-title">Adobe<br>Illustrator</span>
-                                <span class="donut-percent">70%</span>
-                            </div>
+                        <canvas id="donut-chart-5" width="150" height="150"></canvas>
+                        <div class="donut-label">
+                            <span class="donut-title">Adobe<br>Illustrator</span>
+                            <span class="donut-percent">70%</span>
                         </div>
                     </div>
                     
                     <div class="donut-chart-container">
-                        <div class="donut-chart" data-percentage="85">
-                            <div class="donut-label">
-                                <span class="donut-title">Data<br>Analysis</span>
-                                <span class="donut-percent">85%</span>
-                            </div>
+                        <canvas id="donut-chart-6" width="150" height="150"></canvas>
+                        <div class="donut-label">
+                            <span class="donut-title">Data<br>Analysis</span>
+                            <span class="donut-percent">85%</span>
                         </div>
                     </div>
                 </div>
@@ -549,6 +545,7 @@
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

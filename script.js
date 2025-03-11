@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Theme Toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+    });
+
     // Particles.js
     particlesJS('particles-js', {
         particles: {
@@ -133,17 +144,52 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Interactive Donut Charts using Chart.js
+    const donutData = [
+        { id: 'donut-chart-1', percentage: 85, title: 'Data Viz' },
+        { id: 'donut-chart-2', percentage: 90, title: 'Financial Reporting' },
+        { id: 'donut-chart-3', percentage: 80, title: 'HTML/CSS' },
+        { id: 'donut-chart-4', percentage: 75, title: 'JavaScript' },
+        { id: 'donut-chart-5', percentage: 70, title: 'Adobe Illustrator' },
+        { id: 'donut-chart-6', percentage: 85, title: 'Data Analysis' }
+    ];
+
+    donutData.forEach(data => {
+        const ctx = document.getElementById(data.id).getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [data.percentage, 100 - data.percentage],
+                    backgroundColor: [getComputedStyle(document.documentElement).getPropertyValue('--secondary-color'), '#f0f0f0'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                cutout: '70%',
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    animateRotate: true,
+                    animateScale: true
+                },
+                tooltips: {
+                    enabled: false
+                },
+                hover: {
+                    mode: null
+                }
+            }
+        });
+    });
+
     // Animations
-    const elements = document.querySelectorAll('.skill-card, .job, .education, .portfolio-item');
+    const elements = document.querySelectorAll('.skill-card, .overview-card, .education-card, .portfolio-item');
     elements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
         element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     });
-    
-    initDonutCharts();
-    animateTimelineItems();
-    initSkillCards();
     
     window.addEventListener('scroll', updateProgressBar);
     window.addEventListener('scroll', animateOnScroll);
@@ -153,117 +199,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.skill-card, .job, .education, .portfolio-item');
+    const elements = document.querySelectorAll('.skill-card, .overview-card, .education-card, .portfolio-item');
     elements.forEach(element => {
         const elementPosition = element.getBoundingClientRect().top;
         const screenPosition = window.innerHeight;
         if (elementPosition < screenPosition - 100) {
             element.style.opacity = '1';
             element.style.transform = 'translateY(0)';
-        }
-    });
-}
-
-function initDonutCharts() {
-    const donutCharts = document.querySelectorAll('.donut-chart');
-    donutCharts.forEach(chart => {
-        const percentage = chart.getAttribute('data-percentage');
-        chart.style.setProperty('--percentage', percentage);
-    });
-}
-
-function animateTimelineItems() {
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.2 });
-    
-    timelineItems.forEach(item => observer.observe(item));
-}
-
-function initSkillCards() {
-    const skillCards = document.querySelectorAll('.skill-card');
-    const skillStoryModal = document.querySelector('.skill-story-modal');
-    const skillStoryTitle = document.querySelector('.skill-story-title');
-    const skillStoryBody = document.querySelector('.skill-story-body');
-    const closeSkillStory = document.querySelector('.close-skill-story');
-    
-    const skillStories = {
-        'Financial Reporting': {
-            title: 'Financial Reporting Expertise',
-            body: `<p>With over 5 years of experience in journalism, I've developed a deep understanding of financial markets, corporate reporting, economic trends and general news. At Reuters, I've specialized in covering U.S. technology companies, particularly in the electric vehicle and space sectors.</p>
-                  <p>My current role requires me to combine quick breaking news reporting with clear, accessible explanations of complex financial concepts. I pride myself on breaking news that moves markets and providing insightful analysis that helps readers understand the bigger picture.</p>
-                  <p>Key strengths:</p>
-                  <ul>
-                    <li>Breaking news coverage of quarterly earnings and major corporate announcements</li>
-                    <li>Deep industry knowledge in technology and automotive sectors</li>
-                    <li>Ability to translate complex financial data into compelling narratives</li>
-                    <li>Strong network of industry sources and analysts</li>
-                  </ul>`
-        },
-        'Data Visualization': {
-            title: 'Data Visualization Skills',
-            body: `<p>I believe that effective data visualization is essential for modern financial journalism. I've developed expertise in creating charts, maps and interactive visualizations that make complex financial information accessible and engaging.</p>
-                  <p>My technical skills include:</p>
-                  <ul>
-                    <li>Creating custom visualizations using D3.js and other JavaScript libraries</li>
-                    <li>Building interactive dashboards that allow readers to explore data</li>
-                    <li>Designing clear, informative charts that highlight key trends and patterns</li>
-                    <li>Using Datawrapper on a daily basis and training reporters on using the tool</li>
-                  </ul>
-                  <p>I regularly collaborate with reporters across the world to create visualizations that enhance my reporting and provide readers with deeper insights.</p>`
-        },
-        'Multimedia Production': {
-            title: 'Multimedia Production Experience',
-            body: `<p>Beyond traditional reporting, I've embraced multimedia storytelling to reach audiences across different platforms. My experience includes:</p>
-                  <ul>
-                    <li>Hosting and producing podcast episodes on general news, international relations</li>
-                    <li>Developing proficiency in using the Adobe suite of software</li>
-                    <li>Developing social media content strategies to extend the reach of my reporting</li>
-                    <li>Collaborating with video teams to produce visual stories with previous employer</li>
-                  </ul>
-                  <p>I believe in meeting audiences where they are and adapting content to suit different platforms while maintaining journalistic integrity and clarity.</p>`
-        },
-        'Research & Analysis': {
-            title: 'Research & Analysis Methodology',
-            body: `<p>Thorough research and rigorous analysis form the foundation of my reporting. My approach includes:</p>
-                  <ul>
-                    <li>Analyzing financial statements and corporate disclosures to identify trends and anomalies</li>
-                    <li>Conducting in-depth interviews with industry experts, executives, and analysts</li>
-                    <li>Using data analysis tools to process large datasets and identify patterns</li>
-                    <li>Maintaining comprehensive knowledge of regulatory environments and market dynamics</li>
-                  </ul>
-                  <p>I'm committed to accuracy and context in all my reporting, ensuring that readers receive not just information but understanding.</p>`
-        }
-    };
-    
-    skillCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const skillType = card.getAttribute('data-skill');
-            const skillStory = skillStories[skillType];
-            if (skillStory) {
-                skillStoryTitle.textContent = skillStory.title;
-                skillStoryBody.innerHTML = skillStory.body;
-                skillStoryModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-        });
-    });
-    
-    closeSkillStory.addEventListener('click', () => {
-        skillStoryModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    });
-    
-    window.addEventListener('click', (e) => {
-        if (e.target === skillStoryModal) {
-            skillStoryModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
         }
     });
 }
