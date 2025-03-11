@@ -203,10 +203,20 @@ function initScrollObservers() {
     }, { threshold: 0.1 });
     
     // Observe all sections that should animate on scroll
-    const sections = document.querySelectorAll('.hero, .skills-highlight, .resume-overview, .skills-section, .experience-section, .education-section, .contact-section, .cover-letter-content, .portfolio-filters, .portfolio-grid');
-    sections.forEach(section => {
-        sectionObserver.observe(section);
-    });
+    function animateOnScroll() {
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        
+        elements.forEach(el => observer.observe(el));
+      }
+      document.addEventListener('DOMContentLoaded', animateOnScroll);      
     
     // Observe story intro sections
     const storyIntros = document.querySelectorAll('.story-intro');
