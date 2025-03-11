@@ -2,9 +2,9 @@
     --primary-color: #1a2a3a; /* Deep blue */
     --secondary-color: #00a896; /* Vibrant teal */
     --accent-color: #f0f3bd; /* Soft cream */
-    --text-color: #333;
+    --text-color: #f0f3bd; /* Light text for contrast */
     --light-text: #fff;
-    --bg-color: #f9f9f9;
+    --bg-color: #1a2a3a;
     --border-radius: 8px;
     --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
@@ -21,6 +21,7 @@ body {
     color: var(--text-color);
     background-color: var(--bg-color);
     overflow-x: hidden;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Added for better readability */
 }
 
 #particles-js {
@@ -62,6 +63,7 @@ body {
 
 h1, h2, h3, h4 {
     font-family: 'Lobster', cursive;
+    color: var(--accent-color);
 }
 
 .container {
@@ -278,10 +280,41 @@ main {
     color: var(--text-color);
 }
 
-@media (max-width: 768px) {
-    .timeline-item {
-        flex: 0 0 80vw;
-    }
+ul.job-highlights {
+    list-style-type: disc;
+    padding-left: 20px; /* Improved padding for better readability */
+}
+
+/* Education */
+.education-section {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.education-card {
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+/* Cover Letter */
+.cover-letter-section {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.cover-letter-content {
+    background: var(--bg-color);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
 /* Portfolio */
@@ -330,6 +363,7 @@ main {
     padding: 10px 20px;
     border-radius: var(--border-radius);
     transition: var(--transition);
+    text-decoration: none;
 }
 
 .btn:hover {
