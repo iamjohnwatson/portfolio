@@ -1,351 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for character encoding and responsive viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akash Sriram's Portfolio</title>
+    <title>Akash Sriram's Story</title>
+
+    <!-- External CSS Libraries -->
+    <!-- AOS for fade-in animations on scroll -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome for icons (e.g., social links in footer if needed) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS file -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="particles-js"></div>
-    <div class="theme-toggle">
-        <i class="fas fa-moon"></i>
-    </div>
+    <!-- Progress Bar: Shows scroll progress across the narrative -->
     <div class="story-progress">
         <div class="progress-bar"></div>
     </div>
-    
-    <header id="hero">
-        <div class="background"></div>
+
+    <!-- Sticky Navigation: Stays at the top and highlights current section -->
+    <nav class="sticky-nav">
         <div class="container">
-            <div class="typing-container">
-                <h1 class="typing-text">Akash Sriram</h1>
-            </div>
-            <p class="tagline">Technology Reporter & Data Storyteller</p>
+            <ul>
+                <!-- Navigation links with ARIA labels for accessibility -->
+                <li><a href="#hero" aria-label="Go to Home section">Home</a></li>
+                <li><a href="#introduction" aria-label="Go to My Story section">My Story</a></li>
+                <li><a href="#resume" aria-label="Go to Experience section">Experience</a></li>
+                <li><a href="#cover-letter" aria-label="Go to Cover Letter section">Cover Letter</a></li>
+                <li><a href="#portfolio" aria-label="Go to Portfolio section">Portfolio</a></li>
+                <li><a href="#contact" aria-label="Go to Contact section">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section: Full-screen intro with typing effect -->
+    <header id="hero">
+        <div class="hero-content">
+            <!-- Placeholder for Typed.js animation -->
+            <h1 id="typed-name"></h1>
+            <p class="tagline">Technology reporter with a penchant for data visualization</p>
         </div>
     </header>
-    
-    <main class="container">
-        <section id="home">
-            <div class="story-intro reveal">
-                <div class="story-chapter">Chapter 1: Introduction</div>
+
+    <!-- Main Content: Contains all narrative sections -->
+    <main>
+        <!-- Introduction Section: Brief narrative intro with fade-in -->
+        <section id="introduction">
+            <div class="container">
+                <h2>My Story</h2>
+                <!-- Data attribute triggers AOS animation -->
+                <p data-aos="fade-up">Hello, I'm Akash Sriram, a technology reporter with a passion for data visualization. My journey has taken me from covering breaking news to creating interactive stories that make complex information accessible. Let's explore my professional narrative together.</p>
             </div>
-            
-            <div class="hero reveal">
-                <div class="background"></div>
-                <div class="hero-content">
-                    <h2 class="header-box">Hi, I'm <span class="highlight-text">Akash</span></h2>
-                    <h3>Blending Tech Reporting with Visual Narratives</h3>
-                    <p>I craft compelling stories by merging financial expertise with data visualization, bringing complex tech trends to life.</p>
-                </div>
-                <div class="hero-image">
-                    <svg class="profile-illustration" width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="100" cy="100" r="90" fill="#00a896" opacity="0.1"/>
-                        <path d="M70 80 Q100 50 130 80 Q130 110 100 130 Q70 110 70 80" fill="#1a2a3a"/>
-                        <circle cx="85" cy="75" r="5" fill="#fff"/>
-                        <circle cx="115" cy="75" r="5" fill="#fff"/>
-                        <path d="M90 100 Q100 110 110 100" stroke="#fff" stroke-width="2" fill="none"/>
-                        <rect x="80" y="140" width="40" height="20" fill="#00a896"/>
-                    </svg>
-                </div>
-            </div>
-            
-            <div class="story-intro reveal">
-                <div class="story-chapter">Chapter 2: Skills</div>
-            </div>
-            
-            <div class="skills-highlight reveal">
-                <h3 class="header-box">Core Competencies</h3>
-                <div class="skills-grid">
-                    <div class="skill-card" data-skill="Financial Reporting">
-                        <div class="skill-icon-container">
-                            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M5 35 L15 25 L25 30 L35 20 L45 25" stroke="#00a896" stroke-width="2"/>
-                            </svg>
-                        </div>
-                        <h4>Financial Reporting</h4>
-                        <p>Expertise in tech sector financials at Reuters</p>
-                    </div>
-                    <div class="skill-card" data-skill="Data Visualization">
-                        <div class="skill-icon-container">
-                            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="10" y="30" width="5" height="10" fill="#00a896"/>
-                                <rect x="20" y="20" width="5" height="20" fill="#00a896"/>
-                                <rect x="30" y="25" width="5" height="15" fill="#00a896"/>
-                            </svg>
-                        </div>
-                        <h4>Data Visualization</h4>
-                        <p>Creating impactful visual stories</p>
-                    </div>
-                    <div class="skill-card" data-skill="Multimedia Production">
-                        <div class="skill-icon-container">
-                            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="25" cy="25" r="20" stroke="#00a896" stroke-width="2"/>
-                                <polygon points="20,15 35,25 20,35" fill="#00a896"/>
-                            </svg>
-                        </div>
-                        <h4>Multimedia Production</h4>
-                        <p>Podcasts, videos, and digital content</p>
-                    </div>
-                    <div class="skill-card" data-skill="Research & Analysis">
-                        <div class="skill-icon-container">
-                            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="20" cy="20" r="10" stroke="#00a896" stroke-width="2"/>
-                                <line x1="30" y1="30" x2="40" y2="40" stroke="#00a896" stroke-width="2"/>
-                            </svg>
-                        </div>
-                        <h4>Research & Analysis</h4>
-                        <p>Turning data into insights</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="skills-section reveal">
-                <div class="background"></div>
-                <h3 class="header-box">Technical Skills</h3>
-                <div class="skills-donut-grid">
-                    <div class="chart-container">
-                        <canvas id="skill-chart-1" data-percentage="85" data-title="Data Viz"></canvas>
-                        <div class="chart-label">
-                            <span class="chart-title">Data Viz</span>
-                            <span class="chart-percent">85%</span>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="skill-chart-2" data-percentage="90" data-title="Financial Reporting"></canvas>
-                        <div class="chart-label">
-                            <span class="chart-title">Financial Reporting</span>
-                            <span class="chart-percent">90%</span>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="skill-chart-3" data-percentage="80" data-title="HTML/CSS"></canvas>
-                        <div class="chart-label">
-                            <span class="chart-title">HTML/CSS</span>
-                            <span class="chart-percent">80%</span>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="skill-chart-4" data-percentage="75" data-title="JavaScript"></canvas>
-                        <div class="chart-label">
-                            <span class="chart-title">JavaScript</span>
-                            <span class="chart-percent">75%</span>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="skill-chart-5" data-percentage="70" data-title="Adobe Illustrator"></canvas>
-                        <div class="chart-label">
-                            <span class="chart-title">Adobe Illustrator</span>
-                            <span class="chart-percent">70%</span>
-                        </div>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="skill-chart-6" data-percentage="85" data-title="Data Analysis"></canvas>
-                        <div class="chart-label">
-                            <span class="chart-title">Data Analysis</span>
-                            <span class="chart-percent">85%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="story-intro reveal">
-                <div class="story-chapter">Chapter 3: Experience</div>
-            </div>
-            
-            <div class="experience-section reveal">
-                <div class="background"></div>
-                <h3 class="header-box">Work Experience</h3>
-                <div class="timeline-container">
+        </section>
+
+        <!-- Resume Section: Interactive timeline and skills display -->
+        <section id="resume">
+            <div class="container">
+                <h2>Professional Journey</h2>
+                <div class="timeline">
+                    <!-- Timeline Item: Each job entry animates on scroll -->
                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
                         <div class="timeline-date">May 2023 - Present</div>
                         <div class="timeline-content">
-                            <h4>Sector Specialist - Tech, Media, Telecom</h4>
+                            <h4>Sector Specialist - Technology, Media and Telecom</h4>
                             <p class="company">Reuters News</p>
                             <ul class="job-highlights">
-                                <li>Led tech sector coverage</li>
-                                <li>Broke news on EV companies</li>
-                                <li>Deepened U.S. automotive insights</li>
+                                <li>Led coverage of news in the technology sector</li>
+                                <li>Wrote initiative stories and broke news on electric vehicle companies</li>
+                                <li>Developed deep knowledge of U.S. automotive, EV and space companies</li>
+                                <li>Gained valuable experience in reporting stories using trends and data</li>
                             </ul>
                         </div>
                     </div>
+                    <!-- Add additional timeline items here with your resume content -->
+                    <!-- Example placeholder for another job -->
                     <div class="timeline-item">
-                        <div class="timeline-date">Sep 2021 - Apr 2023</div>
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">[Your Dates]</div>
                         <div class="timeline-content">
-                            <h4>Correspondent - Tech, Media, Telecom</h4>
-                            <p class="company">Reuters News</p>
+                            <h4>[Your Job Title]</h4>
+                            <p class="company">[Your Company]</p>
                             <ul class="job-highlights">
-                                <li>Reported on tech and EV firms</li>
-                                <li>Enhanced team visualization skills</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-date">Nov 2019 - Aug 2021</div>
-                        <div class="timeline-content">
-                            <h4>Sub Editor</h4>
-                            <p class="company">Deccan Herald</p>
-                            <ul class="job-highlights">
-                                <li>Led 2020 US election coverage</li>
-                                <li>Built election dashboards</li>
+                                <li>[Highlight 1]</li>
+                                <li>[Highlight 2]</li>
+                                <li>[Highlight 3]</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="story-intro reveal">
-                <div class="story-chapter">Chapter 4: Education</div>
-            </div>
-            
-            <div class="education-section reveal">
-                <div class="background"></div>
-                <h3 class="header-box">Education</h3>
-                <div class="education-grid">
-                    <div class="education-card">
-                        <h4>MA in Conflict, Development and Security</h4>
-                        <p class="institution">University of Leeds, UK</p>
-                        <p class="duration">September 2018 - September 2019</p>
-                    </div>
-                    <div class="education-card">
-                        <h4>BA in Media Studies, Economics and Political Science</h4>
-                        <p class="institution">Christ University, India</p>
-                        <p class="duration">June 2015 - March 2018</p>
-                    </div>
-                    <div class="education-card">
-                        <h4>Professional Certification in Data Analytics</h4>
-                        <p class="institution">Google</p>
-                        <p class="duration">December 2023</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="story-intro reveal">
-                <div class="story-chapter">Chapter 5: Cover Letter</div>
-            </div>
-            
-            <div class="cover-letter-section reveal">
-                <div class="background"></div>
-                <h3 class="header-box">Cover Letter</h3>
-                <div class="cover-letter-content">
-                    <p class="reveal">Dear Ella Koeze,</p>
-                    <p class="reveal">I am writing to apply for the Financial Graphics Journalist position with Reuters Graphics. My expertise in the Technology, Media, and Telecom sectors and my passion for data visualization make me an ideal candidate for this role.</p>
-                    <p class="reveal">During my 3.5-year tenure at Reuters, I have developed a strong foundation in financial reporting, particularly in the technology sector. I've led coverage of electric vehicle companies including Tesla, Rivian, and Lucid, consistently breaking news and developing deep industry knowledge.</p>
-                    <p class="reveal">Beyond my reporting experience, I bring valuable technical skills to the table. I have completed Google's Professional Data Analytics certification, where I gained proficiency in programming languages and visualization techniques.</p>
-                    <p class="reveal">Thank you for considering my application. I would love to discuss how my skills and experience could contribute to the Reuters financial graphics team.</p>
-                    <p class="reveal">Sincerely,</p>
-                    <p class="reveal">Akash Sriram</p>
-                </div>
-            </div>
-            
-            <div class="story-intro reveal">
-                <div class="story-chapter">Chapter 6: Portfolio</div>
-            </div>
-            
-            <div class="portfolio-section reveal">
-                <div class="background"></div>
-                <h3 class="header-box">Selected Works</h3>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item reveal">
-                        <svg class="portfolio-illustration" width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="300" height="200" fill="#f0f3bd" opacity="0.2"/>
-                            <path d="M50 150 L100 100 L150 120 L200 80 L250 110" stroke="#00a896" stroke-width="4" fill="none"/>
-                            <circle cx="150" cy="100" r="10" fill="#1a2a3a"/>
-                        </svg>
-                        <div class="portfolio-overlay">
-                            <h4>Tesla FSD Story</h4>
-                            <a href="https://www.reuters.com/business/autos-transportation/uber-lyft-drivers-use-teslas-makeshift-robotaxis-raising-safety-concerns-2024-10-03/" target="_blank" class="btn">Read Article</a>
+
+                <!-- Skills Subsection: Radial progress bars -->
+                <div class="skills">
+                    <h3>Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <canvas class="skill-chart" data-percentage="85" aria-label="Data Visualization: 85% proficiency"></canvas>
+                            <span>Data Visualization</span>
                         </div>
-                    </div>
-                    <div class="portfolio-item reveal">
-                        <svg class="portfolio-illustration" width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="300" height="200" fill="#f0f3bd" opacity="0.2"/>
-                            <circle cx="150" cy="100" r="50" stroke="#00a896" stroke-width="4" fill="none"/>
-                            <path d="M130 80 L170 100 L130 120" fill="#1a2a3a"/>
-                        </svg>
-                        <div class="portfolio-overlay">
-                            <h4>Eclipse Travel Boost</h4>
-                            <a href="https://www.reuters.com/business/retail-consumer/eclipse-boosts-travel-americans-chase-rare-celestial-event-2024-04-05/" target="_blank" class="btn">Read Article</a>
+                        <!-- Add additional skills here with your data -->
+                        <div class="skill-item">
+                            <canvas class="skill-chart" data-percentage="90" aria-label="Technology Reporting: 90% proficiency"></canvas>
+                            <span>Technology Reporting</span>
                         </div>
-                    </div>
-                    <div class="portfolio-item reveal">
-                        <svg class="portfolio-illustration" width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="300" height="200" fill="#f0f3bd" opacity="0.2"/>
-                            <path d="M50 150 L100 100 L150 120 L200 80 L250 110" stroke="#00a896" stroke-width="4" fill="none"/>
-                            <circle cx="150" cy="100" r="10" fill="#1a2a3a"/>
-                        </svg>
-                        <div class="portfolio-overlay">
-                            <h4>Musk's Tweeting Patterns</h4>
-                            <a href="https://www.reuters.com/business/autos-transportation/musks-all-nighters-twitter-raise-concern-tesla-investors-2022-11-15/" target="_blank" class="btn">Read Article</a>
-                        </div>
-                    </div>
-                    <div class="portfolio-item reveal">
-                        <svg class="portfolio-illustration" width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="300" height="200" fill="#f0f3bd" opacity="0.2"/>
-                            <circle cx="150" cy="100" r="50" stroke="#00a896" stroke-width="4" fill="none"/>
-                            <path d="M130 80 L170 100 L130 120" fill="#1a2a3a"/>
-                        </svg>
-                        <div class="portfolio-overlay">
-                            <h4>Tesla Price Cuts Impact</h4>
-                            <a href="https://www.reuters.com/business/autos-transportation/teslas-price-cuts-promise-more-pain-money-losing-us-ev-startups-2023-01-20/" target="_blank" class="btn">Read Article</a>
-                        </div>
-                    </div>
-                    <div class="portfolio-item reveal">
-                        <svg class="portfolio-illustration" width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="300" height="200" fill="#f0f3bd" opacity="0.2"/>
-                            <path d="M50 150 L100 100 L150 120 L200 80 L250 110" stroke="#00a896" stroke-width="4" fill="none"/>
-                        </svg>
-                        <div class="portfolio-overlay">
-                            <h4>EV Market Trends</h4>
-                            <button class="btn modal-btn" data-modal="modal-ev">Preview</button>
-                            <a href="#" target="_blank" class="btn">View Project</a>
-                        </div>
-                    </div>
-                    <div class="portfolio-item reveal">
-                        <svg class="portfolio-illustration" width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="300" height="200" fill="#f0f3bd" opacity="0.2"/>
-                            <rect x="50" y="50" width="50" height="100" fill="#00a896"/>
-                            <rect x="125" y="25" width="50" height="150" fill="#00a896"/>
-                            <rect x="200" y="75" width="50" height="75" fill="#00a896"/>
-                        </svg>
-                        <div class="portfolio-overlay">
-                            <h4>S&P 500 Sector Performance</h4>
-                            <button class="btn modal-btn" data-modal="modal-sp">Preview</button>
-                            <a href="#" target="_blank" class="btn">View Project</a>
+                        <!-- Example placeholder -->
+                        <div class="skill-item">
+                            <canvas class="skill-chart" data-percentage="[Your %]" aria-label="[Your Skill]: [Your %] proficiency"></canvas>
+                            <span>[Your Skill]</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Cover Letter Section: Scrollable with highlighted segments -->
+        <section id="cover-letter">
+            <div class="container">
+                <h2>Cover Letter</h2>
+                <div class="cover-letter-content">
+                    <!-- Each paragraph fades in and highlights key points -->
+                    <p data-aos="fade-up">Dear Ella Koeze,</p>
+                    <p data-aos="fade-up">I am writing to apply for the Financial Graphics Journalist position with Reuters Graphics. My expertise in the Technology, Media, and Telecom sectors and my passion for data visualization, I believe are a unique combination of financial reporting expertise and technical skills that makes me an ideal candidate for this role.</p>
+                    <!-- Insert your full cover letter paragraphs here -->
+                    <!-- Example placeholder -->
+                    <p data-aos="fade-up">[Your next paragraph from the cover letter goes here.]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section: Filterable grid with interactive previews -->
+        <section id="portfolio">
+            <div class="container">
+                <h2>Portfolio</h2>
+                <!-- Filter buttons for portfolio categories -->
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="*" aria-label="Show all portfolio items">All Work</button>
+                    <button class="filter-btn" data-filter=".data-viz" aria-label="Show Data Visualization items">Data Visualization</button>
+                    <button class="filter-btn" data-filter=".articles" aria-label="Show Articles">Articles</button>
+                    <button class="filter-btn" data-filter=".projects" aria-label="Show Projects">Projects</button>
+                </div>
+                <div class="portfolio-grid">
+                    <!-- Portfolio Item: Categorize with class (e.g., data-viz, articles) -->
+                    <div class="portfolio-item data-viz">
+                        <img src="path/to/your-image.jpg" alt="Project Image" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <h3>[Your Project Title]</h3>
+                            <p>[Short description]</p>
+                            <button class="btn portfolio-preview" data-id="project1" aria-label="View preview of [Your Project Title]">Preview</button>
+                        </div>
+                    </div>
+                    <!-- Add additional portfolio items here with your content -->
+                    <!-- Example placeholder -->
+                    <div class="portfolio-item articles">
+                        <img src="path/to/another-image.jpg" alt="Article Image" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <h3>[Another Title]</h3>
+                            <p>[Another description]</p>
+                            <button class="btn portfolio-preview" data-id="project2" aria-label="View preview of [Another Title]">Preview</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section: Form with EmailJS integration -->
+        <section id="contact">
+            <div class="container">
+                <h2>Contact Me</h2>
+                <form id="contact-form" aria-label="Contact form">
+                    <input type="text" name="name" placeholder="Name" required aria-label="Your name">
+                    <input type="email" name="email" placeholder="Email" required aria-label="Your email">
+                    <textarea name="message" placeholder="Message" required aria-label="Your message"></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
     </main>
-    
-    <!-- Modal Windows -->
-    <div id="modal-ev" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>EV Market Trends</h3>
-            <p>A data visualization project analyzing electric vehicle market growth, featuring interactive charts and industry insights.</p>
-        </div>
-    </div>
-    <div id="modal-sp" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>S&P 500 Sector Performance</h3>
-            <p>An interactive bar chart showcasing sector performance trends in the S&P 500 over the past decade.</p>
-        </div>
-    </div>
-    
-    <footer id="footer">
-        <div class="background"></div>
+
+    <!-- Footer: Basic copyright notice -->
+    <footer>
         <div class="container">
-            <p>© 2025 Akash Sriram. All rights reserved.</p>
+            <p>&copy; 2025 Akash Sriram. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- JavaScript Libraries -->
+    <!-- Typed.js for hero typing effect -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- GSAP for advanced animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- ScrollMagic for scroll-based triggers -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Chart.js for skill progress bars -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Isotope for portfolio filtering -->
+    <script src="https://cdn.jsdelivr.net/npm/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
+    <!-- Tippy.js and Popper.js for tooltips (if needed later) -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <!-- EmailJS for contact form -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <!-- AOS for lightweight animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Custom JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>

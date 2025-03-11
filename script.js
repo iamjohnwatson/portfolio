@@ -1,119 +1,178 @@
-// Particles.js Initialization
-particlesJS('particles-js', {
-    particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: '#00a896' },
-        shape: { type: 'circle' },
-        opacity: { value: 0.5, random: true },
-        size: { value: 3, random: true },
-        line_linked: { enable: true, distance: 150, color: '#00a896', opacity: 0.4, width: 1 },
-        move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out' }
-    },
-    interactivity: {
-        detect_on: 'canvas',
-        events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
-        modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
-    },
-    retina_detect: true
+// ==========================================================================
+// Initialization Functions
+// ==========================================================================
+
+// Initialize Typed.js for the hero section typing effect
+// Displays your name dynamically
+var typed = new Typed('#typed-name', {
+    strings: ["Akash Sriram"], // Add more strings if desired (e.g., titles)
+    typeSpeed: 50,            // Speed of typing in milliseconds
+    startDelay: 500,          // Delay before starting
+    showCursor: false         // Hide the blinking cursor
 });
 
-// Progress Bar
-window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.body.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrollTop / docHeight) * 100;
-    document.querySelector('.progress-bar').style.width = `${scrollPercent}%`;
+// Initialize AOS (Animate On Scroll) for fade-in effects
+AOS.init({
+    duration: 1000,    // Animation duration in milliseconds
+    once: true,        // Animate only once per scroll
+    offset: 100        // Trigger animations 100px before element is in view
 });
 
-// Scroll-Triggered Reveals
-const reveals = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-            revealObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.2 });
+// Initialize ScrollMagic controller for scroll-based animations
+var controller = new ScrollMagic.Controller();
 
-reveals.forEach(reveal => revealObserver.observe(reveal));
+// ==========================================================================
+// Timeline Animations
+// ==========================================================================
 
+// Animate each timeline item when it enters the viewport
+document.querySelectorAll('.timeline-item').forEach(function(item) {
+    // Create a new ScrollMagic scene for each item
+    new ScrollMagic.Scene({
+        triggerElement: item,     // Element to watch
+        triggerHook: 0.8,        // Trigger when 80% of item is in view
+        reverse: false           // Only animate once
+    })
+    .setClassToggle(item, 'visible') // Add 'visible' class to trigger CSS animation
+    .addTo(controller);              // Register with controller
+});
+
+// ==========================================================================
 // Skill Charts
-const chartObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const canvas = entry.target;
-            const percentage = parseInt(canvas.getAttribute('data-percentage'));
-            const ctx = canvas.getContext('2d');
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    datasets: [{
-                        data: [percentage, 100 - percentage],
-                        backgroundColor: ['#00a896', 'transparent'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    cutout: '80%',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    animation: { animateRotate: true, animateScale: true },
-                    tooltips: { enabled: false },
-                    hover: { mode: null }
-                }
-            });
-            chartObserver.unobserve(canvas);
+// ==========================================================================
+
+// Create radial progress bars for skills using Chart.js
+document.querySelectorAll('.skill-chart').forEach(function(canvas) {
+    var ctx = canvas.getContext('2d');
+    var percentage = parseInt(canvas.getAttribute('data-percentage')); // Get percentage from HTML
+
+    // Configure Chart.js to mimic a radial progress bar
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [percentage, 100 - percentage], // Progress vs remaining
+                backgroundColor: ['#2ecc71', '#eee'], // Accent color and gray
+                borderWidth: 0                        // No borders for cleaner look
+            }]
+        },
+        options: {
+            cutout: '70%',          // Hollow center for radial effect
+            rotation: -90,          // Start at top
+            circumference: 180,     // Half circle for progress bar
+            tooltips: { enabled: false }, // Disable tooltips
+            hover: { mode: null },        // Disable hover effects
+            animation: {
+                animateRotate: true,      // Animate rotation
+                animateScale: true        // Animate scale on load
+            },
+            maintainAspectRatio: true     // Ensure chart stays circular
         }
     });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.chart-container canvas').forEach(chart => {
-    chartObserver.observe(chart);
 });
 
-// Parallax Effect
-window.addEventListener('scroll', () => {
-    document.querySelectorAll('.background').forEach(bg => {
-        const section = bg.parentElement;
-        const sectionTop = section.getBoundingClientRect().top;
-        const speed = 0.3;
-        bg.style.transform = `translateY(${sectionTop * speed}px)`;
-    });
+// ==========================================================================
+// Cover Letter Animations
+// ==========================================================================
+
+// Highlight cover letter paragraphs as they scroll into view
+document.querySelectorAll('.cover-letter-content p').forEach(function(p) {
+    new ScrollMagic.Scene({
+        triggerElement: p,
+        triggerHook: 0.7,    // Trigger at 70% of viewport
+        reverse: false       // Animate only once
+    })
+    .setClassToggle(p, 'highlight') // Add 'highlight' class for styling
+    .addTo(controller);
 });
 
-// Modal Windows
-const modalBtns = document.querySelectorAll('.modal-btn');
-const modals = document.querySelectorAll('.modal');
-const closes = document.querySelectorAll('.close');
+// ==========================================================================
+// Portfolio Filtering
+// ==========================================================================
 
-modalBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const modalId = btn.getAttribute('data-modal');
-        document.getElementById(modalId).style.display = 'block';
-    });
+// Initialize Isotope for portfolio grid filtering
+var grid = document.querySelector('.portfolio-grid');
+var iso = new Isotope(grid, {
+    itemSelector: '.portfolio-item', // Target portfolio items
+    layoutMode: 'fitRows'            // Arrange in rows
 });
 
-closes.forEach(close => {
-    close.addEventListener('click', () => {
-        modals.forEach(modal => modal.style.display = 'none');
+// Handle filter button clicks
+var filtersElem = document.querySelector('.portfolio-filters');
+filtersElem.addEventListener('click', function(event) {
+    // Check if clicked element is a filter button
+    if (!event.target.matches('.filter-btn')) {
+        return;
+    }
+
+    // Get filter value from data-filter attribute
+    var filterValue = event.target.getAttribute('data-filter');
+
+    // Apply filter to Isotope grid
+    iso.arrange({ filter: filterValue });
+
+    // Update active button styling
+    filtersElem.querySelectorAll('.filter-btn').forEach(function(btn) {
+        btn.classList.remove('active');
     });
+    event.target.classList.add('active');
 });
 
-window.addEventListener('click', (e) => {
-    modals.forEach(modal => {
-        if (e.target === modal) modal.style.display = 'none';
-    });
+// ==========================================================================
+// Sticky Navigation
+// ==========================================================================
+
+// Make navigation sticky after scrolling past hero
+window.addEventListener('scroll', function() {
+    var nav = document.querySelector('.sticky-nav');
+    var heroHeight = document.querySelector('#hero').offsetHeight;
+
+    // Add 'fixed' class when scrolled past hero
+    if (window.scrollY > heroHeight) {
+        nav.classList.add('fixed');
+    } else {
+        nav.classList.remove('fixed');
+    }
 });
 
-// Section Transitions
-const sections = document.querySelectorAll('section');
-const colors = ['#1a2a3a', '#2a3a4a', '#3a4a5a', '#4a5a6a', '#5a6a7a', '#6a7a8a'];
-window.addEventListener('scroll', () => {
-    sections.forEach((section, index) => {
-        const rect = section.getBoundingClientRect();
-        if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-            section.style.backgroundColor = colors[index % colors.length];
-        }
-    });
+// ==========================================================================
+// Progress Bar
+// ==========================================================================
+
+// Update progress bar width based on scroll position
+window.addEventListener('scroll', function() {
+    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var scrolled = (winScroll / height) * 100; // Calculate percentage
+    document.querySelector('.progress-bar').style.width = scrolled + '%';
+});
+
+// ==========================================================================
+// Contact Form Submission
+// ==========================================================================
+
+// Initialize EmailJS with your user ID (replace with your actual ID)
+// Note: Sign up at emailjs.com to get your credentials
+emailjs.init('YOUR_USER_ID');
+
+// Handle form submission
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Validate form fields
+    if (!this.checkValidity()) {
+        this.reportValidity(); // Show browser validation messages
+        return;
+    }
+
+    // Send form data via EmailJS
+    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+        .then(function() {
+            // Success feedback
+            alert('Message sent successfully!');
+            this.reset(); // Clear form
+        }, function(error) {
+            // Error feedback
+            alert('Failed to send message: ' + JSON.stringify(error));
+        });
 });
