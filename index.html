@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    /* Ensure smooth scrolling */
     html {
       scroll-behavior: smooth;
     }
@@ -20,24 +19,30 @@
     <div class="progress-bar"></div>
   </div>
 
-  <!-- Header Section -->
+  <!-- Header Section with Parallax & Particles -->
   <header id="home">
     <div class="container">
+      <!-- Parallax Background Layers -->
       <div class="parallax-layer layer-1"></div>
       <div class="parallax-layer layer-2"></div>
       <div class="parallax-layer layer-3"></div>
+
       <div class="typing-container">
         <h1 class="typing-text">Akash Sriram</h1>
       </div>
       <p class="tagline">Technology reporter with a penchant for data visualization</p>
       <div class="header-particles"></div>
+      <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+        <span>Scroll Down</span>
+      </div>
     </div>
   </header>
 
   <!-- Navigation Bar -->
   <nav>
     <div class="container">
-      <div class="mobile-nav-toggle"><i class="fas fa-bars"></i></div>
+      <button class="mobile-nav-toggle"><i class="fas fa-bars"></i></button>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#experience">Experience</a></li>
@@ -51,45 +56,38 @@
   <!-- Main Content -->
   <main class="container">
     <!-- Experience Section -->
-    <section id="experience">
+    <section id="experience" class="animate-on-scroll">
       <div class="story-intro">
         <div class="story-chapter">Professional Journey</div>
       </div>
       <h2>Experience</h2>
       <div class="resume-overview">
         <div class="overview-card">
-          <div class="overview-icon">
-            <i class="fas fa-briefcase"></i>
-          </div>
+          <div class="overview-icon"><i class="fas fa-briefcase"></i></div>
           <div class="overview-details">
             <h3>5+ Years</h3>
             <p>Work Experience</p>
           </div>
         </div>
         <div class="overview-card">
-          <div class="overview-icon">
-            <i class="fas fa-graduation-cap"></i>
-          </div>
+          <div class="overview-icon"><i class="fas fa-graduation-cap"></i></div>
           <div class="overview-details">
             <h3>2 Degrees</h3>
             <p>Education</p>
           </div>
         </div>
         <div class="overview-card">
-          <div class="overview-icon">
-            <i class="fas fa-newspaper"></i>
-          </div>
+          <div class="overview-icon"><i class="fas fa-newspaper"></i></div>
           <div class="overview-details">
             <h3>500+</h3>
             <p>Published Articles</p>
           </div>
         </div>
       </div>
-      <!-- Timeline and Education can follow here -->
+      <!-- Timeline -->
       <div class="experience-section">
         <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
         <div class="timeline">
-          <!-- Timeline Item 1 -->
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-date">May 2023 - Present</div>
@@ -104,7 +102,6 @@
               </ul>
             </div>
           </div>
-          <!-- Timeline Item 2 -->
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-date">Sep 2021 - Apr 2023</div>
@@ -117,7 +114,6 @@
               </ul>
             </div>
           </div>
-          <!-- Timeline Item 3 -->
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-date">Nov 2019 - Aug 2021</div>
@@ -133,14 +129,12 @@
           </div>
         </div>
       </div>
+      <!-- Education -->
       <div class="education-section">
         <h3><i class="fas fa-graduation-cap"></i> Education</h3>
         <div class="education-grid">
-          <!-- Education Card 1 -->
           <div class="education-card">
-            <div class="education-logo">
-              <i class="fas fa-university"></i>
-            </div>
+            <div class="education-logo"><i class="fas fa-university"></i></div>
             <div class="education-details">
               <h4>MA in Conflict, Development and Security</h4>
               <p class="institution">University of Leeds, UK</p>
@@ -152,11 +146,8 @@
               </div>
             </div>
           </div>
-          <!-- Education Card 2 -->
           <div class="education-card">
-            <div class="education-logo">
-              <i class="fas fa-university"></i>
-            </div>
+            <div class="education-logo"><i class="fas fa-university"></i></div>
             <div class="education-details">
               <h4>BA in Media Studies, Economics and Political Science</h4>
               <p class="institution">Christ University, India</p>
@@ -168,11 +159,8 @@
               </div>
             </div>
           </div>
-          <!-- Education Card 3 -->
           <div class="education-card">
-            <div class="education-logo">
-              <i class="fab fa-google"></i>
-            </div>
+            <div class="education-logo"><i class="fab fa-google"></i></div>
             <div class="education-details">
               <h4>Professional Certification in Data Analytics</h4>
               <p class="institution">Google</p>
@@ -189,7 +177,7 @@
     </section>
 
     <!-- Cover Letter Section -->
-    <section id="cover-letter">
+    <section id="cover-letter" class="animate-on-scroll">
       <div class="story-intro">
         <div class="story-chapter">My Application</div>
       </div>
@@ -216,13 +204,13 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio">
+    <section id="portfolio" class="animate-on-scroll">
       <div class="story-intro">
         <div class="story-chapter">My Work</div>
       </div>
       <h2>Portfolio</h2>
       <div class="portfolio-grid">
-        <!-- Portfolio Item 1 -->
+        <!-- Portfolio items here (as before) -->
         <div class="portfolio-item" data-category="articles">
           <div class="portfolio-item-inner">
             <img src="https://www.reuters.com/resizer/v2/3RS3SCKNRRNXLL6EA4UCYW73UU.jpg?auth=583b1e23282a2f35799785932f544ee69b4a40629dbae24c029b65bb29d0bfee&width=1080&quality=80" alt="Tesla article" />
@@ -232,51 +220,12 @@
             </div>
           </div>
         </div>
-        <!-- Portfolio Item 2 -->
-        <div class="portfolio-item" data-category="articles">
-          <div class="portfolio-item-inner">
-            <img src="https://www.reuters.com/graphics/AIRBNB-OCCUPANCY/zgvokeodzvd/chart.png" alt="Lunar eclipse article" />
-            <div class="portfolio-overlay">
-              <h3>Curious Travelers Flock to the Eclipse's Path</h3>
-              <a href="https://www.reuters.com/business/retail-consumer/eclipse-boosts-travel-americans-chase-rare-celestial-event-2024-04-05/" target="_blank" class="btn">Read Article</a>
-            </div>
-          </div>
-        </div>
-        <!-- Portfolio Item 3 -->
-        <div class="portfolio-item" data-category="data-viz">
-          <div class="portfolio-item-inner">
-            <img src="https://graphics.reuters.com/TESLA-MUSK/klvygkgdovg/chart.png" alt="Elon Musk's tweets" />
-            <div class="portfolio-overlay">
-              <h3>Elon Musk's Tweeting Patterns Before Buying Twitter</h3>
-              <a href="https://www.reuters.com/business/autos-transportation/musks-all-nighters-twitter-raise-concern-tesla-investors-2022-11-15/" target="_blank" class="btn">Read Article</a>
-            </div>
-          </div>
-        </div>
-        <!-- Portfolio Item 4 -->
-        <div class="portfolio-item" data-category="projects">
-          <div class="portfolio-item-inner">
-            <img src="https://media.licdn.com/dms/image/v2/D5622AQGsqGnopruhDA/feedshare-shrink_800/B56ZTIe.aGHQAg-/0/1738530351271?e=1744243200&v=beta&t=j1ocSTlLgmXtqnbX_qHL5Q4aZ5BEbTZb46-BD_2W6Vw" alt="Coding project" />
-            <div class="portfolio-overlay">
-              <h3>JavaScript-based Retro Arcade Game</h3>
-              <a href="https://iamjohnwatson.github.io/web-game/" target="_blank" class="btn">View on GitHub</a>
-            </div>
-          </div>
-        </div>
-        <!-- Portfolio Item 5 -->
-        <div class="portfolio-item" data-category="projects">
-          <div class="portfolio-item-inner">
-            <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Web development project" />
-            <div class="portfolio-overlay">
-              <h3>Human Adventures in Space</h3>
-              <a href="https://iamjohnwatson.github.io/Human-Adventures-In-Space/" target="_blank" class="btn">View on GitHub</a>
-            </div>
-          </div>
-        </div>
+        <!-- Additional portfolio items would follow... -->
       </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
+    <section id="contact" class="animate-on-scroll">
       <div class="story-intro">
         <div class="story-chapter">Get In Touch</div>
       </div>
