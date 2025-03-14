@@ -440,7 +440,11 @@ h4 {
     transform: translate(-50%, -50%);
     font-size: 1.2rem;
     font-weight: bold;
-    color: #F5F5F5;
+    color: var(--text-color);
+}
+
+body.light-mode .skill-item .percent-text {
+    color: var(--text-color);
 }
 
 .skills-details {
