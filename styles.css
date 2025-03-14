@@ -16,13 +16,21 @@
     --transition-speed: 0.3s;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--background-color);
     color: var(--text-color);
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 body.light-mode {
@@ -30,6 +38,10 @@ body.light-mode {
     --surface-color: #ffffff;
     --text-color: #333333;
     --text-secondary: #666666;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 .container {
@@ -84,7 +96,6 @@ nav a {
     display: inline-block;
     transition: all var(--transition-speed) ease;
     cursor: pointer;
-    pointer-events: auto;
 }
 
 nav a svg {
@@ -128,18 +139,13 @@ nav a:hover svg text {
 
 /* Sections General */
 .story-section {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     padding: 100px 0;
     position: relative;
 }
 
-/* Override for the last section (Cover Letter) */
 #cover-letter {
-    min-height: auto; /* Remove min-height to fit content */
-    padding-bottom: 20px; /* Reduce bottom padding */
+    padding: 100px 0 20px 0; /* Reduced bottom padding */
+    margin-bottom: 0;
 }
 
 .story-chapter {
@@ -297,14 +303,11 @@ h4 {
 }
 
 .btn {
-    position: relative;
     padding: 14px 32px;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
     font-size: 1.1rem;
-    line-height: 1;
-    letter-spacing: -0.01em;
     transition: all var(--transition-speed) ease-in-out;
     display: inline-flex;
     align-items: center;
@@ -318,7 +321,6 @@ h4 {
 
 .btn:hover {
     transform: translateY(-3px);
-    background: var(--primary-color);
     filter: brightness(1.1);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
@@ -338,8 +340,6 @@ h4 {
 .btn.secondary:hover {
     background: var(--secondary-color);
     color: var(--background-color);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
 }
 
 /* Skills Section */
@@ -363,12 +363,10 @@ h4 {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: all var(--transition-speed) ease;
-    position: relative;
 }
 
 .skill-item.active {
     border: 4px solid var(--primary-color);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 .skill-item:hover {
@@ -431,11 +429,6 @@ h4 {
     font-weight: 600;
     margin-bottom: 10px;
     color: var(--primary-color);
-}
-
-.skill-detail-item p {
-    font-size: 1em;
-    color: var(--text-color);
 }
 
 /* Experience Section */
@@ -513,7 +506,6 @@ h4 {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transition: all var(--transition-speed);
     display: flex;
-    height: 100%;
 }
 
 .education-item:hover {
@@ -600,7 +592,6 @@ h4 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
     display: block;
 }
 
@@ -647,21 +638,13 @@ footer {
     background: var(--surface-color);
     padding: 20px 0;
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 0; /* Ensure no extra margin at the bottom */
-}
-
-/* Ensure no extra space after the footer */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: auto; /* Allow the body to size to content */
+    flex-shrink: 0; /* Prevent footer from shrinking */
 }
 
 footer p {
     color: var(--text-secondary);
     font-size: 0.9em;
-    margin: 0; /* Remove any default margin */
+    margin: 0;
 }
 
 /* Animations */
@@ -673,12 +656,6 @@ footer p {
 [data-animate].is-visible {
     opacity: 1;
     transform: none;
-}
-
-[data-no-animate] {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
 }
 
 [data-animate="fade-in"] {
@@ -737,15 +714,12 @@ footer p {
         gap: 8px;
         padding: 10px;
     }
-
     nav a svg {
         width: 80px;
         height: 32px;
     }
-
     h2 { font-size: 2.2em; }
     h3 { font-size: 1.5em; }
-    .portfolio-grid { grid-template-columns: 1fr; }
     .skills-frame {
         grid-template-columns: 1fr;
     }
@@ -801,7 +775,7 @@ footer p {
     justify-content: center;
     align-items: center;
     z-index: 2000;
-    transition: opacity 0.5s, visibility 0.5s;
+    transition: opacity 0.5s;
 }
 
 .loading-animation {
@@ -821,7 +795,6 @@ footer p {
 
 .loading-screen.fade-out {
     opacity: 0;
-    visibility: hidden;
 }
 
 /* Cover Letter Section */
@@ -834,7 +807,6 @@ footer p {
     margin: 0 auto;
     line-height: 1.8;
     font-size: 1.1em;
-    color: var(--text-color);
 }
 
 .cover-letter-content p {
