@@ -656,6 +656,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: auto; /* Allow the body to size to content */
+    overflow-y: auto;
 }
 
 footer p {
