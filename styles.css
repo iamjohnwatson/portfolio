@@ -366,6 +366,15 @@ h4 {
     position: relative;
 }
 
+.custom-cursor,
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+}
+
 .skill-item.active {
     border: 4px solid var(--primary-color);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -648,14 +657,13 @@ footer {
     padding: 20px 0;
     text-align: center;
     margin-top: 50px;
-    margin-bottom: 0; /* Ensure no extra margin at the bottom */
+    margin-bottom: 0;
 }
 
-/* Ensure no extra space after the footer */
 html, body {
     margin: 0;
     padding: 0;
-    height: auto; /* Allow the body to size to content */
+    height: auto;
     overscroll-behavior: none;
 }
 
