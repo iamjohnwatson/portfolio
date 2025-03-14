@@ -152,7 +152,6 @@ document.addEventListener('DOMContentLoaded', function () {
             ScrollTrigger.create({
                 trigger: element,
                 start: 'top 80%',
-                end: 'bottom top',
                 onEnter: () => {
                     animation.play();
                     element.classList.add('is-visible');
@@ -173,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 scrollTrigger: {
                     trigger: section,
                     start: 'top bottom',
-                    end: 'bottom top', // Changed to 'bottom bottom' to reduce scroll height
+                    end: 'bottom bottom', // Changed to 'bottom bottom' to reduce scroll height
                     scrub: true
                 }
             });
