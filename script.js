@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 scrollTrigger: {
                     trigger: section,
                     start: 'top bottom',
-                    end: 'bottom bottom', // Changed to 'bottom bottom' to reduce scroll height
+                    end: 'bottom top', // Changed to 'bottom bottom' to reduce scroll height
                     scrub: true
                 }
             });
