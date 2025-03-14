@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 scrollTrigger: {
                     trigger: section,
                     start: 'top bottom',
-                    end: () => "+=" + section.clientHeight,
+                    end: 'bottom top',
                     scrub: true
                 }
             });
