@@ -37,60 +37,10 @@ document.addEventListener('DOMContentLoaded', function () {
             progressBar.style.width = scrollProgress + '%';
         });
 
-        // Initialize Donut Charts with Gradient
-        const skillItems = document.querySelectorAll('.skill-item');
-        skillItems.forEach(item => {
-            const skill = item.getAttribute('data-skill');
-            const percent = parseInt(item.getAttribute('data-percent'));
-            const canvas = item.querySelector('.skill-canvas');
-            const ctx = canvas.getContext('2d');
-
-            if (ctx) {
-                // Nicer Gradient: Coral -> Amber -> Teal
-                const gradient = ctx.createLinearGradient(0, 0, 200, 0);
-                gradient.addColorStop(0, '#FF6F61'); // Coral
-                gradient.addColorStop(0.5, '#FFCA28'); // Amber
-                gradient.addColorStop(1, '#26A69A'); // Teal
-
-                console.log('Setting rotation to 0 for skill:', skill); // Debug log
-
-                new Chart(canvas, {
-                    type: 'doughnut',
-                    data: {
-                        labels: [skill, ''],
-                        datasets: [{
-                            data: [percent, 100 - percent],
-                            backgroundColor: [gradient, '#333'],
-                            borderWidth: 0,
-                            hoverBackgroundColor: [gradient, '#333']
-                        }]
-                    },
-                    options: {
-                        cutout: '70%',
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        animation: {
-                            animateScale: true,
-                            animateRotate: true
-                        },
-                        plugins: {
-                            legend: { display: false },
-                            tooltip: { enabled: false }
-                        },
-                        circumference: 360,
-                        rotation: 0 // Starts at the top, as requested
-                    }
-                });
-
-                // Add percentage text in the center
-                const percentText = document.createElement('div');
-                percentText.classList.add('percent-text');
-                percentText.textContent = percent + '%';
-                item.appendChild(percentText);
-            }
-        });
+        // Remove Donut Charts initialization block (no longer needed)
 
         // Skill Details Toggle
+        const skillItems = document.querySelectorAll('.skill-item');
         skillItems.forEach(item => {
             item.addEventListener('click', () => {
                 const skill = item.getAttribute('data-skill');
@@ -164,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        // Parallax effect for sections (adjusted to reduce extra scroll height)
+        // Parallax effect for sections
         document.querySelectorAll('.story-section').forEach(section => {
             gsap.to(section, {
                 backgroundPosition: `50% ${window.innerHeight / 2}px`,
@@ -261,31 +211,27 @@ document.addEventListener('DOMContentLoaded', function () {
             orbitContainer.classList.add('profile-orbit-container');
             profileShape.appendChild(orbitContainer);
 
-            const numParticles = 8; // Number of orbiting particles
+            const numParticles = 8;
             for (let i = 0; i < numParticles; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('profile-orbit-particle');
 
-                // Randomize size (2–5px)
                 const size = Math.random() * 3 + 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
 
-                // Randomize color (teal or amber)
-                const color = i % 2 === 0 ? '#26A69A' : '#FFCA28'; // Alternate between teal and amber
+                const color = i % 2 === 0 ? '#26A69A' : '#FFCA28';
                 particle.style.background = color;
 
-                // Initial position at the center
                 particle.style.left = '50%';
                 particle.style.top = '50%';
 
                 orbitContainer.appendChild(particle);
 
-                // Animate in an elliptical orbit
-                const radiusX = 150 + Math.random() * 30; // Horizontal radius (150–180px)
-                const radiusY = 120 + Math.random() * 20; // Vertical radius (120–140px)
-                const duration = 10 + Math.random() * 5; // Duration (10–15s)
-                const direction = i % 2 === 0 ? 1 : -1; // Alternate clockwise and counterclockwise
+                const radiusX = 150 + Math.random() * 30;
+                const radiusY = 120 + Math.random() * 20;
+                const duration = 10 + Math.random() * 5;
+                const direction = i % 2 === 0 ? 1 : -1;
 
                 gsap.to(particle, {
                     motionPath: {
@@ -305,10 +251,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     transformOrigin: '50% 50%'
                 });
 
-                // Add opacity animation for twinkling effect
                 gsap.to(particle, {
-                    opacity: Math.random() * 0.5 + 0.3, // 0.3–0.8
-                    duration: Math.random() * 2 + 1, // 1–3s
+                    opacity: Math.random() * 0.5 + 0.3,
+                    duration: Math.random() * 2 + 1,
                     repeat: -1,
                     yoyo: true,
                     ease: 'sine.inOut'
